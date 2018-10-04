@@ -1,6 +1,10 @@
 #include "Game.h"	
 #include "SoundFX.h"
-
+#ifdef OS9
+#include <glut.h>
+#else
+#include <GL/glut.h>
+#endif
 
 extern double multiplier;
 
@@ -380,11 +384,15 @@ void	Game::ProcessSDLEvents(void)
 					{
 						if(checked)
 						{
-							SDL_WarpMouse(screenwidth/2, screenheight/2);
+							int centerX = screenwidth/2;
+							int centerY = screenheight/2;
+							if (x != centerX || y != centerY)
+							{
+								glutWarpPointer(centerX, centerY);
+							}
 							checked = false;
 						}
-						else 
-						if(!checked)
+						else if(!checked)
 						{
 							checked = true;
 						}
