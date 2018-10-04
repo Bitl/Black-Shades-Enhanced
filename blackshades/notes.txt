@@ -1,0 +1,85 @@
+
+BUGS:
+X 1.) For some reason music not playing on main menu when returning from game with ESC
+- 2.) Need to do vision sound loop
+X 3.) reloadsound probably needs its own state... argghhhh!!!! (or check for buffer in use on playing source?)
+X 4.) headland sound as well?!?!?
+X 5.) bodyland sound too!!!?!@?
+6.) multiple wallhits per frame are goin' crazy
+
+Standard sound:
+	float gLoc[3];
+	gLoc[0]=0;
+	gLoc[1]=0;
+	gLoc[2]=0;
+
+	alSourcefv(gSourceID[src_bodylandsound], AL_POSITION, gLoc);
+	alSourcei(gSourceID[src_bodylandsound], AL_LOOPING, 0);
+	alSourcef(gSourceID[src_bodylandsound], AL_MIN_GAIN, 0);
+
+
+Oddball sounds:
+		
+	alSourcefv(gSourceID[src_visionsound], AL_POSITION, gLoc);
+	alSourcei(gSourceID[src_visionsound], AL_LOOPING, 1);
+	alSourcef(gSourceID[src_visionsound], AL_MIN_GAIN, 1);
+
+	alSourcefv(gSourceID[src_soulinsound], AL_POSITION, gLoc);
+	alSourcei(gSourceID[src_soulinsound], AL_LOOPING, 0);
+	alSourcef(gSourceID[src_soulinsound], AL_MIN_GAIN, 1);
+
+	alSourcefv(gSourceID[src_souloutsound], AL_POSITION, gLoc);
+	alSourcei(gSourceID[src_souloutsound], AL_LOOPING, 0);
+	alSourcef(gSourceID[src_souloutsound], AL_MIN_GAIN, 1);
+
+
+	alSourcefv(gSourceID[src_bodyhitsound], AL_POSITION, gLoc);
+	alSourcei(gSourceID[src_bodyhitsound], AL_LOOPING, 0);
+	alSourcef(gSourceID[src_bodyhitsound], AL_MIN_GAIN, .1);
+
+	
+	alSourcefv(gSourceID[src_wallhitsound], AL_POSITION, gLoc);
+	alSourcei(gSourceID[src_wallhitsound], AL_LOOPING, 0);
+	alSourcef(gSourceID[src_wallhitsound], AL_MIN_GAIN, 0);
+	alSourcef(gSourceID[src_wallhitsound], AL_MAX_GAIN, .6);
+
+	
+	alSourcefv(gSourceID[src_rainsound], AL_POSITION, gLoc);
+	alSourcei(gSourceID[src_rainsound], AL_LOOPING, 1);
+	alSourcef(gSourceID[src_rainsound], AL_MIN_GAIN, .3);
+
+	
+	alSourcefv(gSourceID[src_losesound], AL_POSITION, gLoc);
+	alSourcei(gSourceID[src_losesound], AL_LOOPING, 0);
+	alSourcef(gSourceID[src_losesound], AL_MIN_GAIN, 1);
+
+	
+
+	alSourcefv(gSourceID[src_disguisekillsound], AL_POSITION, gLoc);
+	alSourcei(gSourceID[src_disguisekillsound], AL_LOOPING, 0);
+	alSourcef(gSourceID[src_disguisekillsound], AL_MIN_GAIN, 1);
+
+
+
+	
+
+	
+// these are dedicated music ones...
+	alSourcefv(gSourceID[src_knifesong], AL_POSITION, gLoc);
+	alSourcei(gSourceID[src_knifesong], AL_LOOPING, 1);
+	alSourcef(gSourceID[src_knifesong], AL_MIN_GAIN, 1);
+
+
+	alSourcefv(gSourceID[src_mainmenusong], AL_POSITION, gLoc);
+	alSourcei(gSourceID[src_mainmenusong], AL_LOOPING, 1);
+	alSourcef(gSourceID[src_mainmenusong], AL_MIN_GAIN, 1);
+
+	
+	alSourcefv(gSourceID[src_zombiesong], AL_POSITION, gLoc);
+	alSourcei(gSourceID[src_zombiesong], AL_LOOPING, 1);
+	alSourcef(gSourceID[src_zombiesong], AL_MIN_GAIN, 1);
+
+	
+	alSourcefv(gSourceID[src_shootsong], AL_POSITION, gLoc);
+	alSourcei(gSourceID[src_shootsong], AL_LOOPING, 1);
+	alSourcef(gSourceID[src_shootsong], AL_MIN_GAIN, 1);

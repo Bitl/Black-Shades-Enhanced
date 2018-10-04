@@ -1,0 +1,292 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: blackshades - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x409 /fo"Release/blackshades.res" /d "NDEBUG" "C:\Documents and Settings\BitlDev\Desktop\blackshades\blackshades.rc"" 
+Creating temporary file "C:\DOCUME~1\BitlDev\LOCALS~1\Temp\RSP60.tmp" with contents
+[
+/nologo /MD /W3 /GX /O2 /I "C:\Documents and Settings\BitlDev\Desktop\SDKs\OpenALSDK\Include" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "BIG_ENDIAN" /D "FULLSCREEN" /D "NOOGG" /FR"Release/" /Fp"Release/blackshades.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Camera.cpp"
+"C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Decals.cpp"
+"C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Files.cpp"
+"C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Fog.cpp"
+"C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Frustum.cpp"
+"C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameDraw.cpp"
+"C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameInitDispose.cpp"
+"C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameLoop.cpp"
+"C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameTick.cpp"
+"C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Globals.cpp"
+"C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\MacInput.cpp"
+"C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Main.cpp"
+"C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Maths.cpp"
+"C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Models.cpp"
+"C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp"
+"C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp"
+"C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Serialize.cpp"
+"C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Skeleton.cpp"
+"C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\SoundFX.cpp"
+"C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Sprites.cpp"
+"C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Support.cpp"
+"C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Text.cpp"
+"C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\TGALoader.cpp"
+"C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Timer.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\BitlDev\LOCALS~1\Temp\RSP60.tmp" 
+Creating temporary file "C:\DOCUME~1\BitlDev\LOCALS~1\Temp\RSP61.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib opengl32.lib glu32.lib glaux.lib sdl.lib sdlmain.lib OpenAL32.lib ALut.lib SDL_image.lib /nologo /subsystem:windows /incremental:no /pdb:"Release/blackshades.pdb" /machine:I386 /out:"Release/blackshades.exe" /libpath:"C:\Documents and Settings\BitlDev\Desktop\SDKs\OpenALSDK\libs\\" 
+".\Release\Camera.obj"
+".\Release\Decals.obj"
+".\Release\Files.obj"
+".\Release\Fog.obj"
+".\Release\Frustum.obj"
+".\Release\GameDraw.obj"
+".\Release\GameInitDispose.obj"
+".\Release\GameLoop.obj"
+".\Release\GameTick.obj"
+".\Release\Globals.obj"
+".\Release\MacInput.obj"
+".\Release\Main.obj"
+".\Release\Maths.obj"
+".\Release\Models.obj"
+".\Release\Person.obj"
+".\Release\Quaternions.obj"
+".\Release\Serialize.obj"
+".\Release\Skeleton.obj"
+".\Release\SoundFX.obj"
+".\Release\Sprites.obj"
+".\Release\Support.obj"
+".\Release\Text.obj"
+".\Release\TGALoader.obj"
+".\Release\Timer.obj"
+".\Release\blackshades.res"
+]
+Creating command line "link.exe @C:\DOCUME~1\BitlDev\LOCALS~1\Temp\RSP61.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+Camera.cpp
+Decals.cpp
+Files.cpp
+Fog.cpp
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Fog.cpp(19) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Fog.cpp(20) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Fog.cpp(37) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Fog.cpp(38) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Fog.cpp(49) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Fog.cpp(50) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+Frustum.cpp
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Frustum.cpp(83) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Frustum.cpp(98) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Frustum.cpp(113) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Frustum.cpp(128) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Frustum.cpp(143) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Frustum.cpp(158) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+GameDraw.cpp
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameDraw.cpp(856) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameDraw.cpp(892) : warning C4804: '<' : unsafe use of type 'bool' in operation
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameDraw.cpp(1136) : warning C4804: '<' : unsafe use of type 'bool' in operation
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameDraw.cpp(1258) : warning C4804: '<' : unsafe use of type 'bool' in operation
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameDraw.cpp(1258) : warning C4804: '>=' : unsafe use of type 'bool' in operation
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameDraw.cpp(1290) : warning C4804: '<' : unsafe use of type 'bool' in operation
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameDraw.cpp(1306) : warning C4804: '<' : unsafe use of type 'bool' in operation
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameDraw.cpp(1364) : warning C4804: '<' : unsafe use of type 'bool' in operation
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameDraw.cpp(1568) : warning C4804: '>' : unsafe use of type 'bool' in operation
+GameInitDispose.cpp
+GameLoop.cpp
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameLoop.cpp(78) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+GameTick.cpp
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameTick.cpp(670) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameTick.cpp(916) : warning C4804: '<' : unsafe use of type 'bool' in operation
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameTick.cpp(954) : warning C4553: '==' : operator has no effect; did you intend '='?
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameTick.cpp(956) : warning C4553: '==' : operator has no effect; did you intend '='?
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameTick.cpp(958) : warning C4553: '==' : operator has no effect; did you intend '='?
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameTick.cpp(960) : warning C4553: '==' : operator has no effect; did you intend '='?
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameTick.cpp(1633) : warning C4804: '>' : unsafe use of type 'bool' in operation
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameTick.cpp(1689) : warning C4804: '<' : unsafe use of type 'bool' in operation
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameTick.cpp(1699) : warning C4804: '>=' : unsafe use of type 'bool' in operation
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameTick.cpp(2745) : warning C4804: '<' : unsafe use of type 'bool' in operation
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameTick.cpp(2819) : warning C4804: '<' : unsafe use of type 'bool' in operation
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameTick.cpp(2857) : warning C4804: '<' : unsafe use of type 'bool' in operation
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameTick.cpp(2857) : warning C4804: '<' : unsafe use of type 'bool' in operation
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameTick.cpp(3052) : warning C4804: '<' : unsafe use of type 'bool' in operation
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameTick.cpp(3206) : warning C4804: '>=' : unsafe use of type 'bool' in operation
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameTick.cpp(3784) : warning C4554: '&' : check operator precedence for possible error; use parentheses to clarify precedence
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameTick.cpp(4067) : warning C4804: '<=' : unsafe use of type 'bool' in operation
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameTick.cpp(4067) : warning C4804: '<=' : unsafe use of type 'bool' in operation
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameTick.cpp(4130) : warning C4804: '>=' : unsafe use of type 'bool' in operation
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameTick.cpp(4523) : warning C4804: '<' : unsafe use of type 'bool' in operation
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameTick.cpp(4709) : warning C4804: '<' : unsafe use of type 'bool' in operation
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameTick.cpp(4711) : warning C4804: '<' : unsafe use of type 'bool' in operation
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameTick.cpp(4711) : warning C4804: '>=' : unsafe use of type 'bool' in operation
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameTick.cpp(4723) : warning C4804: '<' : unsafe use of type 'bool' in operation
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\GameTick.cpp(4723) : warning C4804: '>=' : unsafe use of type 'bool' in operation
+Globals.cpp
+MacInput.cpp
+Main.cpp
+Maths.cpp
+Models.cpp
+Person.cpp
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(59) : warning C4804: '<' : unsafe use of type 'bool' in operation
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(188) : warning C4804: '<' : unsafe use of type 'bool' in operation
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(225) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(400) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(409) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(410) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(419) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(420) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(429) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(429) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(430) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(438) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(438) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(439) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(455) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(456) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(457) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(499) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(542) : warning C4101: 'tempint' : unreferenced local variable
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(674) : warning C4305: '=' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(675) : warning C4305: '=' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(836) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(855) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(855) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(856) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(856) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(864) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(872) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(872) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(873) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(873) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(881) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(894) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(898) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(910) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(936) : warning C4804: '<' : unsafe use of type 'bool' in operation
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(963) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(967) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(986) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(990) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(1062) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(1066) : warning C4804: '<' : unsafe use of type 'bool' in operation
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Person.cpp(811) : warning C4101: 'M' : unreferenced local variable
+Quaternions.cpp
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(152) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(153) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(154) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(155) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(190) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(191) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(192) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(193) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(206) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(304) : warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(409) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(397) : warning C4101: 'total' : unreferenced local variable
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(396) : warning C4101: 'a1' : unreferenced local variable
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(396) : warning C4101: 'a2' : unreferenced local variable
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(396) : warning C4101: 'a3' : unreferenced local variable
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(504) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(493) : warning C4101: 'pa1' : unreferenced local variable
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(493) : warning C4101: 'pa2' : unreferenced local variable
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(493) : warning C4101: 'pa3' : unreferenced local variable
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(492) : warning C4101: 'total' : unreferenced local variable
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(491) : warning C4101: 'a1' : unreferenced local variable
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(491) : warning C4101: 'a2' : unreferenced local variable
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(491) : warning C4101: 'a3' : unreferenced local variable
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(535) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(557) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(578) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(637) : warning C4305: '*=' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(641) : warning C4305: '*=' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(645) : warning C4305: '*=' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(651) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(652) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(658) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(659) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(665) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(666) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(726) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(727) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(733) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(734) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(740) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Quaternions.cpp(741) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+Serialize.cpp
+Skeleton.cpp
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Skeleton.cpp(112) : warning C4305: '+=' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Skeleton.cpp(134) : warning C4305: '*=' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Skeleton.cpp(135) : warning C4305: '*=' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Skeleton.cpp(136) : warning C4305: '*=' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Skeleton.cpp(138) : warning C4305: '=' : truncation from 'const double' to 'bool'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Skeleton.cpp(143) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Skeleton.cpp(149) : warning C4101: 'tempint' : unreferenced local variable
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Skeleton.cpp(332) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Skeleton.cpp(332) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Skeleton.cpp(431) : warning C4554: '&' : check operator precedence for possible error; use parentheses to clarify precedence
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Skeleton.cpp(436) : warning C4305: '=' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Skeleton.cpp(492) : warning C4305: '*=' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Skeleton.cpp(562) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Skeleton.cpp(566) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Skeleton.cpp(571) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Skeleton.cpp(575) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Skeleton.cpp(706) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Skeleton.cpp(710) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Skeleton.cpp(715) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Skeleton.cpp(719) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+SoundFX.cpp
+Sprites.cpp
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Sprites.cpp(358) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Sprites.cpp(367) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Sprites.cpp(419) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Sprites.cpp(419) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Sprites.cpp(439) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Sprites.cpp(439) : warning C4305: 'argument' : truncation from 'const double' to 'float'
+C:\Documents and Settings\BitlDev\Desktop\blackshades\Source\Sprites.cpp(354) : warning C4101: 'between' : unreferenced local variable
+Support.cpp
+Text.cpp
+TGALoader.cpp
+Timer.cpp
+Linking...
+Creating temporary file "C:\DOCUME~1\BitlDev\LOCALS~1\Temp\RSP63.tmp" with contents
+[
+/nologo /o"Release/blackshades.bsc" 
+".\Release\Camera.sbr"
+".\Release\Decals.sbr"
+".\Release\Files.sbr"
+".\Release\Fog.sbr"
+".\Release\Frustum.sbr"
+".\Release\GameDraw.sbr"
+".\Release\GameInitDispose.sbr"
+".\Release\GameLoop.sbr"
+".\Release\GameTick.sbr"
+".\Release\Globals.sbr"
+".\Release\MacInput.sbr"
+".\Release\Main.sbr"
+".\Release\Maths.sbr"
+".\Release\Models.sbr"
+".\Release\Person.sbr"
+".\Release\Quaternions.sbr"
+".\Release\Serialize.sbr"
+".\Release\Skeleton.sbr"
+".\Release\SoundFX.sbr"
+".\Release\Sprites.sbr"
+".\Release\Support.sbr"
+".\Release\Text.sbr"
+".\Release\TGALoader.sbr"
+".\Release\Timer.sbr"]
+Creating command line "bscmake.exe @C:\DOCUME~1\BitlDev\LOCALS~1\Temp\RSP63.tmp"
+Creating browse info file...
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+blackshades.exe - 0 error(s), 158 warning(s)
+</pre>
+</body>
+</html>

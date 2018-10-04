@@ -1,0 +1,8 @@
+Black Shades Enhanced v1
+- Increased the FPS limit from 90 to 300.
+- Allows the user to set the FPS limit in the config.txt
+- Allows the user to run the game in windowed mode.
+- Added an icon for use in Windowed Mode.
+
+Dev stuff:
+This now requires SDL_Image 1.2.3 for VC6 in order to compile properly.
