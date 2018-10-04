@@ -7,7 +7,7 @@ I might have figured out how to compile the Windows version of the game properly
  
 Black Shades uses SDL 1.2.5 for **Visual C++ 6**, the OpenAL **1.0** SDK, GLUT v37 beta, and optionally the Vorbis OGG api (IDK what version you need because I didn't compile it with the ogg sdk but you might find it by searching around).
  
-Additionally, you need to have Visual C++ 6.0, a Windows XP machine or virtual machine (due to incompatibility issues), and of course, the source code which you can find [here](https://forums.wolfire.com/viewtopic.php?f=2&t=1355&p=174394).
+Additionally, you need to have Visual C++ 6.0, a Windows XP machine or virtual machine (due to incompatibility issues), and of course, the source code which you can find here: https://forums.wolfire.com/viewtopic.php?f=2&t=1355&p=174394.
  
 All you need to do really is to reconfigure the directory in VC6 and compile, which is really as easy as it sounds!
  
