@@ -37,8 +37,10 @@ All credits go to Wolfire Games and David for the creation of Black Shades.
 
 **Download and Source Code:**
 
-Downloads: https://github.com/Bitl/Black-Shades-Enhanced/releases
-Source: https://github.com/Bitl/Black-Shades-Enhanced
-Issues page: https://github.com/Bitl/Black-Shades-Enhanced/issues
+>Downloads: https://github.com/Bitl/Black-Shades-Enhanced/releases
+
+>Source: https://github.com/Bitl/Black-Shades-Enhanced
+
+>Issues page: https://github.com/Bitl/Black-Shades-Enhanced/issues
 
 Feel feee to contribute if you're interested in making new features for the mod!
