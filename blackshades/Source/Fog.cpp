@@ -16,8 +16,8 @@ void Fog::SetFog(float colorR, float colorG, float colorB, float fStart, float f
 	glFogfv(GL_FOG_COLOR,fogColor);
 	glFogf(GL_FOG_DENSITY,fogDensity);
 	glFogi(GL_FOG_HINT,GL_DONT_CARE);
-	glFogi(GL_FOG_START,fogStart);
-	glFogi(GL_FOG_END,fogEnd);
+	glFogf(GL_FOG_START,fogStart);
+	glFogf(GL_FOG_END,fogEnd);
 	
 	glEnable(GL_FOG);
 }
@@ -34,8 +34,8 @@ void Fog::TempFog(float colorR, float colorG, float colorB)
 	glFogfv(GL_FOG_COLOR,tempfogColor);
 	glFogf(GL_FOG_DENSITY,fogDensity);
 	glFogi(GL_FOG_HINT,GL_DONT_CARE);
-	glFogi(GL_FOG_START,fogStart);
-	glFogi(GL_FOG_END,fogEnd);
+	glFogf(GL_FOG_START,fogStart);
+	glFogf(GL_FOG_END,fogEnd);
 	
 	glEnable(GL_FOG);
 }
@@ -46,8 +46,8 @@ void Fog::ResetFog()
 	glFogfv(GL_FOG_COLOR,fogColor);
 	glFogf(GL_FOG_DENSITY,fogDensity);
 	glFogi(GL_FOG_HINT,GL_DONT_CARE);
-	glFogi(GL_FOG_START,fogStart);
-	glFogi(GL_FOG_END,fogEnd);
+	glFogf(GL_FOG_START,fogStart);
+	glFogf(GL_FOG_END,fogEnd);
 	
 	glEnable(GL_FOG);
 }

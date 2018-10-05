@@ -109,7 +109,7 @@ void Skeleton::DoConstraints(Model *collide, XYZ *move, float rotation)
 	numrepeats=2;
 	groundlevel=0;
 	
-	move->y+=.35;
+	move->y+=.35f;
 	
 	for(int j=0; j<numrepeats; j++){
 		for(int i=0; i<num_joints; i++){
@@ -131,22 +131,22 @@ void Skeleton::DoConstraints(Model *collide, XYZ *move, float rotation)
 						joints[i].position=impact;
 						joints[i].position.y+=offset;
 					}
-					joints[i].velocity.y*=-.3;
-					joints[i].velocity.x*=.3;
-					joints[i].velocity.z*=.3;
+					joints[i].velocity.y*=-.3f;
+					joints[i].velocity.x*=.3f;
+					joints[i].velocity.z*=.3f;
 				}
-				offset=.2;
-				if(whichtri!=-1&&collide->normals[whichtri].y<=.8){
+				offset =.2f;
+				if(whichtri!=-1&&collide->normals[whichtri].y<=.8f){
 					normalrotated=DoRotation(collide->normals[whichtri],0,rotation,0);
 					joints[i].position=impact+normalrotated*offset;
 					ReflectVector(&joints[i].velocity,&normalrotated);
-					joints[i].velocity*=.3;
+					joints[i].velocity*=.3f;
 				}
 				if(broken<=1){
 				XYZ avgvelocity;
 				avgvelocity=0;
 				float gLoc[3];
-				ALint tempint;
+				//ALint tempint;
 				for(int k=0; k<num_joints; k++){
 					avgvelocity+=joints[k].velocity;
 				}
@@ -329,7 +329,7 @@ void Skeleton::Draw(int  muscleview)
 				glVertex3f(muscles[i].parent2->position.x,muscles[i].parent2->position.y,muscles[i].parent2->position.z);
 			}
 		}
-		glColor3f(.6,.6,0);
+		glColor3f(.6f,.6f,0);
 		if(muscleview==1)
 		for(int i=0; i<num_muscles; i++){
 			if(muscles[i].type!=boneconnect){
@@ -428,12 +428,12 @@ void Skeleton::SetJoint(float x, float y, float z, int which, int whichjoint)
 
 void Skeleton::AddMuscle(int attach1,int attach2,float minlength,float maxlength,int type)
 {
-	if(num_muscles<max_muscles-1&&attach1<num_joints&&attach1>=0&attach2<num_joints&&attach2>=0&&attach1!=attach2){
+	if(num_muscles<max_muscles-1 && attach1<num_joints && attach1>=0 && attach2<num_joints && attach2>=0 && attach1!=attach2){
 		muscles[num_muscles].parent1=&joints[attach1];
 		muscles[num_muscles].parent2=&joints[attach2];
 		muscles[num_muscles].length=findDistance(muscles[num_muscles].parent1->position,muscles[num_muscles].parent2->position);
 		muscles[num_muscles].targetlength=findDistance(muscles[num_muscles].parent1->position,muscles[num_muscles].parent2->position);
-		muscles[num_muscles].strength=.7;
+		muscles[num_muscles].strength=.7f;
 		muscles[num_muscles].type=type;
 		muscles[num_muscles].minlength=minlength;
 		muscles[num_muscles].maxlength=maxlength;
@@ -489,7 +489,7 @@ void Skeleton::FindRotationMuscle(int which)
 	temppoint1.y=0;
 	temppoint2.y=0;
 	muscles[which].rotate1=acos((temppoint1.z-temppoint2.z)/findDistance(temppoint1,temppoint2));
-	muscles[which].rotate1*=360/6.28;
+	muscles[which].rotate1*=360/6.28f;
 	if(temppoint1.x>temppoint2.x)muscles[which].rotate1=360-muscles[which].rotate1;
 	if(muscles[which].parent1->label==head)tempforward=specialforward[0];
 	else if(muscles[which].parent1->label==rightshoulder||muscles[which].parent1->label==rightelbow||muscles[which].parent1->label==rightwrist)tempforward=specialforward[1];
@@ -559,20 +559,20 @@ void Animation::Load(char *fileName)
 		
 		testskeleton.specialforward[1]=testskeleton.joints[testskeleton.jointlabels[rightshoulder]].position+testskeleton.joints[testskeleton.jointlabels[rightwrist]].position;
 		testskeleton.specialforward[1]=testskeleton.joints[testskeleton.jointlabels[rightelbow]].position-testskeleton.specialforward[1]/2;
-		testskeleton.specialforward[1]+=testskeleton.forward*.2;
+		testskeleton.specialforward[1]+=testskeleton.forward*.2f;
 		Normalise(&testskeleton.specialforward[1]);
 		testskeleton.specialforward[2]=testskeleton.joints[testskeleton.jointlabels[leftshoulder]].position+testskeleton.joints[testskeleton.jointlabels[leftwrist]].position;
 		testskeleton.specialforward[2]=testskeleton.joints[testskeleton.jointlabels[leftelbow]].position-testskeleton.specialforward[2]/2;
-		testskeleton.specialforward[2]+=testskeleton.forward*.2;
+		testskeleton.specialforward[2]+=testskeleton.forward*.2f;
 		Normalise(&testskeleton.specialforward[2]);
 		
 		testskeleton.specialforward[3]=testskeleton.joints[testskeleton.jointlabels[righthip]].position+testskeleton.joints[testskeleton.jointlabels[rightankle]].position;
 		testskeleton.specialforward[3]=testskeleton.specialforward[3]/2-testskeleton.joints[testskeleton.jointlabels[rightknee]].position;
-		testskeleton.specialforward[3]+=testskeleton.lowforward*.2;
+		testskeleton.specialforward[3]+=testskeleton.lowforward*.2f;
 		Normalise(&testskeleton.specialforward[3]);
 		testskeleton.specialforward[4]=testskeleton.joints[testskeleton.jointlabels[lefthip]].position+testskeleton.joints[testskeleton.jointlabels[leftankle]].position;
 		testskeleton.specialforward[4]=testskeleton.specialforward[4]/2-testskeleton.joints[testskeleton.jointlabels[leftknee]].position;
-		testskeleton.specialforward[4]+=testskeleton.lowforward*.2;
+		testskeleton.specialforward[4]+=testskeleton.lowforward*.2f;
 		Normalise(&testskeleton.specialforward[4]);
 
 		//Find joint rotations
@@ -703,20 +703,20 @@ void Animation::Load(char *fileName, float rotate)
 		
 		testskeleton.specialforward[1]=testskeleton.joints[testskeleton.jointlabels[rightshoulder]].position+testskeleton.joints[testskeleton.jointlabels[rightwrist]].position;
 		testskeleton.specialforward[1]=testskeleton.joints[testskeleton.jointlabels[rightelbow]].position-testskeleton.specialforward[1]/2;
-		testskeleton.specialforward[1]+=testskeleton.forward*.2;
+		testskeleton.specialforward[1]+=testskeleton.forward*.2f;
 		Normalise(&testskeleton.specialforward[1]);
 		testskeleton.specialforward[2]=testskeleton.joints[testskeleton.jointlabels[leftshoulder]].position+testskeleton.joints[testskeleton.jointlabels[leftwrist]].position;
 		testskeleton.specialforward[2]=testskeleton.joints[testskeleton.jointlabels[leftelbow]].position-testskeleton.specialforward[2]/2;
-		testskeleton.specialforward[2]+=testskeleton.forward*.2;
+		testskeleton.specialforward[2]+=testskeleton.forward*.2f;
 		Normalise(&testskeleton.specialforward[2]);
 		
 		testskeleton.specialforward[3]=testskeleton.joints[testskeleton.jointlabels[righthip]].position+testskeleton.joints[testskeleton.jointlabels[rightankle]].position;
 		testskeleton.specialforward[3]=testskeleton.specialforward[3]/2-testskeleton.joints[testskeleton.jointlabels[rightknee]].position;
-		testskeleton.specialforward[3]+=testskeleton.lowforward*.2;
+		testskeleton.specialforward[3]+=testskeleton.lowforward*.2f;
 		Normalise(&testskeleton.specialforward[3]);
 		testskeleton.specialforward[4]=testskeleton.joints[testskeleton.jointlabels[lefthip]].position+testskeleton.joints[testskeleton.jointlabels[leftankle]].position;
 		testskeleton.specialforward[4]=testskeleton.specialforward[4]/2-testskeleton.joints[testskeleton.jointlabels[leftknee]].position;
-		testskeleton.specialforward[4]+=testskeleton.lowforward*.2;
+		testskeleton.specialforward[4]+=testskeleton.lowforward*.2f;
 		Normalise(&testskeleton.specialforward[4]);
 
 		//Find joint rotations

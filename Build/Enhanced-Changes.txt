@@ -1,3 +1,12 @@
+Black Shades Enhanced v1.1
+- Fixed a bug where the mouse sometimes clips out of the window in windowed mode.
+- Added a new FOV setting.
+- Changed the Sniper Rifle's FOV to 22.50 due to the equation used for calculating user-defined FOV.
+- Includes the soundtrack!
+
+Dev stuff:
+Fixed all compiler warnings!
+
 Black Shades Enhanced v1
 - Increased the FPS limit from 90 to 300.
 - Allows the user to set the FPS limit in the config.txt

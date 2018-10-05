@@ -93,7 +93,7 @@ class Person
 		int block_key;
 		
 		float speed;
-		bool aiming;
+		int aiming;
 		int grenphase;
 		float grenamount;
 		float aimamount;

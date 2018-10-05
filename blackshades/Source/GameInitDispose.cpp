@@ -3650,6 +3650,8 @@ int Game::InitGL(GLvoid)
 		fpslimit=300;
 
 		fullscreen=1;
+
+		fov=90;
 		
 
 		//If no config, write one
@@ -3715,6 +3717,10 @@ int Game::InitGL(GLvoid)
 			opstream << "\nFull Screen:\n";
 
 			opstream << fullscreen;
+
+			opstream << "\nFOV (Field of View):\n";
+
+			opstream << fov;
 
 			opstream.close();
 
@@ -3805,6 +3811,12 @@ int Game::InitGL(GLvoid)
 			ipstream.ignore(256,'\n');
 
 			ipstream >> fullscreen;
+
+			ipstream.ignore(256,'\n');
+
+			ipstream.ignore(256,'\n');
+
+			ipstream >> fov;
 
 		    ipstream.close();
 

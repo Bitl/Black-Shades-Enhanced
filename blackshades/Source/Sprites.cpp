@@ -351,11 +351,11 @@ void Sprites::draw()
 {
 	float M[16];
 	XYZ begProj,endProj,avgProj,persp;
-	XYZ between;
+	//XYZ between;
 	float oolen,dx,dy;
 	float bulletsize;
 	XYZ point;
-	glAlphaFunc(GL_GREATER, 0.01);
+	glAlphaFunc(GL_GREATER, 0.01f);
 	
 	//glEnable(GL_POLYGON_OFFSET_FILL);
 	
@@ -364,7 +364,7 @@ void Sprites::draw()
 	glEnable(GL_TEXTURE_2D);
 	glDisable(GL_LIGHTING);
 	glDepthMask(0);
-	glAlphaFunc(GL_GREATER, 0.01);
+	glAlphaFunc(GL_GREATER, 0.01f);
 	for(int i=0;i<howmanysprites;i++){
 		if(type[i]==muzzleflashsprite){fog.TempFog(0,0,0); glBindTexture(GL_TEXTURE_2D, muzzleflaretextureptr);glBlendFunc(GL_SRC_ALPHA,GL_ONE);}
 		if(type[i]==flashsprite){fog.TempFog(0,0,0); glBindTexture(GL_TEXTURE_2D, flaretextureptr);glBlendFunc(GL_SRC_ALPHA,GL_ONE);}
@@ -416,7 +416,7 @@ void Sprites::draw()
 			
 			
 			glLoadMatrixf(M);
-			glScalef(.2,abs(velocity[i].y)*multiplier,.2);
+			glScalef(.2f,abs(velocity[i].y)*multiplier,.2f);
 			glBegin(GL_TRIANGLES);
 				glTexCoord2f(1.0f, 1.0f); glVertex3f( .3f*size[i], .3f*size[i], 0.0f);
 				glTexCoord2f(0.0f, 1.0f); glVertex3f(-.3f*size[i], .3f*size[i], 0.0f);
@@ -436,7 +436,7 @@ void Sprites::draw()
 			glEnable(GL_LIGHTING);
 			glEnable(GL_COLOR_MATERIAL);
 			glDepthMask(1);
-			glRotatef(rotation[i],1,.6,.3);
+			glRotatef(rotation[i],1,.6f,.3f);
 			
 			if(type[i]==grenadesprite)gunmodels[grenadebasemodel].draw();
 			if(type[i]==spoonsprite)gunmodels[grenadespoonmodel].draw();

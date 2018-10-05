@@ -114,14 +114,14 @@ quaternion To_Quat(Matrix_t m)
         // From Jason Shankel, (C) 2000.
         quaternion Quat;
         
-        double Tr = m[0][0] + m[1][1] + m[2][2] + 1.0, fourD;
-        double q[4];
+        float Tr = m[0][0] + m[1][1] + m[2][2] + 1.0f, fourD;
+        float q[4];
         
         int i,j,k;
         if (Tr >= 1.0)
         {
-                fourD = 2.0*fast_sqrt(Tr);
-                q[3] = fourD/4.0;
+                fourD = 2.0f*fast_sqrt(Tr);
+                q[3] = fourD/4.0f;
                 q[0] = (m[2][1] - m[1][2]) / fourD;
                 q[1] = (m[0][2] - m[2][0]) / fourD;
                 q[2] = (m[1][0] - m[0][1]) / fourD;
@@ -142,8 +142,8 @@ quaternion To_Quat(Matrix_t m)
                 }
                 j = (i+1)%3;
                 k = (j+1)%3;
-                fourD = 2.0*fast_sqrt(m[i][i] - m[j][j] - m[k][k] + 1.0);
-                q[i] = fourD / 4.0;
+                fourD = 2.0f*fast_sqrt(m[i][i] - m[j][j] - m[k][k] + 1.0f);
+                q[i] = fourD / 4.0f;
                 q[j] = (m[j][i] + m[i][j]) / fourD;
                 q[k] = (m[k][i] + m[i][k]) / fourD;
                 q[3] = (m[j][k] - m[k][j]) / fourD;
@@ -187,10 +187,10 @@ quaternion To_Quat(angle_axis Ang_Ax)
         // From the Quaternion Powers article on gamedev.net
         quaternion Quat;
         
-        Quat.x = Ang_Ax.x * sin(Ang_Ax.angle / 2);
-        Quat.y = Ang_Ax.y * sin(Ang_Ax.angle / 2);
-        Quat.z = Ang_Ax.z * sin(Ang_Ax.angle / 2);
-        Quat.w = cos(Ang_Ax.angle / 2);
+        Quat.x = Ang_Ax.x * sinf(Ang_Ax.angle / 2);
+        Quat.y = Ang_Ax.y * sinf(Ang_Ax.angle / 2);
+        Quat.z = Ang_Ax.z * sinf(Ang_Ax.angle / 2);
+        Quat.w = cosf(Ang_Ax.angle / 2);
         return Quat;
 }
 angle_axis Quat_2_AA(quaternion Quat)
@@ -203,7 +203,7 @@ angle_axis Quat_2_AA(quaternion Quat)
         Ang_Ax.y = Quat.y / scale;
         Ang_Ax.z = Quat.z / scale;
         
-        Ang_Ax.angle = 2.0 * acos(Quat.w)/(float)PI*180;
+        Ang_Ax.angle = 2.0f * acosf(Quat.w)/(float)PI*180;
         return Ang_Ax;
 }
 
@@ -301,7 +301,7 @@ float fast_sqrt (register float arg)
 	
 	return result * arg;
 #else
-	return sqrt(arg);
+	return sqrtf(arg);
 #endif
 }
 
@@ -393,8 +393,9 @@ bool PointInTriangle(Vector *p, Vector normal, float p11, float p12, float p13, 
 bool LineFacet(Vector p1,Vector p2,Vector pa,Vector pb,Vector pc,Vector *p)
 {
    float d;
-   float a1,a2,a3;
-   float total,denom,mu;
+   //float a1,a2,a3;
+   //float total,denom,mu;
+   float denom,mu;
    Vector n,pa1,pa2,pa3;
 
    //Calculate the parameters for the plane 
@@ -406,7 +407,7 @@ bool LineFacet(Vector p1,Vector p2,Vector pa,Vector pb,Vector pc,Vector *p)
 
    //Calculate the position on the line that intersects the plane 
    denom = n.x * (p2.x - p1.x) + n.y * (p2.y - p1.y) + n.z * (p2.z - p1.z);
-   if (abs(denom) < 0.0000001)        // Line and plane don't intersect 
+   if (fabs(denom) < 0.0000001f)        // Line and plane don't intersect 
       return 0;
    mu = - (d + n.x * p1.x + n.y * p1.y + n.z * p1.z) / denom;
    p->x = p1.x + mu * (p2.x - p1.x);
@@ -488,9 +489,11 @@ bool PointInTriangle(XYZ *p, XYZ normal, XYZ *p1, XYZ *p2, XYZ *p3)
 bool LineFacet(XYZ p1,XYZ p2,XYZ pa,XYZ pb,XYZ pc,XYZ *p)
 {
    float d;
-   float a1,a2,a3;
-   float total,denom,mu;
-   XYZ n,pa1,pa2,pa3;
+   //float a1,a2,a3;
+   //float total,denom,mu;
+   float denom,mu;
+   //XYZ n,pa1,pa2,pa3;
+   XYZ n;
 
    //Calculate the parameters for the plane 
    n.x = (pb.y - pa.y)*(pc.z - pa.z) - (pb.z - pa.z)*(pc.y - pa.y);
@@ -501,7 +504,7 @@ bool LineFacet(XYZ p1,XYZ p2,XYZ pa,XYZ pb,XYZ pc,XYZ *p)
 
    //Calculate the position on the line that intersects the plane 
    denom = n.x * (p2.x - p1.x) + n.y * (p2.y - p1.y) + n.z * (p2.z - p1.z);
-   if (abs(denom) < 0.0000001)        // Line and plane don't intersect 
+   if (fabs(denom) < 0.0000001f)        // Line and plane don't intersect 
       return 0;
    mu = - (d + n.x * p1.x + n.y * p1.y + n.z * p1.z) / denom;
    p->x = p1.x + mu * (p2.x - p1.x);
@@ -532,7 +535,7 @@ float LineFacetd(XYZ p1,XYZ p2,XYZ pa,XYZ pb,XYZ pc,XYZ *p)
 
    //Calculate the position on the line that intersects the plane 
    denom = n.x * (p2.x - p1.x) + n.y * (p2.y - p1.y) + n.z * (p2.z - p1.z);
-   if (abs(denom) < 0.0000001)        // Line and plane don't intersect 
+   if (fabs(denom) < 0.0000001f)        // Line and plane don't intersect 
       return 0;
    mu = - (d + n.x * p1.x + n.y * p1.y + n.z * p1.z) / denom;
    p->x = p1.x + mu * (p2.x - p1.x);
@@ -554,7 +557,7 @@ float LineFacetd(XYZ p1,XYZ p2,XYZ pa,XYZ pb,XYZ pc, XYZ n, XYZ *p)
 
    //Calculate the position on the line that intersects the plane 
    denom = n.x * (p2.x - p1.x) + n.y * (p2.y - p1.y) + n.z * (p2.z - p1.z);
-   if (abs(denom) < 0.0000001)        // Line and plane don't intersect 
+   if (fabs(denom) < 0.0000001f)        // Line and plane don't intersect 
       return 0;
    mu = - (d + n.x * p1.x + n.y * p1.y + n.z * p1.z) / denom;
    p->x = p1.x + mu * (p2.x - p1.x);
@@ -575,7 +578,7 @@ float LineFacetd(XYZ *p1,XYZ *p2,XYZ *pa,XYZ *pb,XYZ *pc, XYZ *n, XYZ *p)
 
    //Calculate the position on the line that intersects the plane 
    denom = n->x * (p2->x - p1->x) + n->y * (p2->y - p1->y) + n->z * (p2->z - p1->z);
-   if (abs(denom) < 0.0000001)        // Line and plane don't intersect 
+   if (fabs(denom) < 0.0000001f)        // Line and plane don't intersect 
       return 0;
    mu = - (d + n->x * p1->x + n->y * p1->y + n->z * p1->z) / denom;
    p->x = p1->x + mu * (p2->x - p1->x);
@@ -634,36 +637,36 @@ float findDistancefast(XYZ point1, XYZ point2){
 XYZ DoRotation(XYZ thePoint, float xang, float yang, float zang){
 	XYZ newpoint;
 	if(xang){
-		xang*=6.283185;
+		xang*=6.283185f;
 		xang/=360;
 	}
 	if(yang){
-		yang*=6.283185;
+		yang*=6.283185f;
 		yang/=360;
 	}
 	if(zang){
-		zang*=6.283185;
+		zang*=6.283185f;
 		zang/=360;
 	}
 	
 	
 	if(yang){
-	newpoint.z=thePoint.z*cos(yang)-thePoint.x*sin(yang);
-	newpoint.x=thePoint.z*sin(yang)+thePoint.x*cos(yang);
+	newpoint.z=thePoint.z*cosf(yang)-thePoint.x*sinf(yang);
+	newpoint.x=thePoint.z*sinf(yang)+thePoint.x*cosf(yang);
 	thePoint.z=newpoint.z;
 	thePoint.x=newpoint.x;
 	}
 	
 	if(zang){
-	newpoint.x=thePoint.x*cos(zang)-thePoint.y*sin(zang);
-	newpoint.y=thePoint.y*cos(zang)+thePoint.x*sin(zang);
+	newpoint.x=thePoint.x*cosf(zang)-thePoint.y*sinf(zang);
+	newpoint.y=thePoint.y*cosf(zang)+thePoint.x*sinf(zang);
 	thePoint.x=newpoint.x;
 	thePoint.y=newpoint.y;
 	}
 	
 	if(xang){
-	newpoint.y=thePoint.y*cos(xang)-thePoint.z*sin(xang);
-	newpoint.z=thePoint.y*sin(xang)+thePoint.z*cos(xang);
+	newpoint.y=thePoint.y*cosf(xang)-thePoint.z*sinf(xang);
+	newpoint.z=thePoint.y*sinf(xang)+thePoint.z*cosf(xang);
 	thePoint.z=newpoint.z;
 	thePoint.y=newpoint.y;	
 	}
@@ -723,22 +726,22 @@ XYZ DoRotationRadian(XYZ thePoint, float xang, float yang, float zang){
 	oldpoint=thePoint;
 	
 	if(yang!=0){
-	newpoint.z=oldpoint.z*cos(yang)-oldpoint.x*sin(yang);
-	newpoint.x=oldpoint.z*sin(yang)+oldpoint.x*cos(yang);
+	newpoint.z=oldpoint.z*cosf(yang)-oldpoint.x*sinf(yang);
+	newpoint.x=oldpoint.z*sinf(yang)+oldpoint.x*cosf(yang);
 	oldpoint.z=newpoint.z;
 	oldpoint.x=newpoint.x;
 	}
 	
 	if(zang!=0){
-	newpoint.x=oldpoint.x*cos(zang)-oldpoint.y*sin(zang);
-	newpoint.y=oldpoint.y*cos(zang)+oldpoint.x*sin(zang);
+	newpoint.x=oldpoint.x*cosf(zang)-oldpoint.y*sinf(zang);
+	newpoint.y=oldpoint.y*cosf(zang)+oldpoint.x*sinf(zang);
 	oldpoint.x=newpoint.x;
 	oldpoint.y=newpoint.y;
 	}
 	
 	if(xang!=0){
-	newpoint.y=oldpoint.y*cos(xang)-oldpoint.z*sin(xang);
-	newpoint.z=oldpoint.y*sin(xang)+oldpoint.z*cos(xang);
+	newpoint.y=oldpoint.y*cosf(xang)-oldpoint.z*sinf(xang);
+	newpoint.z=oldpoint.y*sinf(xang)+oldpoint.z*cosf(xang);
 	oldpoint.z=newpoint.z;
 	oldpoint.y=newpoint.y;	
 	}

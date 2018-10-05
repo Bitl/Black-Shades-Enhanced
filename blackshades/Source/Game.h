@@ -169,10 +169,10 @@ class Game
 		bool debug;
 		bool vblsync;
 		
-		bool blur;
+		int blur;
 		bool blurness;
 		
-		bool paused;
+		int paused;
 		
 		int mainmenu;
 		
@@ -239,6 +239,7 @@ class Game
 		//new stuff
 		int fpslimit;
 		int fullscreen;
+		int fov;
 		
 		~Game() {
 			glDeleteTextures( 1, (const GLuint *)personspritetextureptr );

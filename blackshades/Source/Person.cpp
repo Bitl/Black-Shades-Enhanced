@@ -222,7 +222,7 @@ void 	Person::DoAnimations(int who){
 			gLoc[1]=soundpoint.y/soundscalefactor;
 			gLoc[2]=soundpoint.z/soundscalefactor;
 
-			SoundFX::inst()->playFX(gSampleSet[bodyhitsound], gLoc, 0.1, 1.0f, true);
+			SoundFX::inst()->playFX(gSampleSet[bodyhitsound], gLoc, 0.1f, 1.0f, true);
 			//alSourcei(gSourceID[src_bodyhitsound], AL_BUFFER, gSampleSet[bodyhitsound]);
 			//alSourcefv(gSourceID[src_bodyhitsound], AL_POSITION, gLoc);
 			//alSourcePlay(gSourceID[src_bodyhitsound]);
@@ -259,7 +259,7 @@ void 	Person::DoAnimations(int who){
 			targetanimation=idleanim;
 		}
 		if(currentanimation==thrownanim&&targetframe==0){
-			skeleton.offset=0;
+			skeleton.offsetted=0;
 			skeleton.free=1;
 			longdead=1;
 			for(int j=0;j<skeleton.num_joints;j++){
@@ -397,7 +397,7 @@ void 	Person::DoAnimations(int who){
 						if(currentanimation==crouchanim||targetanimation==crouchanim){
 							skeleton.joints[i].position-=(animation[idleanim].position[skeleton.jointlabels[neck]][0]-skeleton.joints[skeleton.jointlabels[neck]].position);
 						}
-						skeleton.joints[i].position+=facingright*0.1;
+						skeleton.joints[i].position+=facingright*0.1f;
 						skeleton.joints[i].position=rotatearound+DoRotation(skeleton.joints[i].position-rotatearound,(playerrotation2/2-10)*aimamount,0,0);
 						skeleton.joints[i].position=skeleton.joints[i].position*(aimamount)+oldpos*(1-aimamount);
 					}
@@ -406,8 +406,8 @@ void 	Person::DoAnimations(int who){
 						skeleton.joints[i].position=animation[assaultrifleaimanim].position[i][0];
 						if(currentanimation==crouchanim||targetanimation==crouchanim)skeleton.joints[i].position-=(animation[idleanim].position[skeleton.jointlabels[neck]][0]-skeleton.joints[skeleton.jointlabels[neck]].position);
 						skeleton.joints[i].position=rotatearound+DoRotation(skeleton.joints[i].position-rotatearound,(playerrotation2/2)*aimamount,0,0);
-						if(currentanimation==crouchanim||targetanimation==crouchanim)skeleton.joints[i].position+=facingdown*.2;
-						else skeleton.joints[i].position-=facingdown*.02;
+						if(currentanimation==crouchanim||targetanimation==crouchanim)skeleton.joints[i].position+=facingdown*.2f;
+						else skeleton.joints[i].position-=facingdown*.02f;
 						if(skeleton.joints[i].label==righthand)skeleton.joints[i].position=skeleton.joints[skeleton.jointlabels[lefthand]].position-facinghalf*2;
 						skeleton.joints[i].position=skeleton.joints[i].position*(aimamount)+oldpos*(1-aimamount);
 					}
@@ -416,8 +416,8 @@ void 	Person::DoAnimations(int who){
 						skeleton.joints[i].position=animation[assaultrifleaimanim].position[i][0];
 						if(currentanimation==crouchanim||targetanimation==crouchanim)skeleton.joints[i].position-=(animation[idleanim].position[skeleton.jointlabels[neck]][0]-skeleton.joints[skeleton.jointlabels[neck]].position);
 						skeleton.joints[i].position=rotatearound+DoRotation(skeleton.joints[i].position-rotatearound,(playerrotation2/2)*aimamount,0,0);
-						if(currentanimation==crouchanim||targetanimation==crouchanim)skeleton.joints[i].position+=facingdown*.2;
-						else skeleton.joints[i].position-=facingdown*.02;
+						if(currentanimation==crouchanim||targetanimation==crouchanim)skeleton.joints[i].position+=facingdown*.2f;
+						else skeleton.joints[i].position-=facingdown*.02f;
 						if(skeleton.joints[i].label==righthand)skeleton.joints[i].position=skeleton.joints[skeleton.jointlabels[lefthand]].position-facinghalf*2;
 						skeleton.joints[i].position=skeleton.joints[i].position*(aimamount)+oldpos*(1-aimamount);
 					}
@@ -426,8 +426,8 @@ void 	Person::DoAnimations(int who){
 						skeleton.joints[i].position=animation[pistolaimanim].position[i][0];
 						if(currentanimation==crouchanim||targetanimation==crouchanim)skeleton.joints[i].position-=(animation[idleanim].position[skeleton.jointlabels[neck]][0]-skeleton.joints[skeleton.jointlabels[neck]].position);
 						skeleton.joints[i].position=rotatearound+DoRotation(skeleton.joints[i].position-rotatearound,(playerrotation2/2)*aimamount,0,0);
-						if(currentanimation==crouchanim||targetanimation==crouchanim){skeleton.joints[i].position+=facingright*.15;skeleton.joints[i].position+=facingdown*.3;}
-						else skeleton.joints[i].position-=facingdown*.1;
+						if(currentanimation==crouchanim||targetanimation==crouchanim){skeleton.joints[i].position+=facingright*.15f;skeleton.joints[i].position+=facingdown*.3f;}
+						else skeleton.joints[i].position-=facingdown*.1f;
 						skeleton.joints[i].position=skeleton.joints[i].position*(aimamount)+oldpos*(1-aimamount);
 					}
 					if(whichgun==handgun2){
@@ -435,8 +435,8 @@ void 	Person::DoAnimations(int who){
 						skeleton.joints[i].position=animation[pistolaimanim].position[i][0];
 						if(currentanimation==crouchanim||targetanimation==crouchanim)skeleton.joints[i].position-=(animation[idleanim].position[skeleton.jointlabels[neck]][0]-skeleton.joints[skeleton.jointlabels[neck]].position);
 						skeleton.joints[i].position=rotatearound+DoRotation(skeleton.joints[i].position-rotatearound,(playerrotation2/2)*aimamount,0,0);
-						if(currentanimation==crouchanim||targetanimation==crouchanim){skeleton.joints[i].position+=facingright*.15;skeleton.joints[i].position+=facingdown*.3;}
-						else skeleton.joints[i].position-=facingdown*.1;
+						if(currentanimation==crouchanim||targetanimation==crouchanim){skeleton.joints[i].position+=facingright*.15f;skeleton.joints[i].position+=facingdown*.3f;}
+						else skeleton.joints[i].position-=facingdown*.1f;
 						skeleton.joints[i].position=skeleton.joints[i].position*(aimamount)+oldpos*(1-aimamount);
 					}
 					if(whichgun==grenade){
@@ -452,9 +452,9 @@ void 	Person::DoAnimations(int who){
 						if(currentanimation==crouchanim||targetanimation==crouchanim)skeleton.joints[i].position-=(animation[idleanim].position[skeleton.jointlabels[neck]][0]-skeleton.joints[skeleton.jointlabels[neck]].position);
 						skeleton.joints[i].position=skeleton.joints[i].position*(grenamount)+oldpos*(1-grenamount);
 					}
-					if(thirdperson||who!=0)skeleton.joints[i].position+=facingdown*.4;
-					if(currentanimation!=crouchanim)skeleton.joints[i].position-=facinghalf*recoil*.35;
-					if(currentanimation==crouchanim)skeleton.joints[i].position-=facinghalf*recoil*.1;
+					if(thirdperson||who!=0)skeleton.joints[i].position+=facingdown*.4f;
+					if(currentanimation!=crouchanim)skeleton.joints[i].position-=facinghalf*recoil*.35f;
+					if(currentanimation==crouchanim)skeleton.joints[i].position-=facinghalf*recoil*.1f;
 				}
 			}
 		}
@@ -496,7 +496,7 @@ void 	Person::DoAnimations(int who){
 					ammo=-1;
 					sprites.MakeSprite(grenadesprite, 1, 1, 1, 1, DoRotation(skeleton.joints[skeleton.jointlabels[righthand]].position,0,playerrotation,0)+playercoords, DoRotation(facing,0,playerrotation,0)*30+velocity, 1);
 					sprites.MakeSprite(spoonsprite, 1, 1, 1, 1, DoRotation(skeleton.joints[skeleton.jointlabels[righthand]].position,0,playerrotation,0)+playercoords, DoRotation(facing,0,playerrotation,0)*10+velocity, 1);
-					sprites.MakeSprite(pinsprite, 1, 1, 1, 1, DoRotation(skeleton.joints[skeleton.jointlabels[lefthand]].position,0,playerrotation,0)+playercoords, facing*.1+velocity, 1);
+					sprites.MakeSprite(pinsprite, 1, 1, 1, 1, DoRotation(skeleton.joints[skeleton.jointlabels[lefthand]].position,0,playerrotation,0)+playercoords, facing*.1f+velocity, 1);
 					XYZ soundsource=DoRotation(skeleton.joints[skeleton.jointlabels[righthand]].position,0,playerrotation,0)+playercoords;
 					float gLoc[3];
 					gLoc[0]=soundsource.x/soundscalefactor;
@@ -539,7 +539,7 @@ void 	Person::DoAnimations(int who){
 			if(ammo<0&&reloads[whichgun]>0&&reloading<=0){
 				if(whichgun!=grenade){
 					float gLoc[3];
-					ALint tempint;
+					//ALint tempint;
 					gLoc[0]=playercoords.x/soundscalefactor;
 					gLoc[1]=playercoords.y/soundscalefactor;
 					gLoc[2]=playercoords.z/soundscalefactor;
@@ -671,9 +671,9 @@ void 	Person::DoStuff(int who){
 	if(who==0&&targetanimation!=diveanim&&targetanimation!=throwanim&&targetanimation!=thrownanim&&currentanimation!=diveanim&&currentanimation!=getupfrontanim){
 		backwardsanim=0;
 		if(visions==1)speed=40;
-		if(visions==0&&targetanimation==joganim)speed=2.2;
-		if(visions==0&&targetanimation!=joganim)speed=1.3;
-		if(visions==0&&targetanimation==walkanim)speed=2.5;
+		if(visions==0&&targetanimation==joganim)speed=2.2f;
+		if(visions==0&&targetanimation!=joganim)speed=1.3f;
+		if(visions==0&&targetanimation==walkanim)speed=2.5f;
 		unsigned char	theKeyMap[16];
 		GetKeys( ( unsigned long * )theKeyMap );
 		
@@ -808,7 +808,7 @@ void Person::FindRotationGun(XYZ start, XYZ target)
 extern Model skeletonmodels[10];
 extern Costume costume[2];
 int Person::DrawSkeleton(int who){
-	GLfloat M[16];
+	//GLfloat M[16];
 	//Guns
 	if(whichgun==sniperrifle){
 		FindRotationGun(skeleton.joints[skeleton.jointlabels[righthand]].position,skeleton.joints[skeleton.jointlabels[lefthand]].position);
@@ -833,7 +833,7 @@ int Person::DrawSkeleton(int who){
 				glRotatef(-gunrotate1+90+1,0,1,0);
 				glRotatef(-gunrotate2+90,0,0,1);
 				glRotatef(-gunrotate3,0,1,0);
-				glTranslatef(0,-.4,0);
+				glTranslatef(0,-.4f,0);
 				gunmodels[shotgunmodel].draw();
 			glPopMatrix();
 	}
@@ -852,8 +852,8 @@ int Person::DrawSkeleton(int who){
 	}
 	
 	if(whichgun==handgun1){
-		if(!thirdperson&&who==0)FindRotationGun(skeleton.joints[skeleton.jointlabels[righthand]].position,(skeleton.joints[skeleton.jointlabels[head]].position*.65+skeleton.joints[skeleton.jointlabels[neck]].position*.35));
-		if(thirdperson||who!=0)FindRotationGun(skeleton.joints[skeleton.jointlabels[righthand]].position,(skeleton.joints[skeleton.jointlabels[head]].position*.35+skeleton.joints[skeleton.jointlabels[neck]].position*.65));
+		if(!thirdperson&&who==0)FindRotationGun(skeleton.joints[skeleton.jointlabels[righthand]].position,(skeleton.joints[skeleton.jointlabels[head]].position*.65f+skeleton.joints[skeleton.jointlabels[neck]].position*.35f));
+		if(thirdperson||who!=0)FindRotationGun(skeleton.joints[skeleton.jointlabels[righthand]].position,(skeleton.joints[skeleton.jointlabels[head]].position*.35f+skeleton.joints[skeleton.jointlabels[neck]].position*.65f));
 		glPushMatrix();
 				glTranslatef(	skeleton.joints[skeleton.jointlabels[righthand]].position.x,
 								skeleton.joints[skeleton.jointlabels[righthand]].position.y,
@@ -861,7 +861,7 @@ int Person::DrawSkeleton(int who){
 				glRotatef(-gunrotate1+90-1.5,0,1,0);
 				glRotatef(-gunrotate2+90,0,0,1);
 				glRotatef(-gunrotate3,0,1,0);
-				glTranslatef(0,0,.15);
+				glTranslatef(0,0,.15f);
 				gunmodels[handgunbasemodel].draw();
 				glTranslatef(0,-recoil*.3,0);
 				gunmodels[handgunslidemodel].draw();
@@ -869,8 +869,8 @@ int Person::DrawSkeleton(int who){
 	}
 	
 	if(whichgun==handgun2){
-		if(!thirdperson&&who==0)FindRotationGun(skeleton.joints[skeleton.jointlabels[righthand]].position,(skeleton.joints[skeleton.jointlabels[head]].position*.65+skeleton.joints[skeleton.jointlabels[neck]].position*.35));
-		if(thirdperson||who!=0)FindRotationGun(skeleton.joints[skeleton.jointlabels[righthand]].position,(skeleton.joints[skeleton.jointlabels[head]].position*.35+skeleton.joints[skeleton.jointlabels[neck]].position*.65));
+		if(!thirdperson&&who==0)FindRotationGun(skeleton.joints[skeleton.jointlabels[righthand]].position,(skeleton.joints[skeleton.jointlabels[head]].position*.65f+skeleton.joints[skeleton.jointlabels[neck]].position*.35f));
+		if(thirdperson||who!=0)FindRotationGun(skeleton.joints[skeleton.jointlabels[righthand]].position,(skeleton.joints[skeleton.jointlabels[head]].position*.35f+skeleton.joints[skeleton.jointlabels[neck]].position*.65f));
 		glPushMatrix();
 				glTranslatef(	skeleton.joints[skeleton.jointlabels[righthand]].position.x,
 								skeleton.joints[skeleton.jointlabels[righthand]].position.y,
@@ -878,7 +878,7 @@ int Person::DrawSkeleton(int who){
 				glRotatef(-gunrotate1+90-1.5,0,1,0);
 				glRotatef(-gunrotate2+90,0,0,1);
 				glRotatef(-gunrotate3,0,1,0);
-				glTranslatef(0,0,.15);
+				glTranslatef(0,0,.15f);
 				gunmodels[handgun2basemodel].draw();
 				glTranslatef(0,-recoil*.3,0);
 				gunmodels[handgun2slidemodel].draw();
@@ -891,11 +891,11 @@ int Person::DrawSkeleton(int who){
 								skeleton.joints[skeleton.jointlabels[righthand]].position.y,
 								skeleton.joints[skeleton.jointlabels[righthand]].position.z);
 				glRotatef(-90,1,0,0);
-				glTranslatef(0,0,.05);
+				glTranslatef(0,0,.05f);
 				if(reloading<=0){
 					gunmodels[grenadebasemodel].draw();
 					if(grenphase==0)gunmodels[grenadepinmodel].draw();
-					glTranslatef(0,0,.005);
+					glTranslatef(0,0,.005f);
 					gunmodels[grenadespoonmodel].draw();
 				}
 			glPopMatrix();
@@ -907,7 +907,7 @@ int Person::DrawSkeleton(int who){
 								skeleton.joints[skeleton.jointlabels[lefthand]].position.y,
 								skeleton.joints[skeleton.jointlabels[lefthand]].position.z);
 				glRotatef(-90,1,0,0);
-				glTranslatef(0,0,-.15);
+				glTranslatef(0,0,-.15f);
 				if(reloading<=0){
 					if(grenphase==1)gunmodels[grenadepinmodel].draw();
 				}
@@ -931,11 +931,11 @@ int Person::DrawSkeleton(int who){
 	}
 	
 	//Find forward vectors
-	if(who==0||skeleton.free!=0||skeleton.offset!=0||whichgun!=nogun||currentanimation==lyinganim||((currentanimation==getupfrontanim||currentanimation==getupbackanim)&&targetanimation==idleanim)){
+	if(who==0||skeleton.free!=0||skeleton.offsetted!=0||whichgun!=nogun||currentanimation==lyinganim||((currentanimation==getupfrontanim||currentanimation==getupbackanim)&&targetanimation==idleanim)){
 	if(!(skeleton.free==1&&longdead<=0)){
-	if(skeleton.offset&&skeleton.free<1){
+	if(skeleton.offsetted&&skeleton.free<1){
 		XYZ normal;
-		skeleton.offset=0;
+		skeleton.offsetted=0;
 		for(int i=0;i<skeleton.num_joints;i++){
 			skeleton.joints[i].oldposition=skeleton.joints[i].position;
 			skeleton.joints[i].position+=skeleton.joints[i].offset;
@@ -943,7 +943,7 @@ int Person::DrawSkeleton(int who){
 			else{
 				normal=skeleton.joints[i].offset;
 				Normalise(&normal);
-				skeleton.offset=1;
+				skeleton.offsetted=1;
 				skeleton.joints[i].offset-=normal*multiplier*5;
 			}
 		}
@@ -960,11 +960,11 @@ int Person::DrawSkeleton(int who){
 	
 	skeleton.specialforward[1]=skeleton.joints[skeleton.jointlabels[rightshoulder]].position+skeleton.joints[skeleton.jointlabels[rightwrist]].position;
 	skeleton.specialforward[1]=skeleton.joints[skeleton.jointlabels[rightelbow]].position-skeleton.specialforward[1]/2;
-	skeleton.specialforward[1]+=skeleton.forward*.2;
+	skeleton.specialforward[1]+=skeleton.forward*.2f;
 	Normalise(&skeleton.specialforward[1]);
 	skeleton.specialforward[2]=skeleton.joints[skeleton.jointlabels[leftshoulder]].position+skeleton.joints[skeleton.jointlabels[leftwrist]].position;
 	skeleton.specialforward[2]=skeleton.joints[skeleton.jointlabels[leftelbow]].position-skeleton.specialforward[2]/2;
-	skeleton.specialforward[2]+=skeleton.forward*.2;
+	skeleton.specialforward[2]+=skeleton.forward*.2f;
 	Normalise(&skeleton.specialforward[2]);
 
 	if(who==0&&aimamount>0&&health==100&&whichgun!=nogun){
@@ -983,11 +983,11 @@ int Person::DrawSkeleton(int who){
 	
 	skeleton.specialforward[3]=skeleton.joints[skeleton.jointlabels[righthip]].position+skeleton.joints[skeleton.jointlabels[rightankle]].position;
 	skeleton.specialforward[3]=skeleton.specialforward[3]/2-skeleton.joints[skeleton.jointlabels[rightknee]].position;
-	skeleton.specialforward[3]+=skeleton.lowforward*.2;
+	skeleton.specialforward[3]+=skeleton.lowforward*.2f;
 	Normalise(&skeleton.specialforward[3]);
 	skeleton.specialforward[4]=skeleton.joints[skeleton.jointlabels[lefthip]].position+skeleton.joints[skeleton.jointlabels[leftankle]].position;
 	skeleton.specialforward[4]=skeleton.specialforward[4]/2-skeleton.joints[skeleton.jointlabels[leftknee]].position;
-	skeleton.specialforward[4]+=skeleton.lowforward*.2;
+	skeleton.specialforward[4]+=skeleton.lowforward*.2f;
 	Normalise(&skeleton.specialforward[4]);
 
 	//Find joint rotations
@@ -1059,11 +1059,11 @@ int Person::DrawSkeleton(int who){
 				glRotatef(-skeleton.joints[skeleton.jointlabels[righthand]].rotate1+90-1.5,0,1,0);
 				glRotatef(-skeleton.joints[skeleton.jointlabels[righthand]].rotate2+90,0,0,1);
 				glRotatef(-skeleton.joints[skeleton.jointlabels[righthand]].rotate3,0,1,0);
-				glTranslatef(0,-.2,0);
+				glTranslatef(0,-.2f,0);
 				gunmodels[knifemodel].draw();
 			glPopMatrix();
 	}
-	if(skeleton.offset&&skeleton.free<1){
+	if(skeleton.offsetted && skeleton.free<1){
 		for(int i=0;i<skeleton.num_joints;i++){
 			skeleton.joints[i].position=skeleton.joints[i].oldposition;
 		}

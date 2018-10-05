@@ -71,7 +71,7 @@ void Game::Splat(int k){
 
 		person[k].DoAnimations(k);
 
-		person[k].skeleton.offset=0;
+		person[k].skeleton.offsetted=0;
 
 		person[k].skeleton.free=1;
 
@@ -951,13 +951,13 @@ void 	Game::Tick(){
 
 			if(k!=0){
 				/* TODO: huh? */
-				beginx==person[k].whichblockx;
+				beginx=person[k].whichblockx;
 
-				beginz==person[k].whichblocky;
+				beginz=person[k].whichblocky;
 
-				endx==person[k].whichblockx;
+				endx=person[k].whichblockx;
 
-				endz==person[k].whichblocky;
+				endz=person[k].whichblocky;
 
 			}
 
@@ -2467,7 +2467,7 @@ void 	Game::Tick(){
 
 		 		if(person[i].health<=0){
 
-		 			person[i].skeleton.offset=0;
+		 			person[i].skeleton.offsetted=0;
 
 					person[i].skeleton.free=1;
 
@@ -3729,7 +3729,7 @@ void 	Game::Tick(){
 
 							if(person[whichhit].health<=0){
 
-								person[whichhit].skeleton.offset=0;
+								person[whichhit].skeleton.offsetted=0;
 
 								if(person[whichhit].skeleton.free!=1){
 
@@ -3781,7 +3781,7 @@ void 	Game::Tick(){
 
 							if(person[whichhit].health>0){
 
-								if(person[whichhit].killtargetvisible==0&&person[whichhit].type!=zombietype&&person[whichhit].currentanimation!=getupfrontanim&person[whichhit].currentanimation!=getupbackanim){
+								if(person[whichhit].killtargetvisible==0 && person[whichhit].type!=zombietype && person[whichhit].currentanimation!=getupfrontanim && person[whichhit].currentanimation!=getupbackanim){
 
 									if(hitstruct.joint1->modelnum==headmodel)person[whichhit].targetanimation=headpainanim;
 
@@ -3803,7 +3803,7 @@ void 	Game::Tick(){
 
 								}
 
-								person[whichhit].skeleton.offset=1;
+								person[whichhit].skeleton.offsetted=1;
 
 								for(int j=0;j<person[whichhit].skeleton.num_joints;j++){
 
@@ -4064,7 +4064,7 @@ void 	Game::Tick(){
 
 						dot_tb = (c->x - b->x)*(a->x - b->x) + (c->y - b->y)*(a->y - b->y) + (c->z - b->z)*(a->z - b->z);
 
-						if (!dot_ta <= 0&&!dot_tb <= 0){
+						if (dot_ta <= 0 && dot_tb <= 0){
 
 						
 
@@ -4570,7 +4570,7 @@ void 	Game::Tick(){
 										if(sprites.size[i]<=1)//alSourcePlay(gSourceID[src_bodywhacksound]);
 											SoundFX::inst()->playFX(gSampleSet[bodywhacksound], gLoc);
 
-										person[j].skeleton.offset=1;
+										person[j].skeleton.offsetted=1;
 
 										for(int k=0;k<person[j].skeleton.num_joints;k++){
 

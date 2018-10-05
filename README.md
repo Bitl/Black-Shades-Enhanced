@@ -16,12 +16,18 @@ But recently I figured out a way to compile it, and thus the Black Shades Enhanc
 
 **What is included?**
 
-As of v1.0.0:
+As of v1.1.0:
 - Increased the FPS limit from 90 to 300.
 - Allows the user to set the FPS limit in the config.txt
 - Allows the user to run the game in windowed mode.
 - Added an icon for use in Windowed Mode.
-- Added SQL_Image support
+- Added SQL_Image support.
+- Added a new FOV setting.
+- Changed the Sniper Rifle's FOV to 22.50 due to the equation used for calculating user-defined FOV.
+- Fixed all compiler warnings!
+- Includes the soundtrack!
+
+All the new settings can be set in the config.txt the game generates.
 
 **Images:**
 

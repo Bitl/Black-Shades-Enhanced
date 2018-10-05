@@ -140,11 +140,11 @@ class Skeleton
 		XYZ lowforward;
 		
 		int broken;
-		bool offset;
+		bool offsetted;
 		
 		XYZ specialforward[5];
 		
-		bool free;
+		int free;
 		
 		Files files;
 	

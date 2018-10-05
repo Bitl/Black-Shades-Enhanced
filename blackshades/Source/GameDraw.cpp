@@ -794,9 +794,9 @@ int Game::DrawGLScene(GLvoid)
 
 			//Change fov if zooming with scope
 
-			if(!zoom)ReSizeGLScene(90,.1);
+			if(!zoom)ReSizeGLScene(fov,.1);
 
-			if(zoom)ReSizeGLScene(10,.6);
+			if(zoom)ReSizeGLScene(fov/4,.6);
 
 			nocolors=0;
 

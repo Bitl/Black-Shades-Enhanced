@@ -1,10 +1,5 @@
 #include "Game.h"	
 #include "SoundFX.h"
-#ifdef OS9
-#include <glut.h>
-#else
-#include <GL/glut.h>
-#endif
 
 extern double multiplier;
 
@@ -348,8 +343,6 @@ static void DoSDLKey(Game *g, SDL_Event *event)
 void	Game::ProcessSDLEvents(void)
 {
 	SDL_Event event;
-
-	bool checked = 0;
 	
 	if (SDL_PollEvent(&event)) {
 		do {
@@ -378,25 +371,6 @@ void	Game::ProcessSDLEvents(void)
 				}
 				case SDL_KEYUP:
 					DoSDLKey(this, &event);
-					break;
-				case SDL_MOUSEMOTION:
-					if (!fullscreen && !mainmenu && gameinprogress)
-					{
-						if(checked)
-						{
-							int centerX = screenwidth/2;
-							int centerY = screenheight/2;
-							if (x != centerX || y != centerY)
-							{
-								glutWarpPointer(centerX, centerY);
-							}
-							checked = false;
-						}
-						else if(!checked)
-						{
-							checked = true;
-						}
-					}
 					break;
 				case SDL_QUIT:
 					exit(0);
