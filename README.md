@@ -37,6 +37,8 @@ All the new settings can be set in the config.txt the game generates.
 
 ![3](https://github.com/Bitl/Black-Shades-Enhanced/raw/master/images/img3.png)
 
+![4](https://github.com/Bitl/Black-Shades-Enhanced/raw/master/images/img4.png)
+
 **Credits:**
 
 All credits go to Wolfire Games and David for the creation of Black Shades.
