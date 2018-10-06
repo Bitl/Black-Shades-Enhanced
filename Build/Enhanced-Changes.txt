@@ -1,3 +1,6 @@
+Black Shades Enhanced v1.1.1
+- Fixed an issue where disabling music would make the program hang.
+
 Black Shades Enhanced v1.1
 - Fixed a bug where the mouse sometimes clips out of the window in windowed mode.
 - Added a new FOV setting.

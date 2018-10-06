@@ -187,23 +187,26 @@ void 	Game::Tick(){
 				alSourcePause(env);
 			}
 
-			ALuint music = SoundFX::inst()->getMusicSource();
+			if(musictoggle)
+			{
+				ALuint music = SoundFX::inst()->getMusicSource();
 
-			alSourceStop(music);
-			alSourcef(music, AL_MIN_GAIN, 0);
-			alSourcef(music, AL_MAX_GAIN, 0);
+				alSourceStop(music);
+				alSourcef(music, AL_MIN_GAIN, 0);
+				alSourcef(music, AL_MAX_GAIN, 0);
 
-			if(person[0].whichgun==knife)whichsong=knifesong;
+				if(person[0].whichgun==knife)whichsong=knifesong;
 
-			if(person[0].whichgun!=knife)whichsong=shootsong;
+				if(person[0].whichgun!=knife)whichsong=shootsong;
 
-			if(type==zombie_type)whichsong=zombiesong;
+				if(type==zombie_type)whichsong=zombiesong;
 
-			alSourcei(music, AL_BUFFER, gSampleSet[whichsong]);
-			alSourcef(music, AL_PITCH, 1);
-			alSourcePlay(music);
-			alSourcef(music, AL_MIN_GAIN, 1);
-			alSourcef(music, AL_MAX_GAIN, 1);
+				alSourcei(music, AL_BUFFER, gSampleSet[whichsong]);
+				alSourcef(music, AL_PITCH, 1);
+				alSourcePlay(music);
+				alSourcef(music, AL_MIN_GAIN, 1);
+				alSourcef(music, AL_MAX_GAIN, 1);
+			}
 
 			flashamount=1;
 
@@ -240,25 +243,28 @@ void 	Game::Tick(){
 				if(environment==rainy_environment)alSourcePlay(enviro);
 
 				if(environment!=rainy_environment)alSourcePause(enviro);
+				
+				if(musictoggle)
+				{
+					//alSourceStop(gSourceID[src_songslot]);
+					//alSourcef(gSourceID[src_songslot], AL_MIN_GAIN, 0);
+					//alSourcef(gSourceID[src_songslot], AL_MAX_GAIN, 0);
 
-				//alSourceStop(gSourceID[src_songslot]);
-				//alSourcef(gSourceID[src_songslot], AL_MIN_GAIN, 0);
-				//alSourcef(gSourceID[src_songslot], AL_MAX_GAIN, 0);
+					if(person[0].whichgun==knife)whichsong=knifesong;
 
-				if(person[0].whichgun==knife)whichsong=knifesong;
+					if(person[0].whichgun!=knife)whichsong=shootsong;
 
-				if(person[0].whichgun!=knife)whichsong=shootsong;
+					if(type==zombie_type)whichsong=zombiesong;
 
-				if(type==zombie_type)whichsong=zombiesong;
+					ALuint music = SoundFX::inst()->getMusicSource(gSampleSet[whichsong]);
 
-				ALuint music = SoundFX::inst()->getMusicSource(gSampleSet[whichsong]);
+					//alSourcei(music, AL_BUFFER, gSampleSet[whichsong]);
+					//alSourcef(gSourceID[src_songslot], AL_PITCH, 1);
 
-				//alSourcei(music, AL_BUFFER, gSampleSet[whichsong]);
-				//alSourcef(gSourceID[src_songslot], AL_PITCH, 1);
-
-				alSourcef(music, AL_MIN_GAIN, 1);
-				alSourcef(music, AL_MAX_GAIN, 1);
-				alSourcePlay(music);
+					alSourcef(music, AL_MIN_GAIN, 1);
+					alSourcef(music, AL_MAX_GAIN, 1);
+					alSourcePlay(music);
+				}
 
 			//}
 
@@ -404,22 +410,24 @@ void 	Game::Tick(){
 				alSourceStop(SoundFX::inst()->getVisionSource());
 
 				
+				if(musictoggle)
+				{
+					//alSourceStop(music);
+					//alSourcef(music, AL_MIN_GAIN, 0);
+					//alSourcef(music, AL_MAX_GAIN, 0);
 
-				//alSourceStop(music);
-				//alSourcef(music, AL_MIN_GAIN, 0);
-				//alSourcef(music, AL_MAX_GAIN, 0);
+					whichsong=mainmenusong;
 
-				whichsong=mainmenusong;
+					ALuint music = SoundFX::inst()->getMusicSource(gSampleSet[whichsong]);
 
-				ALuint music = SoundFX::inst()->getMusicSource(gSampleSet[whichsong]);
+					//alSourceStop(gSourceID[src_songslot]);
 
-				//alSourceStop(gSourceID[src_songslot]);
-
-				alSourcei(music, AL_BUFFER, gSampleSet[whichsong]);
-				alSourcef(music, AL_PITCH, 1);
-				alSourcePlay(music);
-				alSourcef(music, AL_MIN_GAIN, 1);
-				alSourcef(music, AL_MAX_GAIN, 1);
+					alSourcei(music, AL_BUFFER, gSampleSet[whichsong]);
+					alSourcef(music, AL_PITCH, 1);
+					alSourcePlay(music);
+					alSourcef(music, AL_MIN_GAIN, 1);
+					alSourcef(music, AL_MAX_GAIN, 1);
+				}
 
 				if(score>highscore){
 
@@ -465,19 +473,21 @@ void 	Game::Tick(){
 				alSourceStop(SoundFX::inst()->getVisionSource());
 
 
-				
+				if(musictoggle)
+				{
 
-				if(person[0].whichgun==knife)whichsong=knifesong;
-				if(person[0].whichgun!=knife)whichsong=shootsong;
+					if(person[0].whichgun==knife)whichsong=knifesong;
+					if(person[0].whichgun!=knife)whichsong=shootsong;
 
-				if(type==zombie_type)whichsong=zombiesong;
+					if(type==zombie_type)whichsong=zombiesong;
 
-				ALuint music = SoundFX::inst()->getMusicSource(gSampleSet[whichsong]);
+					ALuint music = SoundFX::inst()->getMusicSource(gSampleSet[whichsong]);
 
-				alSourcef(music, AL_PITCH, 1);
-				alSourcePlay(music);
-				alSourcef(music, AL_MIN_GAIN, 1);
-				alSourcef(music, AL_MAX_GAIN, 1);
+					alSourcef(music, AL_PITCH, 1);
+					alSourcePlay(music);
+					alSourcef(music, AL_MIN_GAIN, 1);
+					alSourcef(music, AL_MAX_GAIN, 1);
+				}
 
 			}
 
@@ -495,16 +505,19 @@ void 	Game::Tick(){
 
 			InitGame();
 
-			if(person[0].whichgun==knife)whichsong=knifesong;
-			if(person[0].whichgun!=knife)whichsong=shootsong;
-			if(type==zombie_type)whichsong=zombiesong;
+			if(musictoggle)
+			{
+				if(person[0].whichgun==knife)whichsong=knifesong;
+				if(person[0].whichgun!=knife)whichsong=shootsong;
+				if(type==zombie_type)whichsong=zombiesong;
 
-			ALuint music = SoundFX::inst()->getMusicSource(gSampleSet[whichsong]);
+				ALuint music = SoundFX::inst()->getMusicSource(gSampleSet[whichsong]);
 
-			alSourcef(music, AL_PITCH, 1);
-			alSourcePlay(music);
-			alSourcef(music, AL_MIN_GAIN, 1);
-			alSourcef(music, AL_MAX_GAIN, 1);
+				alSourcef(music, AL_PITCH, 1);
+				alSourcePlay(music);
+				alSourcef(music, AL_MIN_GAIN, 1);
+				alSourcef(music, AL_MAX_GAIN, 1);
+			}
 
 			float gLoc[3];
 			getAuralCameraPosition(gLoc);
@@ -3582,24 +3595,28 @@ void 	Game::Tick(){
 
 								soundscalefactor=soundscalefactordefault;
 
-								/*
-								ALuint music = SoundFX::inst()->getMusicSource();
-								alSourceStop(music);
-								alSourcef(music, AL_MIN_GAIN, 0);
-								alSourcef(music, AL_MAX_GAIN, 0);
-								*/
+								if(musictoggle)
+								{
+								
+									/*
+									ALuint music = SoundFX::inst()->getMusicSource();
+									alSourceStop(music);
+									alSourcef(music, AL_MIN_GAIN, 0);
+									alSourcef(music, AL_MAX_GAIN, 0);
+									*/
 
-								if(person[0].whichgun==knife)whichsong=knifesong;
-								if(person[0].whichgun!=knife)whichsong=shootsong;
-								if(type==zombie_type)whichsong=zombiesong;
+									if(person[0].whichgun==knife)whichsong=knifesong;
+									if(person[0].whichgun!=knife)whichsong=shootsong;
+									if(type==zombie_type)whichsong=zombiesong;
 
-								ALuint music = SoundFX::inst()->getMusicSource(gSampleSet[whichsong]);
+									ALuint music = SoundFX::inst()->getMusicSource(gSampleSet[whichsong]);
 
-								//alSourcei(gSourceID[src_songslot], AL_BUFFER, gSampleSet[whichsong]);
-								alSourcef(music, AL_PITCH, 1);
-								alSourcePlay(music);
-								alSourcef(music, AL_MIN_GAIN, 1);
-								alSourcef(music, AL_MAX_GAIN, 1);
+									//alSourcei(gSourceID[src_songslot], AL_BUFFER, gSampleSet[whichsong]);
+									alSourcef(music, AL_PITCH, 1);
+									alSourcePlay(music);
+									alSourcef(music, AL_MIN_GAIN, 1);
+									alSourcef(music, AL_MAX_GAIN, 1);
+								}
 
 								slomo=0;
 
@@ -4912,23 +4929,27 @@ void 	Game::Tick(){
 
 				soundscalefactor=soundscalefactordefault;
 
-				//alSourceStop(gSourceID[src_songslot]);
-				//alSourcef(gSourceID[src_songslot], AL_MIN_GAIN, 0);
-				//alSourcef(gSourceID[src_songslot], AL_MAX_GAIN, 0);
+				if(musictoggle)
+				{
+				
+					//alSourceStop(gSourceID[src_songslot]);
+					//alSourcef(gSourceID[src_songslot], AL_MIN_GAIN, 0);
+					//alSourcef(gSourceID[src_songslot], AL_MAX_GAIN, 0);
 
-				if(person[0].whichgun==knife)whichsong=knifesong;
+					if(person[0].whichgun==knife)whichsong=knifesong;
 
-				if(person[0].whichgun!=knife)whichsong=shootsong;
+					if(person[0].whichgun!=knife)whichsong=shootsong;
 
-				if(type==zombie_type)whichsong=zombiesong;
+					if(type==zombie_type)whichsong=zombiesong;
 
-				ALuint music = SoundFX::inst()->getMusicSource(gSampleSet[whichsong]);
+					ALuint music = SoundFX::inst()->getMusicSource(gSampleSet[whichsong]);
 
-				//alSourcei(gSourceID[src_songslot], AL_BUFFER, gSampleSet[whichsong]);
-				alSourcef(music, AL_PITCH, 1);
-				alSourcePlay(music);
-				alSourcef(music, AL_MIN_GAIN, 1);
-				alSourcef(music, AL_MAX_GAIN, 1);
+					//alSourcei(gSourceID[src_songslot], AL_BUFFER, gSampleSet[whichsong]);
+					alSourcef(music, AL_PITCH, 1);
+					alSourcePlay(music);
+					alSourcef(music, AL_MIN_GAIN, 1);
+					alSourcef(music, AL_MAX_GAIN, 1);
+				}
 
 				slomo=0;
 

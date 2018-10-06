@@ -538,15 +538,18 @@ void	Game::EventLoop( void )
 
 			alSourceStop(SoundFX::inst()->getVisionSource());
 
-			whichsong = mainmenusong;
+			if(musictoggle)
+			{
+				whichsong = mainmenusong;
 
 
-			ALuint music = SoundFX::inst()->getMusicSource(gSampleSet[whichsong]);
-			alSourcef(music, AL_PITCH, 1.0);
-			alSourcef(music, AL_MIN_GAIN, 1);
-			alSourcef(music, AL_MAX_GAIN, 1);	
+				ALuint music = SoundFX::inst()->getMusicSource(gSampleSet[whichsong]);
+				alSourcef(music, AL_PITCH, 1.0);
+				alSourcef(music, AL_MIN_GAIN, 1);
+				alSourcef(music, AL_MAX_GAIN, 1);	
 
-			alSourcePlay(music);
+				alSourcePlay(music);
+			}
 
 		}
 

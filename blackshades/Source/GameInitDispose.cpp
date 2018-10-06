@@ -1713,19 +1713,19 @@ void Game::InitGame()
 		if(environment!=rainy_environment)alSourcePause(enviro);
 
 
+		if(musictoggle)
+		{
+			whichsong=mainmenusong;
 
-		whichsong=mainmenusong;
+			ALuint music = SoundFX::inst()->getMusicSource(gSampleSet[whichsong]);
 
-		ALuint music = SoundFX::inst()->getMusicSource(gSampleSet[whichsong]);
-
-
-		
-//redundant!
-		alSourcei(music, AL_BUFFER, gSampleSet[whichsong]);
-		alSourcef(music, AL_PITCH, 1);
-		alSourcef(music, AL_MIN_GAIN, 1);
-		alSourcef(music, AL_MAX_GAIN, 1);	
-		alSourcePlay(music);
+			//redundant!
+			alSourcei(music, AL_BUFFER, gSampleSet[whichsong]);
+			alSourcef(music, AL_PITCH, 1);
+			alSourcef(music, AL_MIN_GAIN, 1);
+			alSourcef(music, AL_MAX_GAIN, 1);	
+			alSourcePlay(music);
+		}
 	}
 
 	
