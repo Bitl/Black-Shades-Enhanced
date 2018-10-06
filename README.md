@@ -52,4 +52,4 @@ All credits go to Wolfire Games and David for the creation of Black Shades.
 
 >Issues page: https://github.com/Bitl/Black-Shades-Enhanced/issues
 
-Feel feee to contribute if you're interested in making new features for the mod!
+Feel free to contribute if you're interested in making new features for the mod!
