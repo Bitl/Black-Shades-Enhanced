@@ -14,6 +14,10 @@ About 7 years ago, there was a [forum post](https://forums.wolfire.com/viewtopic
 
 But recently I figured out a way to compile it, and thus the Black Shades Enhanced mod was born.
 
+This mod is focused on improving the game's engine while keeping the game as unmodified as possible.
+
+Check out the [Black Shades Redux](https://github.com/Bitl/Black-Shades-Redux) mod if you want to see enhancements to gameplay.
+
 **What is included?**
 
 As of v1.1.1:
