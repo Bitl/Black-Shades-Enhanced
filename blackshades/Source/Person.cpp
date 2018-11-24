@@ -49,7 +49,7 @@ HitStruct 	Person::BulletCollideWithPlayer(int who, XYZ start, XYZ end){
 	}
 	average=average/howmany;
 	distancemax=0;
-	for(j=0;j<skeleton.num_joints;j++){
+	for(int j=0;j<skeleton.num_joints;j++){
 		if(findDistancefast(average,skeleton.joints[j].position)>distancemax){
 			distancemax=findDistancefast(average,skeleton.joints[j].position);
 		}
@@ -123,7 +123,7 @@ HitStruct 	Person::BulletCollideWithPlayer(int who, XYZ start, XYZ end){
 			}
 		}
 	}
-	for(j=0;j<skeleton.num_muscles;j++){
+	for(int j=0;j<skeleton.num_muscles;j++){
 		if(skeleton.muscles[j].visible){
 			tempbulletloc[0]=start;
 			tempbulletloc[1]=end;
@@ -997,7 +997,7 @@ int Person::DrawSkeleton(int who){
 			skeleton.FindRotationJoint(i);
 		}
 	}
-	for(i=0;i<skeleton.num_muscles;i++){
+	for(int i=0;i<skeleton.num_muscles;i++){
 		if(skeleton.muscles[i].visible)
 		{
 			skeleton.FindRotationMuscle(i);
@@ -1027,7 +1027,7 @@ int Person::DrawSkeleton(int who){
 		}
 	}
 	
-	for(i=0;i<skeleton.num_muscles;i++){
+	for(int i=0;i<skeleton.num_muscles;i++){
 		if(skeleton.muscles[i].visible)
 		{
 			glPushMatrix();

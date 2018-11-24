@@ -965,7 +965,7 @@ void Game::LoadingScreen(float percent)
 
 	glPushMatrix();										// Store The Modelview Matrix
 
-	for(i=19;i>=0;i--){
+	for(int i=19;i>=0;i--){
 
 		glLoadIdentity();								// Reset The Modelview Matrix
 
@@ -2228,7 +2228,7 @@ void Game::InitGame()
 
 	//init city block rotations
 
-	for(i=0;i<num_blocks;i++){
+	for(int i=0;i<num_blocks;i++){
 
 		for(int j=0;j<num_blocks;j++){
 
@@ -3350,7 +3350,7 @@ void Game::InitGame()
 
 	//Setup people
 
-	for(i=0;i<max_people;i++){
+	for(int i=0;i<max_people;i++){
 
 		if(i==0){
 
