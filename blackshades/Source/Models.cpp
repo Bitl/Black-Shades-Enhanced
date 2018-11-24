@@ -64,25 +64,28 @@ void Model::UpdateVertexArray(){
 
 bool Model::load(Str255 Name)
 {
-	FILE				*tfile;
-	long				err;
-	Files file;
-	
-	tfile=file.OpenFile(Name);
-	SetFPos(tfile,fsFromStart,0);
-
-		// read model settings
-	
-	err=ReadShort(tfile,1,&vertexNum);
-	err=ReadShort(tfile,1,&TriangleNum);
-	
-		// read the model data
-	
-	err=ReadXYZ(tfile,vertexNum,vertex);
-	err=ReadTexturedTriangle(tfile,TriangleNum,Triangles);
-
-	FSClose(tfile);
+	{
+		FILE				*tfile;
+		long				err;
+		Files file;
 		
+		tfile=file.OpenFile(Name);
+		if(!tfile){
+			return 0;
+		}
+		SetFPos(tfile,fsFromStart,0);
+
+			// read model settings
+		
+		err=ReadShort(tfile,1,&vertexNum);
+		err=ReadShort(tfile,1,&TriangleNum);
+		
+			// read the model data
+		
+		err=ReadXYZ(tfile,vertexNum,vertex);
+		err=ReadTexturedTriangle(tfile,TriangleNum,Triangles);
+	}
+	
 	UpdateVertexArray();
 	
 	XYZ average;
