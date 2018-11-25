@@ -3122,7 +3122,7 @@ void 	Game::Tick(){
 
 		float inaccuracy = 0.0;
 
-		int numshots;
+		int numshots = 0;
 
 		XYZ hitnorm;
 
@@ -4153,7 +4153,7 @@ void 	Game::Tick(){
 
 					HitStruct hitstruct,temphitstruct;
 
-					float olddistance;
+					float olddistance=0;
 
 					float distance;
 
@@ -4579,7 +4579,7 @@ void 	Game::Tick(){
 
 									}else{
 
-										float totalarea;
+										float totalarea=0;
 
 										//alSourcei(gSourceID[src_bodywhacksound], AL_BUFFER, gSampleSet[bodywhacksound]);
 										//alSourcefv(gSourceID[src_bodywhacksound], AL_POSITION, gLoc);
