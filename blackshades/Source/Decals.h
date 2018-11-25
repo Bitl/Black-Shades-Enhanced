@@ -1,5 +1,5 @@
-#ifndef _DECALS_H_
-#define _DECALS_H_
+#ifndef DECALS_H_
+#define DECALS_H_
 
 #include "Quaternions.h"
 

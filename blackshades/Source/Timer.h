@@ -1,5 +1,5 @@
-#ifndef _TIMER_H_
-#define _TIMER_H_
+#ifndef TIMER_H_
+#define TIMER_H_
 
 
 /**> HEADER FILES <**/

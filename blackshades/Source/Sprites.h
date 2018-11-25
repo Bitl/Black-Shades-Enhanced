@@ -1,5 +1,5 @@
-#ifndef _SPRITE_H_
-#define _SPRITE_H_
+#ifndef SPRITE_H_
+#define SPRITE_H_
 
 #ifdef WIN32
 #include <windows.h>

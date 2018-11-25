@@ -1,5 +1,5 @@
-#ifndef _FILES_H_
-#define _FILES_H_
+#ifndef FILES_H_
+#define FILES_H_
 
 #ifdef WIN32
 #include <windows.h>

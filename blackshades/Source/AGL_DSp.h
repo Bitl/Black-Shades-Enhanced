@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef _AGL_DSP_H_
-#define _AGL_DSP_H_
+#ifndef AGL_DSP_H_
+#define AGL_DSP_H_
 
 
 /**> HEADER FILES <**/

@@ -1,5 +1,5 @@
-#ifndef _FOG_H_
-#define _FOG_H_
+#ifndef FOG_H_
+#define FOG_H_
 
 
 /**> HEADER FILES <**/
