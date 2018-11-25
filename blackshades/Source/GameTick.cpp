@@ -4136,7 +4136,7 @@ void 	Game::Tick(){
 
 		
 
-		if(lasersight&&person[0].whichgun!=grenade){
+		if(lasersight&&visions==0&&person[0].whichgun!=grenade){
 
 		for(int j=0;j<numpeople;j++){
 
