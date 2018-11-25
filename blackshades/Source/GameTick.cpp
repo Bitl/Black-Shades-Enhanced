@@ -3900,7 +3900,7 @@ void 	Game::Tick(){
 
 							//blood
 
-							if(!hitstruct.joint1->modelnum==headmodel){
+							if(hitstruct.joint1->modelnum!=headmodel){
 
 							if(person[j].whichgun==sniperrifle)sprites.MakeSprite(bloodspritenoup, 1, 1, 0, 0, hitstruct.hitlocation, velocity*0, 5);
 
@@ -3950,7 +3950,7 @@ void 	Game::Tick(){
 
 							gLoc[2]=(camera.position.z+(hitstruct.hitlocation.z-camera.position.z)/4)/soundscalefactor;
 
-							if(!hitstruct.joint1->modelnum==headmodel){
+							if(hitstruct.joint1->modelnum!=headmodel){
 
 								if(!thirdperson)//alSourcef(gSourceID[src_bodyhitsound], AL_MIN_GAIN, 1);
 									SoundFX::inst()->playFX(gSampleSet[bodyhitsound], gLoc, 1.0, 1.0f, true);
