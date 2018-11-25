@@ -73,6 +73,11 @@ if("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU" OR "${CMAKE_CXX_COMPILER_ID}" MATCHE
 		"float-equal"
 		"int-to-pointer-cast"
 		"narrowing"
+		"cast-qual"
+		"double-promotion"
+		"missing-variable-declarations"
+		"shadow"
+		"global-constructors"
 		CACHE STRING "Warning-flags to disable.")
 	if(NOT ${BUILD_EXTRA_WARNINGS} STREQUAL "Many")
 		# These warnings often produce much uninteresting output
