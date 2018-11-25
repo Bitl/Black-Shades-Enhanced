@@ -1702,6 +1702,8 @@ void 	Game::Tick(){
 							if(person[i].targetanimation!=crouchanim||person[i].currentanimation!=crouchanim||person[i].aiming<1){
 
 								zoom=0;
+								camera.rotation2+=14;
+								camera.rotation+=9;
 
 							}
 
