@@ -1713,7 +1713,12 @@ void 	Game::Tick(){
 
 							zoom=1;
 
-							if(zoom&&!oldzoom)camera.rotation2-=6;
+							if(zoom&&!oldzoom){
+
+								camera.rotation2-=14;
+								camera.rotation-=9;
+
+							}
 
 						}
 
