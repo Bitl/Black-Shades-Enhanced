@@ -1699,7 +1699,7 @@ void 	Game::Tick(){
 
 							mousesensitivity=.05*usermousesensitivity;
 
-							if(person[i].targetanimation!=crouchanim||person[i].currentanimation!=crouchanim||person[i].aiming<1){
+							if(person[i].targetanimation!=crouchanim||person[i].currentanimation!=crouchanim||person[i].aiming<1||visions==1){
 
 								zoom=0;
 								camera.rotation2+=14;
@@ -1707,15 +1707,13 @@ void 	Game::Tick(){
 
 							}
 
-							if(visions==1)zoom=0;
-
 						}
 
 						if(person[i].currentanimation==crouchanim&&person[i].targetanimation==crouchanim&&person[i].aiming>=1&&person[i].whichgun==sniperrifle){
 
 							zoom=1;
 
-							if(zoom&&!oldzoom){
+							if(!oldzoom){
 
 								camera.rotation2-=14;
 								camera.rotation-=9;
