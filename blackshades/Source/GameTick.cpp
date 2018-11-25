@@ -1892,7 +1892,7 @@ void 	Game::Tick(){
 
 					 		//Check other blocks?
 
-					 		if ((closesttarget==person[i].pathnum)){
+					 		if (closesttarget==person[i].pathnum){
 
 					 			beginx=person[i].whichblockx-2;
 
