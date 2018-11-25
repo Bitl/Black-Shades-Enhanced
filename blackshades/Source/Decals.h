@@ -56,7 +56,7 @@ class Decals{
 					glDeleteTextures( 1, (const GLuint *)bulletholetextureptr );
 					glDeleteTextures( 1, (const GLuint *)cratertextureptr );
 					glDeleteTextures( 11, (const GLuint *)bloodtextureptr );
-				};
+				}
 };
 
 #endif

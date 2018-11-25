@@ -92,7 +92,7 @@ class Sprites{
 					glDeleteTextures( 1, (const GLuint *)bloodtextureptr );
 					glDeleteTextures( 1, (const GLuint *)raintextureptr );
 					glDeleteTextures( 1, (const GLuint *)snowtextureptr );
-				};
+				}
 };
 
 #endif
