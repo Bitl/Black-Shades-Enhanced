@@ -851,7 +851,7 @@ void 	Game::Tick(){
 
 		
 
-		if(zoom||person[0].aimamount<=0||person[0].whichgun==nogun||visions||person[0].whichgun==grenade||person[0].whichgun==knife){
+		if(oldzoom||zoom||person[0].aimamount<=0||person[0].whichgun==nogun||visions||person[0].whichgun==grenade||person[0].whichgun==knife){
 
 			camera.visrotation=camera.rotation;
 
