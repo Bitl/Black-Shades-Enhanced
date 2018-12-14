@@ -1,5 +1,5 @@
-#ifndef SKELETON_H_
-#define SKELETON_H_
+#ifndef _SKELETON_H_
+#define _SKELETON_H_
 
 /**> HEADER FILES <**/
 #ifdef WIN32

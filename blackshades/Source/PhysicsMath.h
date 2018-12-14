@@ -1,6 +1,6 @@
-#ifndef PHYSICSMATH_H_
+#ifndef _PHYSICSMATH_H_
 
-#define PHYSICSMATH_H_
+#define _PHYSICSMATH_H_
 
 
 

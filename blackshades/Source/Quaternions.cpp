@@ -674,7 +674,7 @@ XYZ DoRotation(XYZ thePoint, float xang, float yang, float zang){
 	return thePoint;
 }
 
-static float square( float f ) { return (f*f) ;}
+float square( float f ) { return (f*f) ;}
 
 bool sphere_line_intersection (
     float x1, float y1 , float z1,

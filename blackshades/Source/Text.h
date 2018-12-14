@@ -1,5 +1,5 @@
-#ifndef TEXT_H_
-#define TEXT_H_
+#ifndef _TEXT_H_
+#define _TEXT_H_
 
 
 /**> HEADER FILES <**/

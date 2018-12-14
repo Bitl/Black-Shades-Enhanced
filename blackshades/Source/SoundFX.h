@@ -1,5 +1,5 @@
-#ifndef BLACKSHADES_SOUNDFX_H
-#define BLACKSHADES_SOUNDFX_H
+#ifndef __BLACKSHADES_SOUNDFX_H
+#define __BLACKSHADES_SOUNDFX_H
 
 #include <vector>
 #include <algorithm>

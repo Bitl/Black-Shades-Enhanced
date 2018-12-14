@@ -1,5 +1,5 @@
-#ifndef PERSON_H_
-#define PERSON_H_
+#ifndef _PERSON_H_
+#define _PERSON_H_
 
 /**> HEADER FILES <**/
 #ifdef WIN32
