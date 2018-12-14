@@ -3255,7 +3255,9 @@ void 	Game::Tick(){
 
 						if(person[j].whichgun==sniperrifle)aim=DoRotation(person[j].skeleton.joints[(person[j].skeleton.jointlabels[lefthand])].position-person[j].skeleton.joints[(person[j].skeleton.jointlabels[righthand])].position,0,person[j].playerrotation+4,0);
 
-						if(person[j].whichgun==shotgun)aim=DoRotation(person[j].skeleton.joints[(person[j].skeleton.jointlabels[lefthand])].position-person[j].skeleton.joints[(person[j].skeleton.jointlabels[righthand])].position,2+(float)(Random()%1000)/500,person[j].playerrotation-1+(float)(Random()%1000)/500,0);
+						if(person[j].whichgun==shotgun)aim=DoRotation(person[j].skeleton.joints[(person[j].skeleton.jointlabels[lefthand])].position-person[j].skeleton.joints[(person[j].skeleton.jointlabels[righthand])].position,2+(float)(Random()%1000)/500,0,0);
+
+						if(person[j].whichgun==shotgun)aim=DoRotation(aim,0,person[j].playerrotation-1+(float)(Random()%1000)/500,0);
 
 						if(person[j].whichgun==handgun1&&!thirdperson&&j==0)aim=DoRotation(person[j].skeleton.joints[(person[j].skeleton.jointlabels[righthand])].position-(person[j].skeleton.joints[person[j].skeleton.jointlabels[head]].position*.65+person[j].skeleton.joints[person[j].skeleton.jointlabels[neck]].position*.35),0,person[j].playerrotation-.9,0);
 
@@ -4141,7 +4143,7 @@ void 	Game::Tick(){
 
 		
 
-		if(lasersight&&visions==0&&person[0].whichgun!=grenade){
+		if(lasersight&&person[0].whichgun!=grenade){
 
 		for(int j=0;j<numpeople;j++){
 
@@ -4168,7 +4170,7 @@ void 	Game::Tick(){
 
 						if(person[j].whichgun==sniperrifle)aim=DoRotation(person[j].skeleton.joints[(person[j].skeleton.jointlabels[lefthand])].position-person[j].skeleton.joints[(person[j].skeleton.jointlabels[righthand])].position,0,person[j].playerrotation+4,0);
 
-						if(person[j].whichgun==shotgun)aim=DoRotation(person[j].skeleton.joints[(person[j].skeleton.jointlabels[lefthand])].position-person[j].skeleton.joints[(person[j].skeleton.jointlabels[righthand])].position,2,person[j].playerrotation-1,0);
+						if(person[j].whichgun==shotgun)aim=DoRotation(person[j].skeleton.joints[(person[j].skeleton.jointlabels[lefthand])].position-person[j].skeleton.joints[(person[j].skeleton.jointlabels[righthand])].position,0,person[j].playerrotation+4,0);
 
 						if(person[j].whichgun==handgun1&&!thirdperson&&j==0)aim=DoRotation(person[j].skeleton.joints[(person[j].skeleton.jointlabels[righthand])].position-(person[j].skeleton.joints[person[j].skeleton.jointlabels[head]].position*.65+person[j].skeleton.joints[person[j].skeleton.jointlabels[neck]].position*.35),0,person[j].playerrotation-.9,0);
 
