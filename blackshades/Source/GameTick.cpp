@@ -851,7 +851,7 @@ void 	Game::Tick(){
 
 		
 
-		if(zoom||person[0].aimamount<=0||person[0].whichgun==nogun||visions||person[0].whichgun==grenade||person[0].whichgun==knife){
+		if(oldzoom||zoom||person[0].aimamount<=0||person[0].whichgun==nogun||visions||person[0].whichgun==grenade||person[0].whichgun==knife){
 
 			camera.visrotation=camera.rotation;
 
@@ -1699,13 +1699,13 @@ void 	Game::Tick(){
 
 							mousesensitivity=.05*usermousesensitivity;
 
-							if(person[i].targetanimation!=crouchanim||person[i].currentanimation!=crouchanim||person[i].aiming<1){
+							if(person[i].targetanimation!=crouchanim||person[i].currentanimation!=crouchanim||person[i].aiming<1||visions==1){
 
 								zoom=0;
+								camera.rotation2+=14;
+								camera.rotation+=9;
 
 							}
-
-							if(visions==1)zoom=0;
 
 						}
 
@@ -1713,7 +1713,12 @@ void 	Game::Tick(){
 
 							zoom=1;
 
-							if(zoom&&!oldzoom)camera.rotation2-=6;
+							if(!oldzoom){
+
+								camera.rotation2-=14;
+								camera.rotation-=9;
+
+							}
 
 						}
 
