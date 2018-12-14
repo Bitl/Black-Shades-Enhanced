@@ -851,7 +851,7 @@ void 	Game::Tick(){
 
 		
 
-		if(zoom||person[0].aimamount<=0||person[0].whichgun==nogun||visions||person[0].whichgun==grenade||person[0].whichgun==knife){
+		if(oldzoom||zoom||person[0].aimamount<=0||person[0].whichgun==nogun||visions||person[0].whichgun==grenade||person[0].whichgun==knife){
 
 			camera.visrotation=camera.rotation;
 
@@ -1699,13 +1699,13 @@ void 	Game::Tick(){
 
 							mousesensitivity=.05*usermousesensitivity;
 
-							if(person[i].targetanimation!=crouchanim||person[i].currentanimation!=crouchanim||person[i].aiming<1){
+							if(person[i].targetanimation!=crouchanim||person[i].currentanimation!=crouchanim||person[i].aiming<1||visions==1){
 
 								zoom=0;
+								camera.rotation2+=14;
+								camera.rotation+=9;
 
 							}
-
-							if(visions==1)zoom=0;
 
 						}
 
@@ -1713,7 +1713,12 @@ void 	Game::Tick(){
 
 							zoom=1;
 
-							if(zoom&&!oldzoom)camera.rotation2-=6;
+							if(!oldzoom){
+
+								camera.rotation2-=14;
+								camera.rotation-=9;
+
+							}
 
 						}
 
@@ -3250,10 +3255,8 @@ void 	Game::Tick(){
 
 						if(person[j].whichgun==sniperrifle)aim=DoRotation(person[j].skeleton.joints[(person[j].skeleton.jointlabels[lefthand])].position-person[j].skeleton.joints[(person[j].skeleton.jointlabels[righthand])].position,0,person[j].playerrotation+4,0);
 
-						if(person[j].whichgun==shotgun)aim=DoRotation(person[j].skeleton.joints[(person[j].skeleton.jointlabels[lefthand])].position-person[j].skeleton.joints[(person[j].skeleton.jointlabels[righthand])].position,2+(float)(Random()%1000)/500,0,0);
-
-						if(person[j].whichgun==shotgun)aim=DoRotation(aim,0,person[j].playerrotation-1+(float)(Random()%1000)/500,0);
-
+						if(person[j].whichgun==shotgun)aim=DoRotation(person[j].skeleton.joints[(person[j].skeleton.jointlabels[lefthand])].position-person[j].skeleton.joints[(person[j].skeleton.jointlabels[righthand])].position,2+(float)(Random()%1000)/500,person[j].playerrotation-1+(float)(Random()%1000)/500,0);
+						
 						if(person[j].whichgun==handgun1&&!thirdperson&&j==0)aim=DoRotation(person[j].skeleton.joints[(person[j].skeleton.jointlabels[righthand])].position-(person[j].skeleton.joints[person[j].skeleton.jointlabels[head]].position*.65+person[j].skeleton.joints[person[j].skeleton.jointlabels[neck]].position*.35),0,person[j].playerrotation-.9,0);
 
 						if(person[j].whichgun==handgun1&&(thirdperson||j!=0))aim=DoRotation(person[j].skeleton.joints[(person[j].skeleton.jointlabels[righthand])].position-(person[j].skeleton.joints[person[j].skeleton.jointlabels[head]].position*.35+person[j].skeleton.joints[person[j].skeleton.jointlabels[neck]].position*.65),0,person[j].playerrotation-.9,0);
@@ -4137,7 +4140,7 @@ void 	Game::Tick(){
 
 		
 
-		if(lasersight&&person[0].whichgun!=grenade){
+		if(lasersight&&visions==0&&person[0].whichgun!=grenade){
 
 		for(int j=0;j<numpeople;j++){
 
@@ -4164,7 +4167,7 @@ void 	Game::Tick(){
 
 						if(person[j].whichgun==sniperrifle)aim=DoRotation(person[j].skeleton.joints[(person[j].skeleton.jointlabels[lefthand])].position-person[j].skeleton.joints[(person[j].skeleton.jointlabels[righthand])].position,0,person[j].playerrotation+4,0);
 
-						if(person[j].whichgun==shotgun)aim=DoRotation(person[j].skeleton.joints[(person[j].skeleton.jointlabels[lefthand])].position-person[j].skeleton.joints[(person[j].skeleton.jointlabels[righthand])].position,0,person[j].playerrotation+4,0);
+						if(person[j].whichgun==shotgun)aim=DoRotation(person[j].skeleton.joints[(person[j].skeleton.jointlabels[lefthand])].position-person[j].skeleton.joints[(person[j].skeleton.jointlabels[righthand])].position,2,person[j].playerrotation-1,0);
 
 						if(person[j].whichgun==handgun1&&!thirdperson&&j==0)aim=DoRotation(person[j].skeleton.joints[(person[j].skeleton.jointlabels[righthand])].position-(person[j].skeleton.joints[person[j].skeleton.jointlabels[head]].position*.65+person[j].skeleton.joints[person[j].skeleton.jointlabels[neck]].position*.35),0,person[j].playerrotation-.9,0);
 
