@@ -965,7 +965,7 @@ void Game::LoadingScreen(float percent)
 
 	glPushMatrix();										// Store The Modelview Matrix
 
-	for(i=19;i>=0;i--){
+	for(int i=19;i>=0;i--){
 
 		glLoadIdentity();								// Reset The Modelview Matrix
 
@@ -2228,7 +2228,7 @@ void Game::InitGame()
 
 	//init city block rotations
 
-	for(i=0;i<num_blocks;i++){
+	for(int i=0;i<num_blocks;i++){
 
 		for(int j=0;j<num_blocks;j++){
 
@@ -3350,7 +3350,7 @@ void Game::InitGame()
 
 	//Setup people
 
-	for(i=0;i<max_people;i++){
+	for(int i=0;i<max_people;i++){
 
 		if(i==0){
 
@@ -3619,11 +3619,6 @@ int Game::InitGL(GLvoid)
 	if(!initialized){
 
 		//Default config in case config is not found	
-#ifdef OS9 
-		HideCursor();
-#else
-		STUB_FUNCTION;
-#endif
 
 		screenwidth = 640;
 
@@ -3898,6 +3893,8 @@ int Game::InitGL(GLvoid)
 	if ( !gOpenGLContext )
 
 		return;
+
+	HideCursor();
 #else
         if (SDL_Init(SDL_INIT_VIDEO) == -1) {
 		fprintf(stderr, "SDL Init Video failed: %s\n", SDL_GetError());
@@ -3932,7 +3929,11 @@ int Game::InitGL(GLvoid)
 	SDL_EnableUNICODE(1); /* toggle it to ON */
 
 	SDL_ShowCursor(0);
-	SDL_WM_GrabInput(SDL_GRAB_ON);
+	if(!SDL_WM_GrabInput(SDL_GRAB_ON)){
+		//HACK: it seems Linux needs some time until it allows grabbing input
+		SDL_Delay(100);
+		SDL_WM_GrabInput(SDL_GRAB_ON);
+	}
 
 #endif
 		

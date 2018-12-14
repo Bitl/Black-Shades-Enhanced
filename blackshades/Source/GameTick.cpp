@@ -1040,7 +1040,7 @@ void 	Game::Tick(){
 
 							}
 
-							for(l=0;l<8;l++){
+							for(int l=0;l<8;l++){
 
 								pointnum=k+1;
 
@@ -1892,7 +1892,7 @@ void 	Game::Tick(){
 
 					 		//Check other blocks?
 
-					 		if ((closesttarget==person[i].pathnum)){
+					 		if (closesttarget==person[i].pathnum){
 
 					 			beginx=person[i].whichblockx-2;
 
@@ -2080,7 +2080,7 @@ void 	Game::Tick(){
 
 					 		leastdistance=2000000;
 
-					 		for(j=0;j<path.vertexNum;j++){
+					 		for(int j=0;j<path.vertexNum;j++){
 
 					 			person[i].pathtarget.x=path.vertex[j].x;
 
@@ -2598,7 +2598,7 @@ void 	Game::Tick(){
 
 				if(person[i].targetanimation==getupfrontanim)person[i].playerrotation+=180;
 
-				for(j=0;j<person[i].skeleton.num_joints;j++){
+				for(int j=0;j<person[i].skeleton.num_joints;j++){
 
 					person[i].tempanimation.position[j][0]=person[i].skeleton.joints[j].position-person[i].playercoords;
 
@@ -3122,7 +3122,7 @@ void 	Game::Tick(){
 
 		float inaccuracy = 0.0;
 
-		int numshots;
+		int numshots = 0;
 
 		XYZ hitnorm;
 
@@ -3525,7 +3525,7 @@ void 	Game::Tick(){
 
 						finalwallhit=0;
 
-						for(i=beginx;i<=endx;i++)
+						for(int i=beginx;i<=endx;i++)
 
 							for(int j=beginz;j<=endz;j++){
 
@@ -3784,7 +3784,7 @@ void 	Game::Tick(){
 
 								}
 
-								for(j=0;j<person[whichhit].skeleton.num_joints;j++){
+								for(int j=0;j<person[whichhit].skeleton.num_joints;j++){
 
 									if(findDistancefast(person[whichhit].skeleton.joints[j].position,hitstruct.hitlocation)<200){
 
@@ -3834,7 +3834,7 @@ void 	Game::Tick(){
 
 								float offsetlength;
 
-								for(j=0;j<person[whichhit].skeleton.num_joints;j++){
+								for(int j=0;j<person[whichhit].skeleton.num_joints;j++){
 
 									if(findDistancefast(DoRotation(person[whichhit].skeleton.joints[j].position,0,person[whichhit].playerrotation,0)+person[whichhit].playercoords,hitstruct.hitlocation)<200){
 
@@ -3900,7 +3900,7 @@ void 	Game::Tick(){
 
 							//blood
 
-							if(!hitstruct.joint1->modelnum==headmodel){
+							if(hitstruct.joint1->modelnum!=headmodel){
 
 							if(person[j].whichgun==sniperrifle)sprites.MakeSprite(bloodspritenoup, 1, 1, 0, 0, hitstruct.hitlocation, velocity*0, 5);
 
@@ -3950,7 +3950,7 @@ void 	Game::Tick(){
 
 							gLoc[2]=(camera.position.z+(hitstruct.hitlocation.z-camera.position.z)/4)/soundscalefactor;
 
-							if(!hitstruct.joint1->modelnum==headmodel){
+							if(hitstruct.joint1->modelnum!=headmodel){
 
 								if(!thirdperson)//alSourcef(gSourceID[src_bodyhitsound], AL_MIN_GAIN, 1);
 									SoundFX::inst()->playFX(gSampleSet[bodyhitsound], gLoc, 1.0, 1.0f, true);
@@ -4153,7 +4153,7 @@ void 	Game::Tick(){
 
 					HitStruct hitstruct,temphitstruct;
 
-					float olddistance;
+					float olddistance=0;
 
 					float distance;
 
@@ -4299,7 +4299,7 @@ void 	Game::Tick(){
 
 					whichhit=-1;
 
-					for(i=0;i<numpeople;i++){
+					for(int i=0;i<numpeople;i++){
 
 						if(i!=j&&findDistancefast(person[j].playercoords,person[i].playercoords)<20000){
 
@@ -4398,7 +4398,7 @@ void 	Game::Tick(){
 
 		bool impact;
 
-		for(i=0;i<sprites.howmanysprites;i++){
+		for(int i=0;i<sprites.howmanysprites;i++){
 
 			if(sprites.type[i]==grenadesprite||sprites.type[i]==spoonsprite||sprites.type[i]==pinsprite){
 
@@ -4579,7 +4579,7 @@ void 	Game::Tick(){
 
 									}else{
 
-										float totalarea;
+										float totalarea=0;
 
 										//alSourcei(gSourceID[src_bodywhacksound], AL_BUFFER, gSampleSet[bodywhacksound]);
 										//alSourcefv(gSourceID[src_bodywhacksound], AL_POSITION, gLoc);
@@ -4601,7 +4601,7 @@ void 	Game::Tick(){
 
 										float offsetlength;
 
-										for(k=0;k<person[j].skeleton.num_joints;k++){
+										for(int k=0;k<person[j].skeleton.num_joints;k++){
 
 											if(findDistancefast(DoRotation(person[j].skeleton.joints[k].position,0,person[j].playerrotation,0)+person[j].playercoords,hitstruct.hitlocation)<200){
 
@@ -4795,7 +4795,7 @@ void 	Game::Tick(){
 
 							person[k].longdead=1;
 
-							for(j=0;j<person[k].skeleton.num_joints;j++){
+							for(int j=0;j<person[k].skeleton.num_joints;j++){
 
 								//Sever stuff
 
@@ -4875,7 +4875,7 @@ void 	Game::Tick(){
 
 		//Kill count
 
-		for(i=0;i<numpeople;i++){
+		for(int i=0;i<numpeople;i++){
 
 			if(person[i].oldhealth>0&&person[i].health<=0){
 

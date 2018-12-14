@@ -2,8 +2,8 @@
 #pragma once
 #endif
 
-#ifndef	_TGA_LOADER_H_
-#define	_TGA_LOADER_H_
+#ifndef	TGA_LOADER_H_
+#define	TGA_LOADER_H_
 
 
 /**> HEADER FILES <**/

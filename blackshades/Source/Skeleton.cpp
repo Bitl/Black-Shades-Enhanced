@@ -189,7 +189,7 @@ void Skeleton::DoConstraints(Model *collide, XYZ *move, float rotation)
 				}
 
 				avgvelocity=0;
-				for(k=0; k<num_joints; k++){
+				for(int k=0; k<num_joints; k++){
 					avgvelocity+=joints[k].velocity;
 				}
 				avgvelocity/=num_joints;
@@ -245,7 +245,7 @@ void Skeleton::DoConstraints(Model *collide, XYZ *move, float rotation)
 	}
 	
 	//Add velocity
-	for(i=0; i<num_joints; i++){
+	for(int i=0; i<num_joints; i++){
 		if(joints[i].existing||i==jointlabels[lefthand]||i==jointlabels[righthand])joints[i].position=joints[i].position+joints[i].velocity*multiplier;
 	}
 }
@@ -286,7 +286,7 @@ void Skeleton::Draw(int  muscleview)
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
 	glBegin(GL_QUADS);
-		for(i=0; i<num_joints; i++){
+		for(int i=0; i<num_joints; i++){
 			if(joints[i].hasparent){
 				glColor4f(jointcolor[0],jointcolor[1],jointcolor[2],jointcolor[3]/joints[i].blurred);
 				glVertex3f(joints[i].position.x,joints[i].position.y,joints[i].position.z);
@@ -298,7 +298,7 @@ void Skeleton::Draw(int  muscleview)
 				glVertex3f(joints[i].oldposition.x,joints[i].oldposition.y,joints[i].oldposition.z);
 			}
 		}
-		for(i=0; i<num_muscles; i++){
+		for(int i=0; i<num_muscles; i++){
 			if(muscles[i].type==boneconnect){
 				glColor4f(jointcolor[0],jointcolor[1],jointcolor[2],jointcolor[3]/muscles[i].parent2->blurred);
 				glVertex3f(muscles[i].parent1->position.x,muscles[i].parent1->position.y,muscles[i].parent1->position.z);
@@ -313,7 +313,7 @@ void Skeleton::Draw(int  muscleview)
 	glEnd();
 
 	glBegin(GL_LINES);
-		for(i=0; i<num_joints; i++){
+		for(int i=0; i<num_joints; i++){
 			if(joints[i].hasparent){
 				glColor4f(jointcolor[0],jointcolor[1],jointcolor[2],jointcolor[3]/joints[i].blurred);
 				glVertex3f(joints[i].position.x,joints[i].position.y,joints[i].position.z);
@@ -321,7 +321,7 @@ void Skeleton::Draw(int  muscleview)
 				glVertex3f(joints[i].parent->position.x,joints[i].parent->position.y,joints[i].parent->position.z);
 			}
 		}
-		for(i=0; i<num_muscles; i++){
+		for(int i=0; i<num_muscles; i++){
 			if(muscles[i].type==boneconnect){
 				glColor4f(jointcolor[0],jointcolor[1],jointcolor[2],jointcolor[3]/muscles[i].parent1->blurred);
 				glVertex3f(muscles[i].parent1->position.x,muscles[i].parent1->position.y,muscles[i].parent1->position.z);
@@ -385,7 +385,7 @@ void Skeleton::DeleteJoint(int whichjoint)
 			while(muscles[i].parent1==&joints[whichjoint]&&i<num_muscles)DeleteMuscle(i);
 			while(muscles[i].parent2==&joints[whichjoint]&&i<num_muscles)DeleteMuscle(i);
 		}
-		for(i=0;i<num_joints;i++){
+		for(int i=0;i<num_joints;i++){
 			if(joints[i].parent==&joints[whichjoint])joints[i].hasparent=0;
 		}
 		joints[whichjoint].hasparent=0;
@@ -525,16 +525,16 @@ void Animation::Load(char *fileName)
 			for(int j=0;j<max_joints;j++){
 				ReadXYZ(files.sFile, 1, &position[j][i]);
 			}
-			for(j=0;j<max_joints;j++){
+			for(int j=0;j<max_joints;j++){
 				ReadFloat(files.sFile, 1, &twist[j][i]);
 			}
-			for(j=0;j<max_joints;j++){
+			for(int j=0;j<max_joints;j++){
 				ReadBool(files.sFile, 1, &onground[j][i]);
 			}
 			ReadFloat(files.sFile, 1, &speed[i]);
 			ReadFloat(files.sFile, 1, &gunrotation[i]);
 		}
-		for(i=0;i<numframes;i++){
+		for(int i=0;i<numframes;i++){
 			for(int j=0;j<max_joints;j++){
 				ReadFloat(files.sFile, 1, &twist2[j][i]);
 			}
@@ -576,19 +576,19 @@ void Animation::Load(char *fileName)
 		Normalise(&testskeleton.specialforward[4]);
 
 		//Find joint rotations
-		for(i=0;i<testskeleton.num_joints;i++){
+		for(int i=0;i<testskeleton.num_joints;i++){
 			if(testskeleton.joints[i].hasparent&&testskeleton.joints[i].visible)
 			{
 				testskeleton.FindRotationJoint(i);
 			}
 		}
-		for(i=0;i<testskeleton.num_muscles;i++){
+		for(int i=0;i<testskeleton.num_muscles;i++){
 			if(testskeleton.muscles[i].visible)
 			{
 				testskeleton.FindRotationMuscle(i);
 			}
 		}
-		for(i=0;i<testskeleton.num_muscles;i++){
+		for(int i=0;i<testskeleton.num_muscles;i++){
 			if(testskeleton.muscles[i].visible)
 			{
 				mrotate1[i][j]=testskeleton.muscles[i].rotate1;
@@ -602,7 +602,7 @@ void Animation::Load(char *fileName)
 				if(j!=0&&mrotate1[i][j]<mrotate1[i][j-1]-180)mrotate1[i][j]+=360;
 			}
 		}
-		for(i=0;i<testskeleton.num_joints;i++){
+		for(int i=0;i<testskeleton.num_joints;i++){
 			if(testskeleton.joints[i].hasparent&&testskeleton.joints[i].visible)
 			{
 				rotate1[i][j]=testskeleton.joints[i].rotate1;
@@ -638,7 +638,7 @@ void Animation::Load(char *fileName)
 				if(j==0&&mrotate1[i][j]<mrotate1[i][numframes-1]-180)mrotate1[i][j]+=360;
 			}
 		}
-		for(i=0;i<testskeleton.num_joints;i++){
+		for(int i=0;i<testskeleton.num_joints;i++){
 			if(testskeleton.joints[i].hasparent&&testskeleton.joints[i].visible)
 			{
 				if(j!=0&&rotate3[i][j]>rotate3[i][j-1]+180)rotate3[i][j]-=360;
@@ -670,16 +670,16 @@ void Animation::Load(char *fileName, float rotate)
 				ReadXYZ(files.sFile, 1, &position[j][i]);
 				position[j][i]=DoRotation(position[j][i],0,rotate,0);
 			}
-			for(j=0;j<max_joints;j++){
+			for(int j=0;j<max_joints;j++){
 				ReadFloat(files.sFile, 1, &twist[j][i]);
 			}
-			for(j=0;j<max_joints;j++){
+			for(int j=0;j<max_joints;j++){
 				ReadBool(files.sFile, 1, &onground[j][i]);
 			}
 			ReadFloat(files.sFile, 1, &speed[i]);
 			ReadFloat(files.sFile, 1, &gunrotation[i]);
 		}
-		for(i=0;i<numframes;i++){
+		for(int i=0;i<numframes;i++){
 			for(int j=0;j<max_joints;j++){
 				ReadFloat(files.sFile, 1, &twist2[j][i]);
 			}
@@ -720,19 +720,19 @@ void Animation::Load(char *fileName, float rotate)
 		Normalise(&testskeleton.specialforward[4]);
 
 		//Find joint rotations
-		for(i=0;i<testskeleton.num_joints;i++){
+		for(int i=0;i<testskeleton.num_joints;i++){
 			if(testskeleton.joints[i].hasparent&&testskeleton.joints[i].visible)
 			{
 				testskeleton.FindRotationJoint(i);
 			}
 		}
-		for(i=0;i<testskeleton.num_muscles;i++){
+		for(int i=0;i<testskeleton.num_muscles;i++){
 			if(testskeleton.muscles[i].visible)
 			{
 				testskeleton.FindRotationMuscle(i);
 			}
 		}
-		for(i=0;i<testskeleton.num_muscles;i++){
+		for(int i=0;i<testskeleton.num_muscles;i++){
 			if(testskeleton.muscles[i].visible)
 			{
 				mrotate1[i][j]=testskeleton.muscles[i].rotate1;
@@ -746,7 +746,7 @@ void Animation::Load(char *fileName, float rotate)
 				if(j!=0&&mrotate1[i][j]<mrotate1[i][j-1]-180)mrotate1[i][j]+=360;
 			}
 		}
-		for(i=0;i<testskeleton.num_joints;i++){
+		for(int i=0;i<testskeleton.num_joints;i++){
 			if(testskeleton.joints[i].hasparent&&testskeleton.joints[i].visible)
 			{
 				rotate1[i][j]=testskeleton.joints[i].rotate1;
@@ -782,7 +782,7 @@ void Animation::Load(char *fileName, float rotate)
 				if(j==0&&mrotate1[i][j]<mrotate1[i][numframes-1]-180)mrotate1[i][j]+=360;
 			}
 		}
-		for(i=0;i<testskeleton.num_joints;i++){
+		for(int i=0;i<testskeleton.num_joints;i++){
 			if(testskeleton.joints[i].hasparent&&testskeleton.joints[i].visible)
 			{
 				if(j!=0&&rotate3[i][j]>rotate3[i][j-1]+180)rotate3[i][j]-=360;
@@ -832,7 +832,7 @@ void Skeleton::Load(char *fileName)
 		}
 
 		ReadInt(files.sFile, 1, &num_muscles);
-		for(i=0;i<num_muscles;i++){
+		for(int i=0;i<num_muscles;i++){
 			ReadFloat(files.sFile, 1, &muscles[i].length);
 			ReadFloat(files.sFile, 1, &muscles[i].targetlength);
 			ReadFloat(files.sFile, 1, &muscles[i].minlength);
@@ -849,7 +849,7 @@ void Skeleton::Load(char *fileName)
 		for(int j=0;j<3;j++){
 			ReadInt(files.sFile, 1, &forwardjoints[j]);
 		}
-		for(j=0;j<3;j++){
+		for(int j=0;j<3;j++){
 			ReadInt(files.sFile, 1, &lowforwardjoints[j]);
 		}
 	}

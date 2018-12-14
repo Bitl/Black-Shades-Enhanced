@@ -1,5 +1,5 @@
-#ifndef _CAMERA_H_
-#define _CAMERA_H_
+#ifndef CAMERA_H_
+#define CAMERA_H_
 
 
 /**> HEADER FILES <**/

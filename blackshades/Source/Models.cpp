@@ -5,7 +5,7 @@
 //Functions
 void Model::UpdateVertexArray(){
 	int i;
-	for(i=0;i<TriangleNum;i++){
+	for(int i=0;i<TriangleNum;i++){
 		vArray[i*27+0]=vertex[Triangles[i].vertex[0]].x;
 		vArray[i*27+1]=vertex[Triangles[i].vertex[0]].y;
 		vArray[i*27+2]=vertex[Triangles[i].vertex[0]].z;
@@ -43,7 +43,7 @@ void Model::UpdateVertexArray(){
 	howmany=0;
 	boundingboxmin=20000;
 	boundingboxmax=-20000;
-	for(i=0;i<vertexNum;i++){
+	for(int i=0;i<vertexNum;i++){
 		howmany++;
 		average=average+vertex[i];
 		if(vertex[i].x<boundingboxmin.x)boundingboxmin.x=vertex[i].x;
@@ -56,7 +56,7 @@ void Model::UpdateVertexArray(){
 	average=average/howmany;
 	boundingspherecenter=average;
 	boundingsphereradius=0;
-	for(i=0;i<vertexNum;i++){
+	for(int i=0;i<vertexNum;i++){
 		if(findDistancefast(average,vertex[i])>boundingsphereradius)boundingsphereradius=findDistancefast(average,vertex[i]);
 	}
 	boundingsphereradius=fast_sqrt(boundingsphereradius);
@@ -64,25 +64,28 @@ void Model::UpdateVertexArray(){
 
 bool Model::load(Str255 Name)
 {
-	FILE				*tfile;
-	long				err;
-	Files file;
-	
-	tfile=file.OpenFile(Name);
-	SetFPos(tfile,fsFromStart,0);
-
-		// read model settings
-	
-	err=ReadShort(tfile,1,&vertexNum);
-	err=ReadShort(tfile,1,&TriangleNum);
-	
-		// read the model data
-	
-	err=ReadXYZ(tfile,vertexNum,vertex);
-	err=ReadTexturedTriangle(tfile,TriangleNum,Triangles);
-
-	FSClose(tfile);
+	{
+		FILE				*tfile;
+		long				err;
+		Files file;
 		
+		tfile=file.OpenFile(Name);
+		if(!tfile){
+			return 0;
+		}
+		SetFPos(tfile,fsFromStart,0);
+
+			// read model settings
+		
+		err=ReadShort(tfile,1,&vertexNum);
+		err=ReadShort(tfile,1,&TriangleNum);
+		
+			// read the model data
+		
+		err=ReadXYZ(tfile,vertexNum,vertex);
+		err=ReadTexturedTriangle(tfile,TriangleNum,Triangles);
+	}
+	
 	UpdateVertexArray();
 	
 	XYZ average;
@@ -96,7 +99,7 @@ bool Model::load(Str255 Name)
 	average=average/howmany;
 	boundingspherecenter=average;
 	boundingsphereradius=0;
-	for(i=0;i<vertexNum;i++){
+	for(int i=0;i<vertexNum;i++){
 		if(findDistancefast(average,vertex[i])>boundingsphereradius)boundingsphereradius=findDistancefast(average,vertex[i]);
 	}
 	boundingsphereradius=fast_sqrt(boundingsphereradius);
@@ -107,7 +110,7 @@ bool Model::load(Str255 Name)
 void Model::Scale(float xscale,float yscale,float zscale)
 {
 	int i;
-	for(i=0; i<vertexNum; i++){
+	for(int i=0; i<vertexNum; i++){
 		vertex[i].x*=xscale;
 		vertex[i].y*=yscale;
 		vertex[i].z*=zscale;
@@ -118,7 +121,7 @@ void Model::Scale(float xscale,float yscale,float zscale)
 void Model::MultColor(float howmuch)
 {
 	int i;
-	for(i=0; i<TriangleNum; i++){
+	for(int i=0; i<TriangleNum; i++){
 		Triangles[i].r*=howmuch;
 		Triangles[i].g*=howmuch;
 		Triangles[i].b*=howmuch;
@@ -129,7 +132,7 @@ void Model::MultColor(float howmuch)
 void Model::ScaleNormals(float xscale,float yscale,float zscale)
 {
 	int i;
-	for(i=0; i<vertexNum; i++){
+	for(int i=0; i<vertexNum; i++){
 		normals[i].x*=xscale;
 		normals[i].y*=yscale;
 		normals[i].z*=zscale;
@@ -140,7 +143,7 @@ void Model::ScaleNormals(float xscale,float yscale,float zscale)
 void Model::Translate(float xtrans,float ytrans,float ztrans)
 {
 	int i;
-	for(i=0; i<vertexNum; i++){
+	for(int i=0; i<vertexNum; i++){
 		vertex[i].x+=xtrans;
 		vertex[i].y+=ytrans;
 		vertex[i].z+=ztrans;
@@ -151,7 +154,7 @@ void Model::Translate(float xtrans,float ytrans,float ztrans)
 void Model::Rotate(float xang,float yang,float zang)
 {
 	int i;
-	for(i=0; i<vertexNum; i++){
+	for(int i=0; i<vertexNum; i++){
 		vertex[i]=DoRotation(vertex[i],xang,yang,zang);
 	}
 	UpdateVertexArray();
@@ -161,7 +164,7 @@ void Model::Rotate(float xang,float yang,float zang)
 void Model::CalculateNormals()
 {
 	int i;
-	for(i=0;i<TriangleNum;i++){
+	for(int i=0;i<TriangleNum;i++){
 		CrossProduct(vertex[Triangles[i].vertex[1]]-vertex[Triangles[i].vertex[0]],vertex[Triangles[i].vertex[2]]-vertex[Triangles[i].vertex[0]],&normals[i]);
 		Normalise(&normals[i]);
 	}

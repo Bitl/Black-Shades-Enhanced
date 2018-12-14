@@ -74,10 +74,6 @@ void DisposeMouse()
 // STUB_FUNCTION;
 }
 
-#ifndef O_BINARY
-#define O_BINARY 0
-#endif
-
 #ifndef MAX_PATH
 #define MAX_PATH 256
 #endif
