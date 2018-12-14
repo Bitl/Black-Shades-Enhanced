@@ -1,5 +1,5 @@
-#ifndef _DECALS_H_
-#define _DECALS_H_
+#ifndef DECALS_H_
+#define DECALS_H_
 
 #include "Quaternions.h"
 
@@ -56,7 +56,7 @@ class Decals{
 					glDeleteTextures( 1, (const GLuint *)bulletholetextureptr );
 					glDeleteTextures( 1, (const GLuint *)cratertextureptr );
 					glDeleteTextures( 11, (const GLuint *)bloodtextureptr );
-				};
+				}
 };
 
 #endif

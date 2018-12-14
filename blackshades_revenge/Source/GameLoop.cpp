@@ -318,6 +318,9 @@ static void DoSDLKey(Game *g, SDL_Event *event)
 	}
 	
 	mackey = sdlkeymap[event->key.keysym.sym];
+
+	if(mackey == MAC_CONTROL_KEY)
+       press = SDL_GetModState() & (KMOD_LCTRL | KMOD_RCTRL);
 	
 	if (mackey != -1) {
 		index = mackey / 8;
@@ -517,7 +520,7 @@ void	Game::EventLoop( void )
 
 		}
 
-		if ( IsKeyDown( theKeyMap, MAC_ESCAPE_KEY )){
+		if ( !mainmenu && IsKeyDown( theKeyMap, MAC_ESCAPE_KEY )){
 
 			float gLoc[3] = {0.0f, 0.0f, 0.0f};
 			alListenerfv(AL_POSITION, gLoc);

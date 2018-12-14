@@ -1,6 +1,6 @@
 
-#ifndef _QUATERNIONS_H_
-#define _QUATERNIONS_H_
+#ifndef QUATERNIONS_H_
+#define QUATERNIONS_H_
 
 #ifdef OS9 
 #pragma mark -

@@ -1,5 +1,5 @@
-#ifndef _MATHS_H_
-#define _MATHS_H_
+#ifndef MATHS_H_
+#define MATHS_H_
 
 
 /**> HEADER FILES <**/

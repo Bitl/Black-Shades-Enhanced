@@ -1127,7 +1127,7 @@ int Game::DrawGLScene(GLvoid)
 
 		glEnable(GL_BLEND);
 
-		for(i=0;i<numpeople;i++){
+		for(int i=0;i<numpeople;i++){
 
 		
 
@@ -1379,7 +1379,7 @@ int Game::DrawGLScene(GLvoid)
 
 		//Attacker psychicness 
 
-		for(i=0;i<numpeople;i++){
+		for(int i=0;i<numpeople;i++){
 
 			if(person[i].killtarget>-1&&person[i].killtargetvisible&&person[i].skeleton.free==0&&person[person[i].killtarget].skeleton.free==0){
 

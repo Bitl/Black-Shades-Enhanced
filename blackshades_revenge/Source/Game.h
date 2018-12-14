@@ -1,5 +1,5 @@
-#ifndef _GAME_H_
-#define _GAME_H_
+#ifndef GAME_H_
+#define GAME_H_
 
 #ifdef WIN32
 #include <windows.h>

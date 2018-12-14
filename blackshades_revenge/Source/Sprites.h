@@ -1,5 +1,5 @@
-#ifndef _SPRITE_H_
-#define _SPRITE_H_
+#ifndef SPRITE_H_
+#define SPRITE_H_
 
 #ifdef WIN32
 #include <windows.h>
@@ -92,7 +92,7 @@ class Sprites{
 					glDeleteTextures( 1, (const GLuint *)bloodtextureptr );
 					glDeleteTextures( 1, (const GLuint *)raintextureptr );
 					glDeleteTextures( 1, (const GLuint *)snowtextureptr );
-				};
+				}
 };
 
 #endif

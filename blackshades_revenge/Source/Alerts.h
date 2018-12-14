@@ -1,5 +1,5 @@
-#ifndef _MYALERTS_H_
-#define _MYALERTS_H_
+#ifndef MYALERTS_H_
+#define MYALERTS_H_
 
 
 /**> HEADER FILES <**/
