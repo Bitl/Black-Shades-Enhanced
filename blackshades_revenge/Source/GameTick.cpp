@@ -3719,8 +3719,11 @@ void 	Game::Tick(){
 
 							if(person[whichhit].type==zombietype)person[whichhit].maxhealth-=10;
 							
-							/*
 							if(whichhit==0){
+
+								zoom=0;
+
+								/*
 
 								bulletstrength=1;
 
@@ -3742,7 +3745,8 @@ void 	Game::Tick(){
 
 								SoundFX::inst()->playFX(gSampleSet[bodywhacksound], gLoc, 1.0);
 								//alSourcei(gSourceID[src_bodywhacksound], AL_BUFFER, gSampleSet[bodywhacksound]);
-							}*/
+								*/
+							}
 
 							person[whichhit].longdead=1;
 

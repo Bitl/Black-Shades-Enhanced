@@ -318,6 +318,9 @@ static void DoSDLKey(Game *g, SDL_Event *event)
 	}
 	
 	mackey = sdlkeymap[event->key.keysym.sym];
+
+	if(mackey == MAC_CONTROL_KEY)
+		press = SDL_GetModState() & (KMOD_LCTRL | KMOD_RCTRL);
 	
 	if (mackey != -1) {
 		index = mackey / 8;
