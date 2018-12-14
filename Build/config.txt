@@ -1,0 +1,30 @@
+Screenwidth:
+640
+Screenheight:
+480
+Mouse sensitivity:
+0.7
+Show fps and other info:
+0
+VBL sync:
+1
+Blood:
+1
+Blur:
+0
+Main Menu:
+1
+Custom levels:
+0
+Music:
+1
+azerty keyboard:
+0
+invert mouse:
+0
+Fps (frames per second) limit:
+300
+Full Screen:
+1
+FOV (Field of View):
+90
