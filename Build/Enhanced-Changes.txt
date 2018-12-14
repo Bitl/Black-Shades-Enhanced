@@ -1,12 +1,3 @@
-Black Shades Enhanced v1.1.2 and Black Shades Revenge Mod v1.0.1
-- Fixed an issue where you could spam open the main menu by pressing ESC (z33ky:mainmenu-spam)
-- Fixed the shotgun's laser (z33ky:shotgun-laser)
-- Fix Sniper zoom orientation (z33ky:sniper-zoom-orientation)
-- Fixed an issue where the Sniper Rifle zooms out on idle (issue #7)
-
-Dev stuff:
-- The mods are now compilable on Linux! (z33ky:fix-linux)
-
 Black Shades Enhanced v1.1.1R and Black Shades Revenge Mod v1.0
 - Added a seperate gameplay mod called "Revenge Mod", where the player has to defend themselves against assassins.
 

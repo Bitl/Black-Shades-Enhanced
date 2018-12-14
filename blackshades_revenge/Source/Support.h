@@ -46,7 +46,7 @@ typedef struct Point
 	int v;
 } Point;
 
-#ifndef OS9
+#ifdef WIN32
 #define SetFPos(fildes, whence, offset) fseek(fildes, offset, whence)
 #define FSClose(fildes) fclose(fildes)
 #else

@@ -851,7 +851,7 @@ void 	Game::Tick(){
 
 		
 
-		if(oldzoom||zoom||person[0].aimamount<=0||person[0].whichgun==nogun||visions||person[0].whichgun==grenade||person[0].whichgun==knife){
+		if(zoom||person[0].aimamount<=0||person[0].whichgun==nogun||visions||person[0].whichgun==grenade||person[0].whichgun==knife){
 
 			camera.visrotation=camera.rotation;
 
@@ -1040,7 +1040,7 @@ void 	Game::Tick(){
 
 							}
 
-							for(int l=0;l<8;l++){
+							for(l=0;l<8;l++){
 
 								pointnum=k+1;
 
@@ -1702,12 +1702,10 @@ void 	Game::Tick(){
 							if(person[i].targetanimation!=crouchanim||person[i].currentanimation!=crouchanim||person[i].aiming<1){
 
 								zoom=0;
-								camera.rotation2+=14;
-								camera.rotation+=9;
 
 							}
 
-
+							if(visions==1)zoom=0;
 
 						}
 
@@ -1715,12 +1713,7 @@ void 	Game::Tick(){
 
 							zoom=1;
 
-							if(!oldzoom){
-
-								camera.rotation2-=14;
-								camera.rotation-=9;
-
-							}
+							if(zoom&&!oldzoom)camera.rotation2-=6;
 
 						}
 
@@ -1899,7 +1892,7 @@ void 	Game::Tick(){
 
 					 		//Check other blocks?
 
-					 		if (closesttarget==person[i].pathnum){
+					 		if ((closesttarget==person[i].pathnum)){
 
 					 			beginx=person[i].whichblockx-2;
 
@@ -2087,7 +2080,7 @@ void 	Game::Tick(){
 
 					 		leastdistance=2000000;
 
-					 		for(int j=0;j<path.vertexNum;j++){
+					 		for(j=0;j<path.vertexNum;j++){
 
 					 			person[i].pathtarget.x=path.vertex[j].x;
 
@@ -2605,7 +2598,7 @@ void 	Game::Tick(){
 
 				if(person[i].targetanimation==getupfrontanim)person[i].playerrotation+=180;
 
-				for(int j=0;j<person[i].skeleton.num_joints;j++){
+				for(j=0;j<person[i].skeleton.num_joints;j++){
 
 					person[i].tempanimation.position[j][0]=person[i].skeleton.joints[j].position-person[i].playercoords;
 
@@ -3129,7 +3122,7 @@ void 	Game::Tick(){
 
 		float inaccuracy = 0.0;
 
-		int numshots = 0;
+		int numshots;
 
 		XYZ hitnorm;
 
@@ -3257,7 +3250,9 @@ void 	Game::Tick(){
 
 						if(person[j].whichgun==sniperrifle)aim=DoRotation(person[j].skeleton.joints[(person[j].skeleton.jointlabels[lefthand])].position-person[j].skeleton.joints[(person[j].skeleton.jointlabels[righthand])].position,0,person[j].playerrotation+4,0);
 
-						if(person[j].whichgun==shotgun)aim=DoRotation(person[j].skeleton.joints[(person[j].skeleton.jointlabels[lefthand])].position-person[j].skeleton.joints[(person[j].skeleton.jointlabels[righthand])].position,2+(float)(Random()%1000)/500,person[j].playerrotation-1+(float)(Random()%1000)/500,0);
+						if(person[j].whichgun==shotgun)aim=DoRotation(person[j].skeleton.joints[(person[j].skeleton.jointlabels[lefthand])].position-person[j].skeleton.joints[(person[j].skeleton.jointlabels[righthand])].position,2+(float)(Random()%1000)/500,0,0);
+
+						if(person[j].whichgun==shotgun)aim=DoRotation(aim,0,person[j].playerrotation-1+(float)(Random()%1000)/500,0);
 
 						if(person[j].whichgun==handgun1&&!thirdperson&&j==0)aim=DoRotation(person[j].skeleton.joints[(person[j].skeleton.jointlabels[righthand])].position-(person[j].skeleton.joints[person[j].skeleton.jointlabels[head]].position*.65+person[j].skeleton.joints[person[j].skeleton.jointlabels[neck]].position*.35),0,person[j].playerrotation-.9,0);
 
@@ -3530,7 +3525,7 @@ void 	Game::Tick(){
 
 						finalwallhit=0;
 
-						for(int i=beginx;i<=endx;i++)
+						for(i=beginx;i<=endx;i++)
 
 							for(int j=beginz;j<=endz;j++){
 
@@ -3788,7 +3783,7 @@ void 	Game::Tick(){
 
 								}
 
-								for(int j=0;j<person[whichhit].skeleton.num_joints;j++){
+								for(j=0;j<person[whichhit].skeleton.num_joints;j++){
 
 									if(findDistancefast(person[whichhit].skeleton.joints[j].position,hitstruct.hitlocation)<200){
 
@@ -3838,7 +3833,7 @@ void 	Game::Tick(){
 
 								float offsetlength;
 
-								for(int j=0;j<person[whichhit].skeleton.num_joints;j++){
+								for(j=0;j<person[whichhit].skeleton.num_joints;j++){
 
 									if(findDistancefast(DoRotation(person[whichhit].skeleton.joints[j].position,0,person[whichhit].playerrotation,0)+person[whichhit].playercoords,hitstruct.hitlocation)<200){
 
@@ -3904,7 +3899,7 @@ void 	Game::Tick(){
 
 							//blood
 
-							if(hitstruct.joint1->modelnum!=headmodel){
+							if(!hitstruct.joint1->modelnum==headmodel){
 
 							if(person[j].whichgun==sniperrifle)sprites.MakeSprite(bloodspritenoup, 1, 1, 0, 0, hitstruct.hitlocation, velocity*0, 5);
 
@@ -3954,7 +3949,7 @@ void 	Game::Tick(){
 
 							gLoc[2]=(camera.position.z+(hitstruct.hitlocation.z-camera.position.z)/4)/soundscalefactor;
 
-							if(hitstruct.joint1->modelnum!=headmodel){
+							if(!hitstruct.joint1->modelnum==headmodel){
 
 								if(!thirdperson)//alSourcef(gSourceID[src_bodyhitsound], AL_MIN_GAIN, 1);
 									SoundFX::inst()->playFX(gSampleSet[bodyhitsound], gLoc, 1.0, 1.0f, true);
@@ -4142,7 +4137,7 @@ void 	Game::Tick(){
 
 		
 
-		if(lasersight&&visions==0&&person[0].whichgun!=grenade){
+		if(lasersight&&person[0].whichgun!=grenade){
 
 		for(int j=0;j<numpeople;j++){
 
@@ -4157,7 +4152,7 @@ void 	Game::Tick(){
 
 					HitStruct hitstruct,temphitstruct;
 
-					float olddistance=0;
+					float olddistance;
 
 					float distance;
 
@@ -4169,7 +4164,7 @@ void 	Game::Tick(){
 
 						if(person[j].whichgun==sniperrifle)aim=DoRotation(person[j].skeleton.joints[(person[j].skeleton.jointlabels[lefthand])].position-person[j].skeleton.joints[(person[j].skeleton.jointlabels[righthand])].position,0,person[j].playerrotation+4,0);
 
-						if(person[j].whichgun==shotgun)aim=DoRotation(person[j].skeleton.joints[(person[j].skeleton.jointlabels[lefthand])].position-person[j].skeleton.joints[(person[j].skeleton.jointlabels[righthand])].position,2,person[j].playerrotation-1,0);
+						if(person[j].whichgun==shotgun)aim=DoRotation(person[j].skeleton.joints[(person[j].skeleton.jointlabels[lefthand])].position-person[j].skeleton.joints[(person[j].skeleton.jointlabels[righthand])].position,0,person[j].playerrotation+4,0);
 
 						if(person[j].whichgun==handgun1&&!thirdperson&&j==0)aim=DoRotation(person[j].skeleton.joints[(person[j].skeleton.jointlabels[righthand])].position-(person[j].skeleton.joints[person[j].skeleton.jointlabels[head]].position*.65+person[j].skeleton.joints[person[j].skeleton.jointlabels[neck]].position*.35),0,person[j].playerrotation-.9,0);
 
@@ -4303,7 +4298,7 @@ void 	Game::Tick(){
 
 					whichhit=-1;
 
-					for(int i=0;i<numpeople;i++){
+					for(i=0;i<numpeople;i++){
 
 						if(i!=j&&findDistancefast(person[j].playercoords,person[i].playercoords)<20000){
 
@@ -4402,7 +4397,7 @@ void 	Game::Tick(){
 
 		bool impact;
 
-		for(int i=0;i<sprites.howmanysprites;i++){
+		for(i=0;i<sprites.howmanysprites;i++){
 
 			if(sprites.type[i]==grenadesprite||sprites.type[i]==spoonsprite||sprites.type[i]==pinsprite){
 
@@ -4583,7 +4578,7 @@ void 	Game::Tick(){
 
 									}else{
 
-										float totalarea=0;
+										float totalarea;
 
 										//alSourcei(gSourceID[src_bodywhacksound], AL_BUFFER, gSampleSet[bodywhacksound]);
 										//alSourcefv(gSourceID[src_bodywhacksound], AL_POSITION, gLoc);
@@ -4605,7 +4600,7 @@ void 	Game::Tick(){
 
 										float offsetlength;
 
-										for(int k=0;k<person[j].skeleton.num_joints;k++){
+										for(k=0;k<person[j].skeleton.num_joints;k++){
 
 											if(findDistancefast(DoRotation(person[j].skeleton.joints[k].position,0,person[j].playerrotation,0)+person[j].playercoords,hitstruct.hitlocation)<200){
 
@@ -4799,7 +4794,7 @@ void 	Game::Tick(){
 
 							person[k].longdead=1;
 
-							for(int j=0;j<person[k].skeleton.num_joints;j++){
+							for(j=0;j<person[k].skeleton.num_joints;j++){
 
 								//Sever stuff
 
@@ -4879,7 +4874,7 @@ void 	Game::Tick(){
 
 		//Kill count
 
-		for(int i=0;i<numpeople;i++){
+		for(i=0;i<numpeople;i++){
 
 			if(person[i].oldhealth>0&&person[i].health<=0){
 

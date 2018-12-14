@@ -1,5 +1,5 @@
-#ifndef MACINPUT_H_
-#define MACINPUT_H_
+#ifndef _MACINPUT_H_
+#define _MACINPUT_H_
 
 /**> HEADER FILES <**/
 #include <stdlib.h>
