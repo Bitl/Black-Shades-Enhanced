@@ -517,7 +517,7 @@ void	Game::EventLoop( void )
 
 		}
 
-		if ( !mainmenu && IsKeyDown( theKeyMap, MAC_ESCAPE_KEY )){
+		if ( IsKeyDown( theKeyMap, MAC_ESCAPE_KEY )){
 
 			float gLoc[3] = {0.0f, 0.0f, 0.0f};
 			alListenerfv(AL_POSITION, gLoc);
