@@ -392,16 +392,22 @@ void 	Game::Tick(){
 		float speed=10;
 
 		
-
+#ifdef REVENGE
+		if (person[0].health <= 0 || killedinnocent) {
+#else
 		if(person[1].health<=0||person[0].health<=0||killedinnocent){
+#endif
 
 			losedelay-=multiplier/6;
 
 		}
 
 		
-
+#ifdef REVENGE
+		if (person[0].health > 0 && !killedinnocent)timeremaining -= multiplier * 25 / 40;
+#else
 		if(person[1].health>0&&person[0].health>0&&!killedinnocent)timeremaining-=multiplier*25/40;
+#endif
 
 		if(timeremaining<=0){
 
@@ -1239,10 +1245,15 @@ void 	Game::Tick(){
 			}
 
 		
+#ifdef REVENGE
+			if (person[numpeople].type != civiliantype && blockspawnx == person[0].whichblockx && blockspawny == person[0].whichblocky) {
 
+				while ((citypeoplenum[blockspawnx][blockspawny] >= max_people_block && cyclenum < 10) || blockspawnx == 0 || (blockspawnx == person[0].whichblockx && blockspawny == person[0].whichblocky)) {
+#else
 			if(person[numpeople].type!=civiliantype&&blockspawnx==person[1].whichblockx&&blockspawny==person[1].whichblocky){
 
 				while((citypeoplenum[blockspawnx][blockspawny]>=max_people_block&&cyclenum<10)||blockspawnx==0||(blockspawnx==person[1].whichblockx&&blockspawny==person[1].whichblocky)){
+#endif
 
 					blockspawnx=((person[0].playercoords.x+block_spacing/2)/block_spacing)+Random()%2;
 
@@ -1355,8 +1366,11 @@ void 	Game::Tick(){
 			
 
 			
-
+#ifdef REVENGE
+			if (enemystate == 2)person[numpeople].killtarget = 0;
+#else
 			if(enemystate==2)person[numpeople].killtarget=1;
+#endif
 
 			
 
@@ -1400,9 +1414,15 @@ void 	Game::Tick(){
 
 				}
 
+#ifdef REVENGE
+				if (person[cycle].type != civiliantype && blockspawnx == person[0].whichblockx && blockspawny == person[0].whichblocky) {
+
+					while ((citypeoplenum[blockspawnx][blockspawny] >= max_people_block && cyclenum < 10) || blockspawnx == 0 || (blockspawnx == person[0].whichblockx && blockspawny == person[0].whichblocky)) {
+#else
 				if(person[cycle].type!=civiliantype&&blockspawnx==person[1].whichblockx&&blockspawny==person[1].whichblocky){
 
 					while((citypeoplenum[blockspawnx][blockspawny]>=max_people_block&&cyclenum<10)||blockspawnx==0||(blockspawnx==person[1].whichblockx&&blockspawny==person[1].whichblocky)){
+#endif
 
 						blockspawnx=((person[0].playercoords.x+block_spacing/2)/block_spacing)+Random()%2;
 
@@ -1504,7 +1524,11 @@ void 	Game::Tick(){
 
 			
 
-				if(enemystate==2)person[cycle].killtarget=1;
+#ifdef REVENGE
+				if (enemystate == 2)person[cycle].killtarget = 0;
+#else
+				if (enemystate == 2)person[cycle].killtarget = 1;
+#endif
 
 			
 
@@ -1650,7 +1674,11 @@ void 	Game::Tick(){
 
 						person[i].speedmult=.7+difficulty*.2;
 
+#ifdef REVENGE
+						person[i].killtarget = 0;
+#else
 						person[i].killtarget=1;
+#endif
 
 					}
 
@@ -1807,7 +1835,11 @@ void 	Game::Tick(){
 
 				if(i>0&&enemystate!=1&&person[i].type==zombietype&&person[i].speedmult>.7){
 
-					if(findDistancefast(person[i].playercoords,person[1].playercoords)<20000)person[i].killtarget=1;
+#ifdef REVENGE
+					if (findDistancefast(person[i].playercoords, person[0].playercoords) < 20000)person[i].killtarget = 0;
+#else
+					if (findDistancefast(person[i].playercoords, person[1].playercoords) < 20000)person[i].killtarget = 1;
+#endif
 
 					else person[i].killtarget=-1;
 
@@ -1916,7 +1948,11 @@ void 	Game::Tick(){
 
 							 }
 
-							 person[i].killtarget=1;
+#ifdef REVENGE
+							person[i].killtarget = 0;
+#else
+							person[i].killtarget = 1;
+#endif
 
 							 
 
@@ -3760,6 +3796,7 @@ void 	Game::Tick(){
 
 							if(whichhit==0){
 
+#ifndef REVENGE
 								bulletstrength=1;
 
 								person[0].health=100;
@@ -3780,6 +3817,9 @@ void 	Game::Tick(){
 
 								SoundFX::inst()->playFX(gSampleSet[bodywhacksound], gLoc, 1.0);
 								//alSourcei(gSourceID[src_bodywhacksound], AL_BUFFER, gSampleSet[bodywhacksound]);
+#else
+								zoom = 0;
+#endif
 							}
 
 							person[whichhit].longdead=1;

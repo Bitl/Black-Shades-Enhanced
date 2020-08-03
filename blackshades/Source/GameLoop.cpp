@@ -198,10 +198,9 @@ void	Game::DoEvent( EventRecord *event )
 }
 #endif
 
-#ifndef OS9 
-#define MAXKEYS 82
+#ifndef OS9
 static int mapinit = 0;
-static int sdlkeymap[MAXKEYS];
+static int sdlkeymap[SDL_NUM_SCANCODES];
 
 static unsigned char ourkeys[16];
 
@@ -209,7 +208,7 @@ static void init_sdlkeymap()
 {
 	int i;
 	
-	for (i = 0; i < MAXKEYS; i++) {
+	for (i = 0; i < SDL_NUM_SCANCODES; i++) {
 		sdlkeymap[i] = -1;
 	}
 	
@@ -334,8 +333,16 @@ static void DoSDLKey(Game *g, SDL_Event *event)
 		}
 	}
 	
-	g->HandleKeyDown(event->key.keysym.sym);
+	g->HandleKeyDown(mackey);
 	
+}
+
+//https://stackoverflow.com/questions/30629106/sdl2-how-to-properly-toggle-fullscreen
+void ToggleFullscreen(SDL_Window* Window) {
+	Uint32 FullscreenFlag = SDL_WINDOW_FULLSCREEN;
+	bool IsFullscreen = SDL_GetWindowFlags(Window) & FullscreenFlag;
+	SDL_SetWindowFullscreen(Window, IsFullscreen ? 0 : FullscreenFlag);
+	SDL_ShowCursor(IsFullscreen);
 }
 
 void	Game::ProcessSDLEvents(void)
@@ -349,8 +356,7 @@ void	Game::ProcessSDLEvents(void)
 				if (event.key.keysym.sym == SDLK_RETURN &&
 					event.key.keysym.mod & KMOD_ALT)
 				{
-					//disable this for now
-					//SDL_SetWindowFullscreen();
+					ToggleFullscreen(screen);
 					break;
 				}
 				case SDL_KEYUP:

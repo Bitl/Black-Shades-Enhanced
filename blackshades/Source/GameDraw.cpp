@@ -1755,9 +1755,11 @@ int Game::DrawGLScene(GLvoid)
 
 		text.glPrint(10,70,string,0,.8,screenwidth,screenheight);
 
+#ifndef REVENGE
 		sprintf (string, "You have allowed %d successful murders.",badkills);
 
 		text.glPrint(10,80,string,0,.8,screenwidth,screenheight);
+#endif
 
 		}
 

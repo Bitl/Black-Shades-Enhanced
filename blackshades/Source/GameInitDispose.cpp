@@ -3664,9 +3664,9 @@ int Game::InitGL(GLvoid)
 		STUB_FUNCTION;
 #endif
 
-		screenwidth = 640;
+		screenwidth = 1920;
 
-		screenheight = 480;
+		screenheight = 1080;
 
 		usermousesensitivity=.7;
 
@@ -3674,9 +3674,9 @@ int Game::InitGL(GLvoid)
 
 		vblsync=1;
 
-		blood = 1;
+		blood=1;
 
-		blurness = 0;
+		blurness=1;
 
 		mainmenuness=1;
 
@@ -3690,7 +3690,7 @@ int Game::InitGL(GLvoid)
 
 		fullscreen=1;
 
-		fov=90;
+		fov=100;
 		
 
 		//If no config, write one
@@ -3987,7 +3987,7 @@ int Game::InitGL(GLvoid)
 	else
 	{
 		SDL_GL_CreateContext(screen);
-		renderer = SDL_CreateRenderer(screen, -1, 0);
+		renderer = SDL_CreateRenderer(screen, -1, vblsync ? SDL_RENDERER_PRESENTVSYNC : 0);
 
 		if (renderer == NULL)
 		{

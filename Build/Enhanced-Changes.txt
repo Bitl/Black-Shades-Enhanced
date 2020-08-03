@@ -1,3 +1,12 @@
+Black Shades Enhanced v1.3 and Black Shades Revenge Mod v1.1
+- Upgraded from SDL 1.2.4 to SDL 2.0.15!
+- Compiled under Visual Studio 2019 under the Visual Studio 2017 Windows XP compiler!
+- Revenge Mod: Fixed an issue where the player could spawn into a wall.
+The following changes are changes to the default config:
+- Set 1920x1080 as the default screen resolution.
+- Set the default FOV to 100.
+- Turned on "blur" (depth of field) by default.
+
 Black Shades Enhanced v1.1.2 and Black Shades Revenge Mod v1.0.1
 - Fixed an issue where you could spam open the main menu by pressing ESC (z33ky:mainmenu-spam)
 - Fixed the shotgun's laser (z33ky:shotgun-laser)
