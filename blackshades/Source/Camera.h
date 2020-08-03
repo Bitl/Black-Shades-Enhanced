@@ -1,7 +1,6 @@
 #ifndef _CAMERA_H_
 #define _CAMERA_H_
 
-
 /**> HEADER FILES <**/
 #ifdef WIN32
 #include <windows.h>

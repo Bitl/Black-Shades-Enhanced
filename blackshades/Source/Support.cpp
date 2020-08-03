@@ -61,10 +61,10 @@ void InitMouse()
 // STUB_FUNCTION;
 }
 
-void MoveMouse(int xcoord, int ycoord, Point *mouseloc)
+void MoveMouse(SDL_Window *win, int xcoord, int ycoord, Point *mouseloc)
 {
 	/* TODO: mouse warp is annoying when we can just grab the mouse */
-	SDL_WarpMouse(xcoord, ycoord);
+	SDL_WarpMouseInWindow(win, xcoord, ycoord);
 	SDL_PumpEvents();
 	GetMouse(mouseloc);
 }

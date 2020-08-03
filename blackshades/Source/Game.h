@@ -85,6 +85,8 @@ class Game
 		CGrafPtr	theScreen;
 #endif
 		//Graphics
+		SDL_Window* screen;
+		SDL_Renderer* renderer;
 		int screenwidth,screenheight;
 		float viewdistance;
 		
@@ -93,7 +95,7 @@ class Game
 
 		int DrawGLScene(GLvoid);
 		int InitGL(GLvoid);
-		void LoadingScreen(float percent);
+		void LoadingScreen(SDL_Window *win, float percent);
 		
 		//Game Functions
 		void	HandleKeyDown( char theChar );
@@ -104,7 +106,7 @@ class Game
 		void	EventLoop( void );
 		void 	Tick();
 		void 	Splat(int k);
-		void 	InitGame();
+		void 	InitGame(SDL_Window* win);
 		void 	Dispose();
 		
 		//Mouse

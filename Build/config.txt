@@ -25,6 +25,6 @@ invert mouse:
 Fps (frames per second) limit:
 300
 Full Screen:
-1
+0
 FOV (Field of View):
 90

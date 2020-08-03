@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <algorithm>
+#include <iterator>
 
 #ifdef OS9 
 #include "alut.h"

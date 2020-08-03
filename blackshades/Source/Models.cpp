@@ -96,7 +96,7 @@ bool Model::load(Str255 Name)
 	average=average/howmany;
 	boundingspherecenter=average;
 	boundingsphereradius=0;
-	for(i=0;i<vertexNum;i++){
+	for(int i=0;i<vertexNum;i++){
 		if(findDistancefast(average,vertex[i])>boundingsphereradius)boundingsphereradius=findDistancefast(average,vertex[i]);
 	}
 	boundingsphereradius=fast_sqrt(boundingsphereradius);

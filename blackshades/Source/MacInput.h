@@ -9,6 +9,7 @@
 #endif
 
 #ifdef WIN32
+#include <SDL.h>
 #include "Support.h"
 #endif
 
@@ -101,7 +102,7 @@
 Boolean	IsKeyDown( unsigned char *keyMap, unsigned short theKey );
 
 void 	InitMouse();
-void 	MoveMouse(int xcoord, int ycoord, Point *mouseloc);
+void 	MoveMouse(SDL_Window *win, int xcoord, int ycoord, Point *mouseloc);
 
 //#ifdef OS9
 void 	RefreshMouse(Point *mouseloc);

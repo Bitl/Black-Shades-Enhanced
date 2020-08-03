@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30320.27
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "blackshades_revenge", "G:\Projects\GitHub\Black-Shades-Enhanced\blackshades\blackshades_revenge.vcxproj", "{8EFA650B-2024-40B0-B01F-4AE7045FD7ED}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "blackshades", "G:\Projects\GitHub\Black-Shades-Enhanced\blackshades\blackshades.vcxproj", "{A4D6798F-9C75-4D8C-82A7-AE7F2411BDDD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8EFA650B-2024-40B0-B01F-4AE7045FD7ED}.Debug|x86.ActiveCfg = Debug|Win32
+		{8EFA650B-2024-40B0-B01F-4AE7045FD7ED}.Debug|x86.Build.0 = Debug|Win32
+		{8EFA650B-2024-40B0-B01F-4AE7045FD7ED}.Release|x86.ActiveCfg = Release|Win32
+		{8EFA650B-2024-40B0-B01F-4AE7045FD7ED}.Release|x86.Build.0 = Release|Win32
+		{A4D6798F-9C75-4D8C-82A7-AE7F2411BDDD}.Debug|x86.ActiveCfg = Debug|Win32
+		{A4D6798F-9C75-4D8C-82A7-AE7F2411BDDD}.Debug|x86.Build.0 = Debug|Win32
+		{A4D6798F-9C75-4D8C-82A7-AE7F2411BDDD}.Release|x86.ActiveCfg = Release|Win32
+		{A4D6798F-9C75-4D8C-82A7-AE7F2411BDDD}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6C76B52E-D12B-483A-B4FE-F38219E5A9FB}
+	EndGlobalSection
+EndGlobal

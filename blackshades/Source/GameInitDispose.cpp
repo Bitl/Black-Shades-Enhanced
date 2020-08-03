@@ -853,7 +853,7 @@ void LoadSounds(bool musictoggle)
 
 
 
-void Game::LoadingScreen(float percent)										
+void Game::LoadingScreen(SDL_Window* win, float percent)
 
 {
 
@@ -965,7 +965,7 @@ void Game::LoadingScreen(float percent)
 
 	glPushMatrix();										// Store The Modelview Matrix
 
-	for(i=19;i>=0;i--){
+	for(int i=19;i>=0;i--){
 
 		glLoadIdentity();								// Reset The Modelview Matrix
 
@@ -1029,7 +1029,7 @@ void Game::LoadingScreen(float percent)
 #ifdef OS9 
 	aglSwapBuffers( gOpenGLContext );
 #else
-	SDL_GL_SwapBuffers( );
+	SDL_GL_SwapWindow(win);
 #endif
 
 }
@@ -1098,7 +1098,7 @@ void LoadPersonSpriteTexture(char *fileName, GLuint *textureid)
 
 
 
-void Game::InitGame()										
+void Game::InitGame(SDL_Window *win)										
 
 {
 
@@ -1112,7 +1112,7 @@ void Game::InitGame()
 
 	
 
-	if(!initialized)LoadingScreen(loadingscreenamount/loadingscreenamounttotal*100);
+	if(!initialized)LoadingScreen(win, loadingscreenamount/loadingscreenamounttotal*100);
 
 	
 
@@ -1127,6 +1127,14 @@ void Game::InitGame()
 	
 
 	//Bodyguard stats
+
+#ifdef REVENGE
+	person[0].health = 100;
+
+	person[0].targetanimation = idleanim;
+
+	person[0].targetframe = 0;
+#endif
 
 	person[0].playercoords=camera.position;
 
@@ -1732,7 +1740,7 @@ void Game::InitGame()
 
 	loadingscreenamount+=5;
 
-	if(!initialized)LoadingScreen(loadingscreenamount/loadingscreenamounttotal*100);
+	if(!initialized)LoadingScreen(win, loadingscreenamount/loadingscreenamounttotal*100);
 
 	
 
@@ -1778,14 +1786,14 @@ void Game::InitGame()
 
 	loadingscreenamount+=5;
 
-	if(!initialized)LoadingScreen(loadingscreenamount/loadingscreenamounttotal*100);
+	if(!initialized)LoadingScreen(win, loadingscreenamount/loadingscreenamounttotal*100);
 
 	
 
 	person[0].speedmult=1.3;
 
 	
-
+#ifndef REVENGE
 	//Add vip	
 
 	person[numpeople].playerrotation=0;
@@ -1899,8 +1907,43 @@ void Game::InitGame()
 	vipdistance.x=10000000;
 
 	vipgoal=person[1].playercoords+DoRotation(vipdistance,0,Random()%360,0);
+#else
+	//teleport player
 
-	
+	person[0].whichblockx = ((block_spacing / 2) / block_spacing);
+
+	person[0].whichblocky = ((block_spacing / 2) / block_spacing);
+
+	person[0].pathnum = -1;
+
+	person[0].oldpathnum = -1;
+
+	person[0].oldoldpathnum = -1;
+
+	person[0].oldoldoldpathnum = -1;
+
+	while (person[0].pathnum < 0 || person[0].pathnum >= path.vertexNum || person[0].pathnum == 1) {
+
+		person[0].pathnum = Random() % path.vertexNum;
+
+	}
+
+	person[0].pathtarget.x = path.vertex[person[0].pathnum].x;
+
+	person[0].pathtarget.z = path.vertex[person[0].pathnum].z;
+
+	person[0].pathsize = .98 + float(abs(Random() % 20)) / 400;
+
+	person[0].pathtarget *= person[0].pathsize;
+
+	person[0].pathtarget.x += person[0].whichblockx * block_spacing;
+
+	person[0].pathtarget.z += person[0].whichblocky * block_spacing;
+
+	person[0].playercoords = person[0].pathtarget;
+
+	person[0].oldplayercoords = person[0].playercoords;
+#endif
 
 	//Setup block models	
 
@@ -1928,7 +1971,7 @@ void Game::InitGame()
 
 		loadingscreenamount+=5;
 
-		if(!initialized)LoadingScreen(loadingscreenamount/loadingscreenamounttotal*100);
+		if(!initialized)LoadingScreen(win, loadingscreenamount/loadingscreenamounttotal*100);
 
 		
 
@@ -1954,7 +1997,7 @@ void Game::InitGame()
 
 		loadingscreenamount+=5;
 
-		if(!initialized)LoadingScreen(loadingscreenamount/loadingscreenamounttotal*100);
+		if(!initialized)LoadingScreen(win, loadingscreenamount/loadingscreenamounttotal*100);
 
 	
 
@@ -2010,7 +2053,7 @@ void Game::InitGame()
 
 		loadingscreenamount+=5;
 
-		if(!initialized)LoadingScreen(loadingscreenamount/loadingscreenamounttotal*100);
+		if(!initialized)LoadingScreen(win, loadingscreenamount/loadingscreenamounttotal*100);
 
 		
 
@@ -2096,7 +2139,7 @@ void Game::InitGame()
 
 		loadingscreenamount+=5;
 
-		if(!initialized)LoadingScreen(loadingscreenamount/loadingscreenamounttotal*100);
+		if(!initialized)LoadingScreen(win, loadingscreenamount/loadingscreenamounttotal*100);
 
 	
 
@@ -2144,7 +2187,7 @@ void Game::InitGame()
 
 		loadingscreenamount+=5;
 
-		if(!initialized)LoadingScreen(loadingscreenamount/loadingscreenamounttotal*100);
+		if(!initialized)LoadingScreen(win, loadingscreenamount/loadingscreenamounttotal*100);
 
 	
 
@@ -2186,7 +2229,7 @@ void Game::InitGame()
 
 		loadingscreenamount+=5;
 
-		if(!initialized)LoadingScreen(loadingscreenamount/loadingscreenamounttotal*100);
+		if(!initialized)LoadingScreen(win, loadingscreenamount/loadingscreenamounttotal*100);
 
 	
 
@@ -2228,7 +2271,7 @@ void Game::InitGame()
 
 	//init city block rotations
 
-	for(i=0;i<num_blocks;i++){
+	for(int i=0;i<num_blocks;i++){
 
 		for(int j=0;j<num_blocks;j++){
 
@@ -2356,7 +2399,7 @@ void Game::InitGame()
 
 		loadingscreenamount+=5;
 
-		if(!initialized)LoadingScreen(loadingscreenamount/loadingscreenamounttotal*100);
+		if(!initialized)LoadingScreen(win, loadingscreenamount/loadingscreenamounttotal*100);
 
 	
 
@@ -2394,7 +2437,7 @@ void Game::InitGame()
 
 		loadingscreenamount+=5;
 
-		if(!initialized)LoadingScreen(loadingscreenamount/loadingscreenamounttotal*100);
+		if(!initialized)LoadingScreen(win, loadingscreenamount/loadingscreenamounttotal*100);
 
 	
 
@@ -2440,7 +2483,7 @@ void Game::InitGame()
 
 		loadingscreenamount+=5;
 
-		if(!initialized)LoadingScreen(loadingscreenamount/loadingscreenamounttotal*100);
+		if(!initialized)LoadingScreen(win, loadingscreenamount/loadingscreenamounttotal*100);
 
 	
 
@@ -2508,7 +2551,7 @@ void Game::InitGame()
 
 		loadingscreenamount+=5;
 
-		if(!initialized)LoadingScreen(loadingscreenamount/loadingscreenamounttotal*100);
+		if(!initialized)LoadingScreen(win, loadingscreenamount/loadingscreenamounttotal*100);
 
 	
 
@@ -3264,7 +3307,7 @@ void Game::InitGame()
 
 		loadingscreenamount+=5;
 
-		if(!initialized)LoadingScreen(loadingscreenamount/loadingscreenamounttotal*100);
+		if(!initialized)LoadingScreen(win, loadingscreenamount/loadingscreenamounttotal*100);
 
 	
 
@@ -3278,7 +3321,7 @@ void Game::InitGame()
 
 		loadingscreenamount+=5;
 
-		if(!initialized)LoadingScreen(loadingscreenamount/loadingscreenamounttotal*100);
+		if(!initialized)LoadingScreen(win, loadingscreenamount/loadingscreenamounttotal*100);
 
 		animation[walkanim].Load((char *)":Data:Animations:Walk");
 
@@ -3292,7 +3335,7 @@ void Game::InitGame()
 
 		loadingscreenamount+=5;
 
-		if(!initialized)LoadingScreen(loadingscreenamount/loadingscreenamounttotal*100);
+		if(!initialized)LoadingScreen(win, loadingscreenamount/loadingscreenamounttotal*100);
 
 		animation[headpainanim].Load((char *)":Data:Animations:Headshot");
 
@@ -3306,7 +3349,7 @@ void Game::InitGame()
 
 		loadingscreenamount+=5;
 
-		if(!initialized)LoadingScreen(loadingscreenamount/loadingscreenamounttotal*100);
+		if(!initialized)LoadingScreen(win, loadingscreenamount/loadingscreenamounttotal*100);
 
 		animation[rightlegpainanim].Load((char *)":Data:Animations:Rightlegshot");
 
@@ -3320,7 +3363,7 @@ void Game::InitGame()
 
 		loadingscreenamount+=5;
 
-		if(!initialized)LoadingScreen(loadingscreenamount/loadingscreenamounttotal*100);
+		if(!initialized)LoadingScreen(win, loadingscreenamount/loadingscreenamounttotal*100);
 
 		animation[grenadethrowanim].Load((char *)":Data:Animations:grenadethrow");
 
@@ -3332,7 +3375,7 @@ void Game::InitGame()
 
 		loadingscreenamount+=5;
 
-		if(!initialized)LoadingScreen(loadingscreenamount/loadingscreenamounttotal*100);
+		if(!initialized)LoadingScreen(win, loadingscreenamount/loadingscreenamounttotal*100);
 
 		animation[getupfrontanim].Load((char *)":Data:Animations:Getupfromfront");
 
@@ -3350,7 +3393,7 @@ void Game::InitGame()
 
 	//Setup people
 
-	for(i=0;i<max_people;i++){
+	for(int i=0;i<max_people;i++){
 
 		if(i==0){
 
@@ -3388,7 +3431,7 @@ void Game::InitGame()
 
 			loadingscreenamount+=5;
 
-			if(!initialized)LoadingScreen(loadingscreenamount/loadingscreenamounttotal*100);
+			if(!initialized)LoadingScreen(win, loadingscreenamount/loadingscreenamounttotal*100);
 
 		}
 
@@ -3398,7 +3441,7 @@ void Game::InitGame()
 
 	loadingscreenamount+=5;
 
-	if(!initialized)LoadingScreen(loadingscreenamount/loadingscreenamounttotal*100);
+	if(!initialized)LoadingScreen(win, loadingscreenamount/loadingscreenamounttotal*100);
 
 	
 
@@ -3448,11 +3491,7 @@ void Game::InitGame()
 
 	if(!initialized){
 
-		LoadingScreen(loadingscreenamount/loadingscreenamounttotal*100);
-
-		
-
-		
+		LoadingScreen(win, loadingscreenamount/loadingscreenamounttotal*100);
 
 		LoadPersonSpriteTexture(":Data:Textures:Personsprite.tga",&personspritetextureptr);
 
@@ -3534,7 +3573,7 @@ void Game::InitGame()
 
 	if(!initialized){
 
-		LoadingScreen(loadingscreenamount/loadingscreenamounttotal*100);
+		LoadingScreen(win, loadingscreenamount/loadingscreenamounttotal*100);
 
 		flashamount=1;
 
@@ -3824,25 +3863,33 @@ int Game::InitGL(GLvoid)
 
 		
 
-		//Read high score
-#ifdef OS9 
-		std::ifstream ipstream2(":Data:Highscore");
+#ifdef OS9
+
+#ifdef REVENGE
+		const char* hiscore = ":Data:HighscoreRevenge";
 #else
-		/* TODO */
-		std::ifstream ipstream2("Data/Highscore");
+		const char* hiscore = ":Data:Highscore";
 #endif
+
+#else
+
+#ifdef REVENGE
+		const char* hiscore = "Data/HighscoreRevenge";
+#else
+		const char* hiscore = "Data/Highscore";
+#endif
+
+#endif
+
+		//Read high score
+		std::ifstream ipstream2(hiscore);
 	    if(!ipstream2) {
 
 	    	highscore=0;
 
 	        beatgame=0;
 
-#ifdef OS9 
-			std::ofstream opstream(":Data:Highscore"); 
-#else
-			/* TODO */
-			std::ofstream opstream("Data/Highscore");
-#endif
+			std::ofstream opstream(hiscore);
 	        opstream << highscore;
 
 			opstream << "\n";
@@ -3911,29 +3958,56 @@ int Game::InitGL(GLvoid)
         SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5);
         SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
         SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+	
+#ifdef REVENGE
+	const char* caption = "Black Shades Revenge Mod";
+#else
+	const char* caption = "Black Shades";
+#endif // REVENGE
 
-	if(screenwidth<640||screenheight<480) {
-		if (SDL_SetVideoMode(640, 480, 0, (fullscreen == 1 ? (SDL_OPENGL | SDL_FULLSCREEN) : SDL_OPENGL)) == NULL) {
-			fprintf(stderr, "(OpenGL) SDL SetVideoMode failed: %s\n", SDL_GetError());
+	//TODO: make this better
+	if (screenwidth < 640 || screenheight < 480) 
+	{
+		screenwidth = 640;
+		screenheight = 480;
+	}
+
+	screen = SDL_CreateWindow(caption,
+		SDL_WINDOWPOS_UNDEFINED,
+		SDL_WINDOWPOS_UNDEFINED,
+		screenwidth, screenheight,
+		(fullscreen == 1 ? (SDL_WINDOW_FULLSCREEN | SDL_WINDOW_OPENGL) : SDL_WINDOW_OPENGL)
+	);
+
+	if (screen == NULL) 
+	{
+		fprintf(stderr, "(OpenGL) SDL CreateWindow failed: %s\n", SDL_GetError());
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		SDL_GL_CreateContext(screen);
+		renderer = SDL_CreateRenderer(screen, -1, 0);
+
+		if (renderer == NULL)
+		{
+			fprintf(stderr, "(OpenGL) SDL CreateRenderer failed: %s\n", SDL_GetError());
 			exit(EXIT_FAILURE);
 		}
-	} else {
-		if (SDL_SetVideoMode(screenwidth, screenheight, 0, (fullscreen == 1 ? (SDL_OPENGL | SDL_FULLSCREEN) : SDL_OPENGL)) == NULL) {
-			fprintf(stderr, "(OpenGL) SDL SetVideoMode failed: %s\n", SDL_GetError());
-			exit(EXIT_FAILURE);
+		else
+		{
+			SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");  // make the scaled rendering look smoother.
+			SDL_RenderSetLogicalSize(renderer, screenwidth, screenheight);
+
+			SDL_Surface* icon = IMG_Load("Data/Icon.tga");
+			SDL_SetColorKey(icon, SDL_TRUE, SDL_MapRGB(icon->format, 255, 0, 255));
+			SDL_SetWindowIcon(screen, icon);
+
+			SDL_ShowCursor(0);
+			SDL_SetWindowGrab(screen, SDL_TRUE);
+			SDL_SetRelativeMouseMode(SDL_TRUE);
 		}
 	}
-	
-	SDL_WM_SetCaption("Black Shades", "Black Shades");
-	SDL_Surface* icon = IMG_Load("Data/Icon.tga");
-	SDL_SetColorKey(icon, SDL_SRCCOLORKEY, SDL_MapRGB(icon->format, 255, 0, 255));
-	SDL_WM_SetIcon(icon, 0);
-	
-	SDL_EnableUNICODE(1); /* toggle it to ON */
-
-	SDL_ShowCursor(0);
-	SDL_WM_GrabInput(SDL_GRAB_ON);
-
 #endif
 		
 

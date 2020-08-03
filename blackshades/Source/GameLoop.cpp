@@ -199,8 +199,9 @@ void	Game::DoEvent( EventRecord *event )
 #endif
 
 #ifndef OS9 
+#define MAXKEYS 82
 static int mapinit = 0;
-static int sdlkeymap[SDLK_LAST];
+static int sdlkeymap[MAXKEYS];
 
 static unsigned char ourkeys[16];
 
@@ -208,7 +209,7 @@ static void init_sdlkeymap()
 {
 	int i;
 	
-	for (i = 0; i < SDLK_LAST; i++) {
+	for (i = 0; i < MAXKEYS; i++) {
 		sdlkeymap[i] = -1;
 	}
 	
@@ -222,16 +223,16 @@ static void init_sdlkeymap()
 	sdlkeymap[SDLK_8] = MAC_8_KEY;
 	sdlkeymap[SDLK_9] = MAC_9_KEY;
 	sdlkeymap[SDLK_0] = MAC_0_KEY;
-	sdlkeymap[SDLK_KP1] = MAC_NUMPAD_1_KEY;
-	sdlkeymap[SDLK_KP2] = MAC_NUMPAD_2_KEY;
-	sdlkeymap[SDLK_KP3] = MAC_NUMPAD_3_KEY;
-	sdlkeymap[SDLK_KP4] = MAC_NUMPAD_4_KEY;
-	sdlkeymap[SDLK_KP5] = MAC_NUMPAD_5_KEY;
-	sdlkeymap[SDLK_KP6] = MAC_NUMPAD_6_KEY;
-	sdlkeymap[SDLK_KP7] = MAC_NUMPAD_7_KEY;
-	sdlkeymap[SDLK_KP8] = MAC_NUMPAD_8_KEY;
-	sdlkeymap[SDLK_KP9] = MAC_NUMPAD_9_KEY;
-	sdlkeymap[SDLK_KP0] = MAC_NUMPAD_0_KEY;
+	sdlkeymap[SDLK_KP_1] = MAC_NUMPAD_1_KEY;
+	sdlkeymap[SDLK_KP_2] = MAC_NUMPAD_2_KEY;
+	sdlkeymap[SDLK_KP_3] = MAC_NUMPAD_3_KEY;
+	sdlkeymap[SDLK_KP_4] = MAC_NUMPAD_4_KEY;
+	sdlkeymap[SDLK_KP_5] = MAC_NUMPAD_5_KEY;
+	sdlkeymap[SDLK_KP_6] = MAC_NUMPAD_6_KEY;
+	sdlkeymap[SDLK_KP_7] = MAC_NUMPAD_7_KEY;
+	sdlkeymap[SDLK_KP_8] = MAC_NUMPAD_8_KEY;
+	sdlkeymap[SDLK_KP_9] = MAC_NUMPAD_9_KEY;
+	sdlkeymap[SDLK_KP_0] = MAC_NUMPAD_0_KEY;
 	sdlkeymap[SDLK_a] = MAC_A_KEY;
 	sdlkeymap[SDLK_b] = MAC_B_KEY;
 	sdlkeymap[SDLK_c] = MAC_C_KEY;
@@ -333,13 +334,7 @@ static void DoSDLKey(Game *g, SDL_Event *event)
 		}
 	}
 	
-	if (event->key.keysym.unicode && 
-		!(event->key.keysym.unicode & 0xFF80)) {
-	
-		/* hey, at least it was aleady public */
-		g->HandleKeyDown(event->key.keysym.unicode);
-	}
-	
+	g->HandleKeyDown(event->key.keysym.sym);
 	
 }
 
@@ -354,22 +349,8 @@ void	Game::ProcessSDLEvents(void)
 				if (event.key.keysym.sym == SDLK_RETURN &&
 					event.key.keysym.mod & KMOD_ALT)
 				{
-					SDL_WM_ToggleFullScreen (SDL_GetVideoSurface ());
-					break;
-				}
-				if (event.key.keysym.sym == SDLK_g &&
-					event.key.keysym.mod & KMOD_CTRL)
-				{
-					if (SDL_WM_GrabInput (SDL_GRAB_QUERY) == SDL_GRAB_OFF)
-					{
-						SDL_WM_GrabInput (SDL_GRAB_ON);
-						SDL_ShowCursor (SDL_DISABLE);
-					}
-					else
-					{
-						SDL_WM_GrabInput (SDL_GRAB_OFF);
-						SDL_ShowCursor (SDL_ENABLE);
-					}
+					//disable this for now
+					//SDL_SetWindowFullscreen();
 					break;
 				}
 				case SDL_KEYUP:
@@ -444,7 +425,7 @@ void	Game::EventLoop( void )
 #ifdef OS9 
 			aglSwapBuffers( gOpenGLContext );
 #else
-                        SDL_GL_SwapBuffers();
+            SDL_GL_SwapWindow(screen);
 #endif
 
 		else
@@ -501,12 +482,25 @@ void	Game::EventLoop( void )
 
 				highscore=score;
 
-#ifdef OS9 
-				std::ofstream opstream(":Data:Highscore"); 
+#ifdef OS9
+
+#ifdef REVENGE
+				const char* hiscore = ":Data:HighscoreRevenge";
 #else
-				/* TODO */
-				std::ofstream opstream("Data/Highscore");
+				const char* hiscore = ":Data:Highscore";
 #endif
+
+#else
+
+#ifdef REVENGE
+				const char* hiscore = "Data/HighscoreRevenge";
+#else
+				const char* hiscore = "Data/Highscore";
+#endif
+
+#endif
+
+				std::ofstream opstream(hiscore);
 
 		        opstream << highscore;
 

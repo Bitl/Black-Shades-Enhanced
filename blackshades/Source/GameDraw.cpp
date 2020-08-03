@@ -38,9 +38,7 @@ extern Decals decals;
 /*********************> DrawGLScene() <*****/
 
 int Game::DrawGLScene(GLvoid)									
-
 {	
-
 	//Main menu
 
 	if(mainmenu==1){
@@ -191,7 +189,11 @@ int Game::DrawGLScene(GLvoid)
 
 		static char string[256]="";
 
+#ifdef REVENGE
+		sprintf(string, "Revenge Mod");
+#else
 		sprintf (string, "Black Shades");
+#endif
 
 		text.glPrint(100,175,string,1,2,640,480);
 
@@ -1127,7 +1129,7 @@ int Game::DrawGLScene(GLvoid)
 
 		glEnable(GL_BLEND);
 
-		for(i=0;i<numpeople;i++){
+		for(int i=0;i<numpeople;i++){
 
 		
 
@@ -1379,7 +1381,7 @@ int Game::DrawGLScene(GLvoid)
 
 		//Attacker psychicness 
 
-		for(i=0;i<numpeople;i++){
+		for(int i=0;i<numpeople;i++){
 
 			if(person[i].killtarget>-1&&person[i].killtargetvisible&&person[i].skeleton.free==0&&person[person[i].killtarget].skeleton.free==0){
 
@@ -1764,7 +1766,6 @@ int Game::DrawGLScene(GLvoid)
 
 		text.glPrint(10,80,string,0,.8,screenwidth,screenheight);
 		*/	
-
 	}
 
 	return 1;

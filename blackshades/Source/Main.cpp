@@ -18,7 +18,7 @@ int 	main( int argc, char *argv[] )
 
 
 	game.InitGL();
-	game.InitGame();
+	game.InitGame(game.screen);
 
 	game.EventLoop();
 
