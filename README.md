@@ -16,8 +16,13 @@ But recently I figured out a way to compile it, and thus the Black Shades Enhanc
 
 **What is included?**
 
-As of v1.1.1R:
+As of v1.3:
+- Ported to SDL 2.
+- Rebuilt to natively compile under VS 2019.
 - Increased the FPS limit from 90 to 300.
+- Set 1920x1080 as the default screen resolution.
+- Set the default FOV to 100.
+- Turned on "blur" (depth of field) by default.
 - Allows the user to set the FPS limit in the config.txt
 - Allows the user to run the game in windowed mode.
 - Added an icon for use in Windowed Mode.
@@ -27,7 +32,7 @@ As of v1.1.1R:
 - Fixed all compiler warnings!
 - Includes the soundtrack!
 - Fixed an issue where disabling music would make the program hang.
-- A seperate mod called the Revenge mod. Your VIP is gone, so you have to defend yourself against hordes of assassins.
+- Includes a seperate mod called the Revenge mod. Your VIP is gone, so you have to defend yourself against hordes of assassins.
 
 All the new settings can be set in the config.txt the game generates.
 

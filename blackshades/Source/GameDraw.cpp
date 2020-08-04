@@ -853,7 +853,12 @@ int Game::DrawGLScene(GLvoid)
 
 		//Camera
 
-		float bluramount=.1*blurness;
+		float bluramount = 0;
+
+		if (!zoom)
+		{
+			bluramount = .1 * blurness;
+		}
 
 		blur=1-blur;
 
@@ -1137,6 +1142,7 @@ int Game::DrawGLScene(GLvoid)
 
 			if(person[i].skeleton.free<1){
 
+				
 				if(person[i].whichblockx>=0&&person[i].whichblockx<num_blocks&&person[i].whichblocky>=0&&person[i].whichblocky<num_blocks){
 
 					if(!drawn[person[i].whichblockx][person[i].whichblocky])draw=0;
@@ -1199,6 +1205,7 @@ int Game::DrawGLScene(GLvoid)
 
 			if(person[i].skeleton.free==1){
 
+				
 				if(draw)
 
 				if(!person[i].skeleton.broken&&!frustum.CubeInFrustum(person[i].averageloc.x,person[i].averageloc.y,person[i].averageloc.z,5))draw=0;
