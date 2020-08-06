@@ -306,31 +306,34 @@ void Decals::LoadBulletHoleTexture(char *fileName)
 
 void Decals::LoadBloodTexture(char *fileName, int which)
 {
-	TGAImageRec	*tempTexture;
-	GLuint		type;
-	
-	//Load Image
-	tempTexture = LoadTGA( fileName ); 
-	//Is it valid?
-	if(tempTexture){
-		//Alpha channel?
-		if ( tempTexture->bpp == 24 )
-			type = GL_RGB;
-		else
-			type = GL_RGBA;
-	
-		glPixelStorei( GL_UNPACK_ALIGNMENT, 1 );
-	
-		glGenTextures( 1, &bloodtextureptr[which] );
-		glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
+	if (blood)
+	{
+		TGAImageRec* tempTexture;
+		GLuint		type;
 
-		glBindTexture( GL_TEXTURE_2D, bloodtextureptr[which]);
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
+		//Load Image
+		tempTexture = LoadTGA(fileName);
+		//Is it valid?
+		if (tempTexture) {
+			//Alpha channel?
+			if (tempTexture->bpp == 24)
+				type = GL_RGB;
+			else
+				type = GL_RGBA;
 
-		gluBuild2DMipmaps( GL_TEXTURE_2D, type, tempTexture->sizeX, tempTexture->sizeY, type, GL_UNSIGNED_BYTE, tempTexture->data );
-		free( tempTexture->data );
-		free( tempTexture );
+			glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+			glGenTextures(1, &bloodtextureptr[which]);
+			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+
+			glBindTexture(GL_TEXTURE_2D, bloodtextureptr[which]);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+			gluBuild2DMipmaps(GL_TEXTURE_2D, type, tempTexture->sizeX, tempTexture->sizeY, type, GL_UNSIGNED_BYTE, tempTexture->data);
+			free(tempTexture->data);
+			free(tempTexture);
+		}
 	}
 }
 
@@ -369,7 +372,7 @@ void Decals::DoStuff()
 	for(int i=0;i<howmanydecals;i++){
 		alivetime[i]+=multiplier;
 		if(alivetime[i]>10&&(type[i]==bullethole||type[i]==crater))DeleteDecal(i);
-		if(alivetime[i]>20&&(type[i]==bloodpool))DeleteDecal(i);
+		if(alivetime[i]>20&&blood&&(type[i]==bloodpool))DeleteDecal(i);
 	}
 }
 
@@ -393,21 +396,24 @@ void Decals::draw()
 	for(int i=0;i<howmanydecals;i++){
 		if(type[i]==bullethole)glBindTexture(GL_TEXTURE_2D, bulletholetextureptr);
 		if(type[i]==crater)glBindTexture(GL_TEXTURE_2D, cratertextureptr);
-		if(type[i]!=bloodpool)glColor4f(1,1,1,10-alivetime[i]);
-		
-		if(type[i]==bloodpool&&alivetime[i]<bloodpoolspeed*.2)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[0]);
-		if(type[i]==bloodpool&&alivetime[i]>=bloodpoolspeed*.2&&alivetime[i]<bloodpoolspeed*.4)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[1]);
-		if(type[i]==bloodpool&&alivetime[i]>=bloodpoolspeed*.4&&alivetime[i]<bloodpoolspeed*.6)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[2]);
-		if(type[i]==bloodpool&&alivetime[i]>=bloodpoolspeed*.6&&alivetime[i]<bloodpoolspeed*.8)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[3]);
-		if(type[i]==bloodpool&&alivetime[i]>=bloodpoolspeed*.8&&alivetime[i]<bloodpoolspeed*1)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[4]);
-		if(type[i]==bloodpool&&alivetime[i]>=bloodpoolspeed*1&&alivetime[i]<bloodpoolspeed*1.2)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[5]);
-		if(type[i]==bloodpool&&alivetime[i]>=bloodpoolspeed*1.2&&alivetime[i]<bloodpoolspeed*1.4)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[6]);
-		if(type[i]==bloodpool&&alivetime[i]>=bloodpoolspeed*1.4&&alivetime[i]<bloodpoolspeed*1.6)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[7]);
-		if(type[i]==bloodpool&&alivetime[i]>=bloodpoolspeed*1.6&&alivetime[i]<bloodpoolspeed*1.8)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[8]);
-		if(type[i]==bloodpool&&alivetime[i]>=bloodpoolspeed*1.8&&alivetime[i]<bloodpoolspeed*2.0)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[9]);
-		if(type[i]==bloodpool&&alivetime[i]>=bloodpoolspeed*2.0)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[10]);
-		if(type[i]==bloodpool&&alivetime[i]<bloodpoolspeed*2.0)glColor4f(1,1,1,1.5-(alivetime[i]*5/bloodpoolspeed-(int)(alivetime[i]*5/bloodpoolspeed)));
-		if(type[i]==bloodpool&&alivetime[i]>=bloodpoolspeed*2.0)glColor4f(1,1,1,20-alivetime[i]);
+		if (blood)
+		{
+			if (type[i] != bloodpool)glColor4f(1, 1, 1, 10 - alivetime[i]);
+
+			if (type[i] == bloodpool && alivetime[i] < bloodpoolspeed * .2)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[0]);
+			if (type[i] == bloodpool && alivetime[i] >= bloodpoolspeed * .2 && alivetime[i] < bloodpoolspeed * .4)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[1]);
+			if (type[i] == bloodpool && alivetime[i] >= bloodpoolspeed * .4 && alivetime[i] < bloodpoolspeed * .6)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[2]);
+			if (type[i] == bloodpool && alivetime[i] >= bloodpoolspeed * .6 && alivetime[i] < bloodpoolspeed * .8)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[3]);
+			if (type[i] == bloodpool && alivetime[i] >= bloodpoolspeed * .8 && alivetime[i] < bloodpoolspeed * 1)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[4]);
+			if (type[i] == bloodpool && alivetime[i] >= bloodpoolspeed * 1 && alivetime[i] < bloodpoolspeed * 1.2)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[5]);
+			if (type[i] == bloodpool && alivetime[i] >= bloodpoolspeed * 1.2 && alivetime[i] < bloodpoolspeed * 1.4)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[6]);
+			if (type[i] == bloodpool && alivetime[i] >= bloodpoolspeed * 1.4 && alivetime[i] < bloodpoolspeed * 1.6)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[7]);
+			if (type[i] == bloodpool && alivetime[i] >= bloodpoolspeed * 1.6 && alivetime[i] < bloodpoolspeed * 1.8)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[8]);
+			if (type[i] == bloodpool && alivetime[i] >= bloodpoolspeed * 1.8 && alivetime[i] < bloodpoolspeed * 2.0)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[9]);
+			if (type[i] == bloodpool && alivetime[i] >= bloodpoolspeed * 2.0)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[10]);
+			if (type[i] == bloodpool && alivetime[i] < bloodpoolspeed * 2.0)glColor4f(1, 1, 1, 1.5 - (alivetime[i] * 5 / bloodpoolspeed - (int)(alivetime[i] * 5 / bloodpoolspeed)));
+			if (type[i] == bloodpool && alivetime[i] >= bloodpoolspeed * 2.0)glColor4f(1, 1, 1, 20 - alivetime[i]);
+		}
 		
 		glPushMatrix();
 		glBegin(GL_TRIANGLE_FAN);
@@ -417,18 +423,21 @@ void Decals::draw()
 		glEnd();
 		glPopMatrix();
 		
-		if(type[i]==bloodpool&&alivetime[i]<bloodpoolspeed*2.0){
-			if(type[i]==bloodpool&&alivetime[i]<bloodpoolspeed*.2)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[1]);
-		if(type[i]==bloodpool&&alivetime[i]>=bloodpoolspeed*.2&&alivetime[i]<bloodpoolspeed*.4)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[2]);
-		if(type[i]==bloodpool&&alivetime[i]>=bloodpoolspeed*.4&&alivetime[i]<bloodpoolspeed*.6)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[3]);
-		if(type[i]==bloodpool&&alivetime[i]>=bloodpoolspeed*.6&&alivetime[i]<bloodpoolspeed*.8)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[4]);
-		if(type[i]==bloodpool&&alivetime[i]>=bloodpoolspeed*.8&&alivetime[i]<bloodpoolspeed*1)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[5]);
-		if(type[i]==bloodpool&&alivetime[i]>=bloodpoolspeed*1&&alivetime[i]<bloodpoolspeed*1.2)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[6]);
-		if(type[i]==bloodpool&&alivetime[i]>=bloodpoolspeed*1.2&&alivetime[i]<bloodpoolspeed*1.4)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[7]);
-		if(type[i]==bloodpool&&alivetime[i]>=bloodpoolspeed*1.4&&alivetime[i]<bloodpoolspeed*1.6)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[8]);
-		if(type[i]==bloodpool&&alivetime[i]>=bloodpoolspeed*1.6&&alivetime[i]<bloodpoolspeed*1.8)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[9]);
-		if(type[i]==bloodpool&&alivetime[i]>=bloodpoolspeed*1.8&&alivetime[i]<bloodpoolspeed*2.0)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[10]);
-		if(type[i]==bloodpool)glColor4f(1,1,1,alivetime[i]*5/bloodpoolspeed-(int)(alivetime[i]*5/bloodpoolspeed));
+		if (blood)
+		{
+			if (type[i] == bloodpool && alivetime[i] < bloodpoolspeed * 2.0) {
+				if (type[i] == bloodpool && alivetime[i] < bloodpoolspeed * .2)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[1]);
+				if (type[i] == bloodpool && alivetime[i] >= bloodpoolspeed * .2 && alivetime[i] < bloodpoolspeed * .4)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[2]);
+				if (type[i] == bloodpool && alivetime[i] >= bloodpoolspeed * .4 && alivetime[i] < bloodpoolspeed * .6)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[3]);
+				if (type[i] == bloodpool && alivetime[i] >= bloodpoolspeed * .6 && alivetime[i] < bloodpoolspeed * .8)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[4]);
+				if (type[i] == bloodpool && alivetime[i] >= bloodpoolspeed * .8 && alivetime[i] < bloodpoolspeed * 1)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[5]);
+				if (type[i] == bloodpool && alivetime[i] >= bloodpoolspeed * 1 && alivetime[i] < bloodpoolspeed * 1.2)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[6]);
+				if (type[i] == bloodpool && alivetime[i] >= bloodpoolspeed * 1.2 && alivetime[i] < bloodpoolspeed * 1.4)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[7]);
+				if (type[i] == bloodpool && alivetime[i] >= bloodpoolspeed * 1.4 && alivetime[i] < bloodpoolspeed * 1.6)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[8]);
+				if (type[i] == bloodpool && alivetime[i] >= bloodpoolspeed * 1.6 && alivetime[i] < bloodpoolspeed * 1.8)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[9]);
+				if (type[i] == bloodpool && alivetime[i] >= bloodpoolspeed * 1.8 && alivetime[i] < bloodpoolspeed * 2.0)glBindTexture(GL_TEXTURE_2D, bloodtextureptr[10]);
+				if (type[i] == bloodpool)glColor4f(1, 1, 1, alivetime[i] * 5 / bloodpoolspeed - (int)(alivetime[i] * 5 / bloodpoolspeed));
+			}
 			
 			glPushMatrix();
 			glBegin(GL_TRIANGLE_FAN);

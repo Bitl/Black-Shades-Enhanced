@@ -174,31 +174,34 @@ void Sprites::LoadSmokeTexture(char *fileName)
 
 void Sprites::LoadBloodTexture(char *fileName)
 {
-	TGAImageRec	*tempTexture;
-	GLuint		type;
-	
-	//Load Image
-	tempTexture = LoadTGA( fileName ); 
-	//Is it valid?
-	if(tempTexture){
-		//Alpha channel?
-		if ( tempTexture->bpp == 24 )
-			type = GL_RGB;
-		else
-			type = GL_RGBA;
-	
-		glPixelStorei( GL_UNPACK_ALIGNMENT, 1 );
-	
-		glGenTextures( 1, &bloodtextureptr );
-		glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
+	if (blood)
+	{
+		TGAImageRec* tempTexture;
+		GLuint		type;
 
-		glBindTexture( GL_TEXTURE_2D, bloodtextureptr);
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
+		//Load Image
+		tempTexture = LoadTGA(fileName);
+		//Is it valid?
+		if (tempTexture) {
+			//Alpha channel?
+			if (tempTexture->bpp == 24)
+				type = GL_RGB;
+			else
+				type = GL_RGBA;
 
-		gluBuild2DMipmaps( GL_TEXTURE_2D, type, tempTexture->sizeX, tempTexture->sizeY, type, GL_UNSIGNED_BYTE, tempTexture->data );
-		free( tempTexture->data );
-		free( tempTexture );
+			glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+			glGenTextures(1, &bloodtextureptr);
+			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+
+			glBindTexture(GL_TEXTURE_2D, bloodtextureptr);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+			gluBuild2DMipmaps(GL_TEXTURE_2D, type, tempTexture->sizeX, tempTexture->sizeY, type, GL_UNSIGNED_BYTE, tempTexture->data);
+			free(tempTexture->data);
+			free(tempTexture);
+		}
 	}
 }
 
@@ -299,11 +302,11 @@ void Sprites::DoStuff()
 		if(type[i]!=bullet&&type[i]!=bulletinstant&&type[i]!=grenadesprite&&type[i]!=pinsprite&&type[i]!=grenadesprite)oldlocation[i]=location[i];
 		if(type[i]==muzzleflashsprite)brightness[i]-=multiplier*10;
 		if(type[i]==flashsprite)brightness[i]-=multiplier*10;
-		if(type[i]==smokesprite||type[i]==smokespritenoup||type[i]==bloodspritedown||type[i]==particlesspritedown)brightness[i]-=multiplier*.5;
-		if(type[i]==bloodspritenoup)brightness[i]-=multiplier*.9;
+		if(type[i]==smokesprite||type[i]==smokespritenoup||(type[i]==bloodspritedown && blood)||type[i]==particlesspritedown)brightness[i]-=multiplier*.5;
+		if(type[i]==bloodspritenoup && blood)brightness[i]-=multiplier*.9;
 		if(type[i]==smokesprite)size[i]=initialsize[i]*abs(fast_sqrt(fast_sqrt((float)abs(initialbrightness[i]-brightness[i]))));//velocity[i].y+=multiplier*20;
-		if(type[i]==bloodspritenoup||type[i]==particlesspritedown)size[i]=initialsize[i]*(initialbrightness[i]-brightness[i]+.4)*(initialbrightness[i]-brightness[i]+.4);//velocity[i].y+=multiplier*20;
-		if(type[i]==bloodspritenoup||type[i]==particlesspritedown)velocity[i]=initialvelocity[i]*brightness[i];//velocity[i].y+=multiplier*20;
+		if((type[i]==bloodspritenoup && blood)||type[i]==particlesspritedown)size[i]=initialsize[i]*(initialbrightness[i]-brightness[i]+.4)*(initialbrightness[i]-brightness[i]+.4);//velocity[i].y+=multiplier*20;
+		if((type[i]==bloodspritenoup && blood)||type[i]==particlesspritedown)velocity[i]=initialvelocity[i]*brightness[i];//velocity[i].y+=multiplier*20;
 		if(type[i]==bullet)brightness[i]-=multiplier;
 		if(type[i]==snowsprite)rotation[i]+=multiplier*50;
 		if(type[i]==smokesprite)rotation[i]+=multiplier*30;
@@ -369,7 +372,7 @@ void Sprites::draw()
 		if(type[i]==muzzleflashsprite){fog.TempFog(0,0,0); glBindTexture(GL_TEXTURE_2D, muzzleflaretextureptr);glBlendFunc(GL_SRC_ALPHA,GL_ONE);}
 		if(type[i]==flashsprite){fog.TempFog(0,0,0); glBindTexture(GL_TEXTURE_2D, flaretextureptr);glBlendFunc(GL_SRC_ALPHA,GL_ONE);}
 		if(type[i]==smokesprite||type[i]==smokespritenoup){fog.ResetFog(); glBindTexture(GL_TEXTURE_2D,  smoketextureptr);glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);}
-		if(type[i]==bloodspritedown||type[i]==bloodspritenoup){fog.ResetFog(); glBindTexture(GL_TEXTURE_2D,  smoketextureptr);glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);}
+		if((type[i]==bloodspritedown||type[i]==bloodspritenoup) && blood){fog.ResetFog(); glBindTexture(GL_TEXTURE_2D,  smoketextureptr);glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);}
 		if(type[i]==particlesspritedown){fog.ResetFog(); glBindTexture(GL_TEXTURE_2D,  bloodtextureptr);glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);}
 		if(type[i]==snowsprite){fog.ResetFog(); glBindTexture(GL_TEXTURE_2D,  snowtextureptr);glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);}
 		if(type[i]==rainsprite){fog.ResetFog(); glBindTexture(GL_TEXTURE_2D,  raintextureptr);glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);}

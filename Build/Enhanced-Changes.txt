@@ -1,5 +1,7 @@
 WIP:
 - Blur will now be disabled when you zoom in with the Sniper Rifle.
+- Bloodpools, blood, and other effects will now be disabled properly when you disable blood in the config file.
+	- Head explosions are replaced by smoke.
 
 Black Shades Enhanced v1.3 and Black Shades Revenge Mod v1.1
 - Upgraded from SDL 1.2.4 to SDL 2.0.15!

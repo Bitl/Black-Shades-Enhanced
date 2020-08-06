@@ -3509,7 +3509,10 @@ void Game::InitGame(SDL_Window *win)
 
 		sprites.LoadSmokeTexture(":Data:Textures:Smoke.tga");
 
-		sprites.LoadBloodTexture(":Data:Textures:Blood.tga");
+		if (blood)
+		{
+			sprites.LoadBloodTexture(":Data:Textures:Blood.tga");
+		}
 
 		sprites.LoadRainTexture(":Data:Textures:rain.tga");
 
@@ -3519,27 +3522,31 @@ void Game::InitGame(SDL_Window *win)
 
 		decals.LoadCraterTexture(":Data:Textures:Crater.tga");
 
-		decals.LoadBloodTexture(":Data:Textures:Blood:Blood1.tga",0);
+		if (blood)
+		{
 
-		decals.LoadBloodTexture(":Data:Textures:Blood:Blood2.tga",1);
+			decals.LoadBloodTexture(":Data:Textures:Blood:Blood1.tga", 0);
 
-		decals.LoadBloodTexture(":Data:Textures:Blood:Blood3.tga",2);
+			decals.LoadBloodTexture(":Data:Textures:Blood:Blood2.tga", 1);
 
-		decals.LoadBloodTexture(":Data:Textures:Blood:Blood4.tga",3);
+			decals.LoadBloodTexture(":Data:Textures:Blood:Blood3.tga", 2);
 
-		decals.LoadBloodTexture(":Data:Textures:Blood:Blood5.tga",4);
+			decals.LoadBloodTexture(":Data:Textures:Blood:Blood4.tga", 3);
 
-		decals.LoadBloodTexture(":Data:Textures:Blood:Blood6.tga",5);
+			decals.LoadBloodTexture(":Data:Textures:Blood:Blood5.tga", 4);
 
-		decals.LoadBloodTexture(":Data:Textures:Blood:Blood7.tga",6);
+			decals.LoadBloodTexture(":Data:Textures:Blood:Blood6.tga", 5);
 
-		decals.LoadBloodTexture(":Data:Textures:Blood:Blood8.tga",7);
+			decals.LoadBloodTexture(":Data:Textures:Blood:Blood7.tga", 6);
 
-		decals.LoadBloodTexture(":Data:Textures:Blood:Blood9.tga",8);
+			decals.LoadBloodTexture(":Data:Textures:Blood:Blood8.tga", 7);
 
-		decals.LoadBloodTexture(":Data:Textures:Blood:Blood10.tga",9);
+			decals.LoadBloodTexture(":Data:Textures:Blood:Blood9.tga", 8);
 
-		decals.LoadBloodTexture(":Data:Textures:Blood:Blood11.tga",10);
+			decals.LoadBloodTexture(":Data:Textures:Blood:Blood10.tga", 9);
+
+			decals.LoadBloodTexture(":Data:Textures:Blood:Blood11.tga", 10);
+		}
 
 	}
 

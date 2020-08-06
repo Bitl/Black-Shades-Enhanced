@@ -53,7 +53,7 @@ extern int psychicaimkey;
 
 extern int psychickey;
 
-
+extern bool blood;
 
 extern Decals decals;
 
@@ -1606,22 +1606,25 @@ void 	Game::Tick(){
 
 					normish.y=1;
 
-					if(whichtri>=0){
+					if (blood)
+					{
+						if (whichtri >= 0) {
 
-						decals.MakeDecal(bloodpool,temp,12,normish, whichtri, &sidewalkcollide, move, cityrotation[person[i].whichblockx][person[i].whichblocky]*90);
+							decals.MakeDecal(bloodpool, temp, 12, normish, whichtri, &sidewalkcollide, move, cityrotation[person[i].whichblockx][person[i].whichblocky] * 90);
 
-					}
+						}
 
-					if(whichtri==-1){
+						if (whichtri == -1) {
 
-						temp=person[i].skeleton.joints[person[i].skeleton.jointlabels[abdomen]].position;
+							temp = person[i].skeleton.joints[person[i].skeleton.jointlabels[abdomen]].position;
 
-						temp.y=-.5;
+							temp.y = -.5;
 
-						move=0;
+							move = 0;
 
-						decals.MakeDecal(bloodpool,temp,12,normish, 0, &sidewalkcollide, move, 0);
+							decals.MakeDecal(bloodpool, temp, 12, normish, 0, &sidewalkcollide, move, 0);
 
+						}
 					}
 
 					person[i].firstlongdead=1;
@@ -1694,34 +1697,37 @@ void 	Game::Tick(){
 
 			}
 
-			if(person[i].bleeding>0){
+			if (blood)
+			{
+				if (person[i].bleeding > 0) {
 
-				person[i].bleeding-=multiplier;
+					person[i].bleeding -= multiplier;
 
-				person[i].bleeddelay-=multiplier*10;
+					person[i].bleeddelay -= multiplier * 10;
 
-				if(person[i].bleeddelay<=0){
+					if (person[i].bleeddelay <= 0) {
 
-					person[i].bleeddelay=1;
+						person[i].bleeddelay = 1;
 
-					if(person[i].skeleton.free==0){
+						if (person[i].skeleton.free == 0) {
 
-						bleedloc=DoRotation((person[i].bjoint1->position+person[i].bjoint2->position)/2,0,person[i].playerrotation,0)+person[i].playercoords;
+							bleedloc = DoRotation((person[i].bjoint1->position + person[i].bjoint2->position) / 2, 0, person[i].playerrotation, 0) + person[i].playercoords;
+
+						}
+
+						if (person[i].skeleton.free > 0) {
+
+							bleedloc = (person[i].bjoint1->position + person[i].bjoint2->position) / 2;
+
+						}
+
+						vel = 0;
+
+						sprites.MakeSprite(bloodspritedown, .6, 1, .2, .2, bleedloc, vel, 3 * person[i].bleeding);
 
 					}
-
-					if(person[i].skeleton.free>0){
-
-						bleedloc=(person[i].bjoint1->position+person[i].bjoint2->position)/2;
-
-					}
-
-					vel=0;
-
-					sprites.MakeSprite(bloodspritedown, .6, 1, .2, .2,bleedloc, vel, 3*person[i].bleeding);
 
 				}
-
 			}
 
 			if(person[i].skeleton.free==0){
@@ -2990,19 +2996,23 @@ void 	Game::Tick(){
 
 						person[0].bjoint2=&person[0].skeleton.joints[person[0].skeleton.jointlabels[righthand]];
 
-						person[0].bleeding=1;
+						if (blood)
+						{
 
-						person[0].bleeddelay=1;
+							person[0].bleeding = 1;
 
-						velocity=DoRotation(flatfacing,0,70,0)*50+person[0].velocity*2;
+							person[0].bleeddelay = 1;
 
-						velocity.y+=30;
+							velocity = DoRotation(flatfacing, 0, 70, 0) * 50 + person[0].velocity * 2;
 
-						sprites.MakeSprite(bloodspritedown, .8, 1, .2, .2,DoRotation(person[person[0].killtarget].skeleton.joints[person[person[0].killtarget].skeleton.jointlabels[neck]].position,0,person[person[0].killtarget].playerrotation,0)+person[person[0].killtarget].playercoords, velocity*.3, 2);
+							velocity.y += 30;
 
-						sprites.MakeSprite(bloodspritedown, .8, 1, .2, .2,DoRotation(person[person[0].killtarget].skeleton.joints[person[person[0].killtarget].skeleton.jointlabels[neck]].position,0,person[person[0].killtarget].playerrotation,0)+person[person[0].killtarget].playercoords, velocity*.2, 3);
+							sprites.MakeSprite(bloodspritedown, .8, 1, .2, .2, DoRotation(person[person[0].killtarget].skeleton.joints[person[person[0].killtarget].skeleton.jointlabels[neck]].position, 0, person[person[0].killtarget].playerrotation, 0) + person[person[0].killtarget].playercoords, velocity * .3, 2);
 
-						sprites.MakeSprite(bloodspritedown, .8, 1, .2, .2,DoRotation(person[person[0].killtarget].skeleton.joints[person[person[0].killtarget].skeleton.jointlabels[neck]].position,0,person[person[0].killtarget].playerrotation,0)+person[person[0].killtarget].playercoords, velocity*.1, 4);					
+							sprites.MakeSprite(bloodspritedown, .8, 1, .2, .2, DoRotation(person[person[0].killtarget].skeleton.joints[person[person[0].killtarget].skeleton.jointlabels[neck]].position, 0, person[person[0].killtarget].playerrotation, 0) + person[person[0].killtarget].playercoords, velocity * .2, 3);
+
+							sprites.MakeSprite(bloodspritedown, .8, 1, .2, .2, DoRotation(person[person[0].killtarget].skeleton.joints[person[person[0].killtarget].skeleton.jointlabels[neck]].position, 0, person[person[0].killtarget].playerrotation, 0) + person[person[0].killtarget].playercoords, velocity * .1, 4);
+						}
 
 					}
 
@@ -3076,19 +3086,23 @@ void 	Game::Tick(){
 
 							person[0].bjoint2=&person[0].skeleton.joints[person[0].skeleton.jointlabels[righthand]];
 
-							person[0].bleeding=1;
 
-							person[0].bleeddelay=1;
+							if (blood)
+							{
+								person[0].bleeding = 1;
 
-							velocity=DoRotation(flatfacing,0,70,0)*50+person[0].velocity*2;
+								person[0].bleeddelay = 1;
 
-							velocity.y+=30;
+								velocity = DoRotation(flatfacing, 0, 70, 0) * 50 + person[0].velocity * 2;
 
-							sprites.MakeSprite(bloodspritedown, .8, 1, .2, .2,DoRotation(person[person[0].killtarget].skeleton.joints[person[person[0].killtarget].skeleton.jointlabels[neck]].position,0,person[person[0].killtarget].playerrotation,0)+person[person[0].killtarget].playercoords, velocity*.3, 2);
+								velocity.y += 30;
 
-							sprites.MakeSprite(bloodspritedown, .8, 1, .2, .2,DoRotation(person[person[0].killtarget].skeleton.joints[person[person[0].killtarget].skeleton.jointlabels[neck]].position,0,person[person[0].killtarget].playerrotation,0)+person[person[0].killtarget].playercoords, velocity*.2, 3);
+								sprites.MakeSprite(bloodspritedown, .8, 1, .2, .2, DoRotation(person[person[0].killtarget].skeleton.joints[person[person[0].killtarget].skeleton.jointlabels[neck]].position, 0, person[person[0].killtarget].playerrotation, 0) + person[person[0].killtarget].playercoords, velocity * .3, 2);
 
-							sprites.MakeSprite(bloodspritedown, .8, 1, .2, .2,DoRotation(person[person[0].killtarget].skeleton.joints[person[person[0].killtarget].skeleton.jointlabels[neck]].position,0,person[person[0].killtarget].playerrotation,0)+person[person[0].killtarget].playercoords, velocity*.1, 4);					
+								sprites.MakeSprite(bloodspritedown, .8, 1, .2, .2, DoRotation(person[person[0].killtarget].skeleton.joints[person[person[0].killtarget].skeleton.jointlabels[neck]].position, 0, person[person[0].killtarget].playerrotation, 0) + person[person[0].killtarget].playercoords, velocity * .2, 3);
+
+								sprites.MakeSprite(bloodspritedown, .8, 1, .2, .2, DoRotation(person[person[0].killtarget].skeleton.joints[person[person[0].killtarget].skeleton.jointlabels[neck]].position, 0, person[person[0].killtarget].playerrotation, 0) + person[person[0].killtarget].playercoords, velocity * .1, 4);
+							}
 
 						}
 
@@ -3946,15 +3960,18 @@ void 	Game::Tick(){
 
 										if(j!=person[whichhit].skeleton.jointlabels[abdomen]&&j!=person[whichhit].skeleton.jointlabels[groin]&&j!=person[whichhit].skeleton.jointlabels[neck]){
 
-											sprites.MakeSprite(bloodspritedown, .8, 1, .2, .2,person[whichhit].skeleton.joints[j].position, person[whichhit].skeleton.joints[j].velocity/3, 9);
+											if (blood)
+											{
+												sprites.MakeSprite(bloodspritedown, .8, 1, .2, .2, person[whichhit].skeleton.joints[j].position, person[whichhit].skeleton.joints[j].velocity / 3, 9);
 
-											sprites.MakeSprite(bloodspritedown, .8, 1, .2, .2,person[whichhit].skeleton.joints[j].position, DoRotation(person[whichhit].skeleton.joints[j].velocity/3,Random()%360,Random()%360,0)/5, 5);
+												sprites.MakeSprite(bloodspritedown, .8, 1, .2, .2, person[whichhit].skeleton.joints[j].position, DoRotation(person[whichhit].skeleton.joints[j].velocity / 3, Random() % 360, Random() % 360, 0) / 5, 5);
 
-											sprites.MakeSprite(bloodspritedown, .8, 1, .2, .2,person[whichhit].skeleton.joints[j].position, DoRotation(person[whichhit].skeleton.joints[j].velocity/3,Random()%360,Random()%360,0)/5, 5);
+												sprites.MakeSprite(bloodspritedown, .8, 1, .2, .2, person[whichhit].skeleton.joints[j].position, DoRotation(person[whichhit].skeleton.joints[j].velocity / 3, Random() % 360, Random() % 360, 0) / 5, 5);
 
-											sprites.MakeSprite(bloodspritedown, .8, 1, .2, .2,person[whichhit].skeleton.joints[j].position, DoRotation(person[whichhit].skeleton.joints[j].velocity/3,Random()%360,Random()%360,0)/5, 5);
+												sprites.MakeSprite(bloodspritedown, .8, 1, .2, .2, person[whichhit].skeleton.joints[j].position, DoRotation(person[whichhit].skeleton.joints[j].velocity / 3, Random() % 360, Random() % 360, 0) / 5, 5);
 
-											sprites.MakeSprite(bloodspritedown, .8, 1, .2, .2,person[whichhit].skeleton.joints[j].position, DoRotation(person[whichhit].skeleton.joints[j].velocity/3,Random()%360,Random()%360,0)/5, 5);
+												sprites.MakeSprite(bloodspritedown, .8, 1, .2, .2, person[whichhit].skeleton.joints[j].position, DoRotation(person[whichhit].skeleton.joints[j].velocity / 3, Random() % 360, Random() % 360, 0) / 5, 5);
+											}
 
 											person[whichhit].skeleton.DeleteJoint(j);
 
@@ -3982,38 +3999,44 @@ void 	Game::Tick(){
 
 							//blood
 
-							if(!hitstruct.joint1->modelnum==headmodel){
+							int sprite = (blood ? bloodspritenoup : smokespritenoup);
+							float spritecolor = (blood ? 1 : 0);
+							float spritecolor_head = (blood ? .2 : 0);
+							float spritecolor_head2 = (blood ? .5 : 0);
 
-							if(person[j].whichgun==sniperrifle)sprites.MakeSprite(bloodspritenoup, 1, 1, 0, 0, hitstruct.hitlocation, velocity*0, 5);
+							if (!hitstruct.joint1->modelnum == headmodel) {
 
-							if(person[j].whichgun==sniperrifle&&penetrate)sprites.MakeSprite(bloodspritenoup, 1, 1, 0, 0, hitstruct.hitlocation, velocity*-3, 7);
+								if (person[j].whichgun == sniperrifle)sprites.MakeSprite(sprite, 1, spritecolor, 0, 0, hitstruct.hitlocation, velocity * 0, 5);
 
-							if(person[j].whichgun==shotgun)sprites.MakeSprite(bloodspritenoup, 1, 1, 0, 0, hitstruct.hitlocation, velocity*0, 5);
+								if (person[j].whichgun == sniperrifle && penetrate)sprites.MakeSprite(sprite, 1, spritecolor, 0, 0, hitstruct.hitlocation, velocity * -3, 7);
 
-							if(person[j].whichgun==shotgun&&penetrate)sprites.MakeSprite(bloodspritenoup, 1, 1, 0, 0, hitstruct.hitlocation, velocity*-3, 7);
+								if (person[j].whichgun == shotgun)sprites.MakeSprite(sprite, 1, spritecolor, 0, 0, hitstruct.hitlocation, velocity * 0, 5);
 
-							if(person[j].whichgun==assaultrifle)sprites.MakeSprite(bloodspritenoup, 1, 1, 0, 0, hitstruct.hitlocation, velocity*0, 3);
+								if (person[j].whichgun == shotgun && penetrate)sprites.MakeSprite(sprite, 1, spritecolor, 0, 0, hitstruct.hitlocation, velocity * -3, 7);
 
-							if(person[j].whichgun==assaultrifle&&penetrate)sprites.MakeSprite(bloodspritenoup, 1, 1, 0, 0, hitstruct.hitlocation, velocity*-3, 7);
+								if (person[j].whichgun == assaultrifle)sprites.MakeSprite(sprite, 1, spritecolor, 0, 0, hitstruct.hitlocation, velocity * 0, 3);
 
-							if(person[j].whichgun==handgun1)sprites.MakeSprite(bloodspritenoup, 1, 1, 0, 0, hitstruct.hitlocation, velocity*0, 3);
+								if (person[j].whichgun == assaultrifle && penetrate)sprites.MakeSprite(sprite, 1, spritecolor, 0, 0, hitstruct.hitlocation, velocity * -3, 7);
 
-							if(person[j].whichgun==handgun1&&penetrate)sprites.MakeSprite(bloodspritenoup, 1, 1, 0, 0, hitstruct.hitlocation, velocity*-3, 4);
+								if (person[j].whichgun == handgun1)sprites.MakeSprite(sprite, 1, spritecolor, 0, 0, hitstruct.hitlocation, velocity * 0, 3);
 
-							if(person[j].whichgun==handgun2)sprites.MakeSprite(bloodspritenoup, 1, 1, 0, 0, hitstruct.hitlocation, velocity*0, 3);
+								if (person[j].whichgun == handgun1 && penetrate)sprites.MakeSprite(sprite, 1, spritecolor, 0, 0, hitstruct.hitlocation, velocity * -3, 4);
 
-							if(person[j].whichgun==handgun2&&penetrate)sprites.MakeSprite(bloodspritenoup, 1, 1, 0, 0, hitstruct.hitlocation, velocity*-3, 4);
+								if (person[j].whichgun == handgun2)sprites.MakeSprite(sprite, 1, spritecolor, 0, 0, hitstruct.hitlocation, velocity * 0, 3);
 
-							}else{
-
-								sprites.MakeSprite(bloodspritenoup, 1, 1, .2, .2, hitstruct.hitlocation, velocity*0, 6);
-
-								sprites.MakeSprite(bloodspritenoup, 1, 1, .5, .5, hitstruct.hitlocation, velocity*-2, 7);
-
-								sprites.MakeSprite(bloodspritenoup, 1, 1, .2, .2, hitstruct.hitlocation, velocity*-3, 10);
+								if (person[j].whichgun == handgun2 && penetrate)sprites.MakeSprite(sprite, 1, spritecolor, 0, 0, hitstruct.hitlocation, velocity * -3, 4);
 
 							}
+							else {
+								sprites.MakeSprite(sprite, 1, spritecolor, spritecolor_head2, spritecolor_head2, hitstruct.hitlocation, velocity * -2, 7);
 
+								if (blood)
+								{
+									sprites.MakeSprite(sprite, 1, spritecolor, spritecolor_head, spritecolor_head, hitstruct.hitlocation, velocity * 0, 6);
+									sprites.MakeSprite(sprite, 1, spritecolor, spritecolor_head, spritecolor_head, hitstruct.hitlocation, velocity * -3, 10);
+								}
+
+							}
 							
 
 							person[whichhit].bjoint1=hitstruct.joint1;
@@ -4883,7 +4906,10 @@ void 	Game::Tick(){
 
 								if(findLengthfast(person[k].skeleton.joints[j].velocity)>1500&&person[k].skeleton.joints[j].existing==1&&abs(Random()%3)!=1){
 
-									sprites.MakeSprite(bloodspritedown, .8, 1, .2, .2,person[k].skeleton.joints[j].position, person[k].skeleton.joints[j].velocity/3, 9);
+									if (blood)
+									{
+										sprites.MakeSprite(bloodspritedown, .8, 1, .2, .2, person[k].skeleton.joints[j].position, person[k].skeleton.joints[j].velocity / 3, 9);
+									}
 
 									person[k].skeleton.DeleteJoint(j);
 
